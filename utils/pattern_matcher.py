@@ -1,7 +1,7 @@
 import re
 from dateutil import parser as date_parser
 
-PRIMARY_REGEX = re.compile(r'\d{1,4}/\d{1,4}')
+PRIMARY_REGEX = re.compile(r'\d{1,4}\s*/\s*\d{1,4}')
 PRIMARY_KEYWORDS = re.compile(r'\b(ipc|bns|act|u/?s)\b', re.IGNORECASE)
 
 DIRECTIONS = ['east', 'west', 'north', 'south', 'ne', 'se', 'nw', 'sw', 'northeast', 'southeast', 'northwest', 'southwest']

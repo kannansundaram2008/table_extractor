@@ -1,6 +1,6 @@
 import unittest
 import os
-from utils.document_processor import convert_doc_to_docx, extract_tables_from_docx, process_folder
+from utils.document_processor import convert_doc_to_docx, extract_tables_from_docx, process_folder, discard_adjacent_duplicates
 
 class TestDocumentProcessor(unittest.TestCase):
 
@@ -33,6 +33,16 @@ class TestDocumentProcessor(unittest.TestCase):
             self.assertIn('errors', result)
         else:
             self.skipTest("Test data folder not found")
+
+    def test_discard_adjacent_duplicates(self):
+        # Test cases for discard_adjacent_duplicates
+        self.assertEqual(discard_adjacent_duplicates([]), [])
+        self.assertEqual(discard_adjacent_duplicates(['a']), ['a'])
+        self.assertEqual(discard_adjacent_duplicates(['a', 'a']), ['a'])
+        self.assertEqual(discard_adjacent_duplicates(['a', 'a', 'b']), ['a', 'b'])
+        self.assertEqual(discard_adjacent_duplicates(['a', 'b', 'b', 'c']), ['a', 'b', 'c'])
+        self.assertEqual(discard_adjacent_duplicates(['a', 'a', 'a']), ['a'])
+        self.assertEqual(discard_adjacent_duplicates(['x', 'y', 'z']), ['x', 'y', 'z'])
 
 if __name__ == '__main__':
     unittest.main()

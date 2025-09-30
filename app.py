@@ -7,9 +7,13 @@ import threading
 import time
 import tempfile
 import shutil
+import json
 from utils.document_processor import process_folder
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib import colors
 
 app = Flask(__name__)
 app.secret_key = 'dsr_extract_secret_key'
@@ -17,30 +21,57 @@ app.secret_key = 'dsr_extract_secret_key'
 progress = {
     'total_files': 0,
     'processed_files': 0,
-    'status': 'Idle'
+    'status': 'Idle',
+    'start_time': None,
+    'elapsed_time': 0
 }
 
-def background_process(folder_path):
-    global progress
-    progress['status'] = 'Processing'
-    result = process_folder(folder_path)
-    progress['status'] = 'Completed'
-    # Save result to a file in temp folder to persist across requests
-    result_path = os.path.join(folder_path, 'result.pkl')
-    import pickle
-    with open(result_path, 'wb') as f:
-        pickle.dump(result, f)
-    progress['result_path'] = result_path
+job_queue = []
+current_job = None
+lock = threading.Lock()
+
+def process_job(job):
+    global progress, current_job
+    import traceback
+    try:
+        with lock:
+            current_job = job
+            progress['status'] = 'Processing'
+            progress['total_files'] = len(job['files'])
+            progress['processed_files'] = 0
+            progress['start_time'] = time.time()
+            progress['elapsed_time'] = 0
+        result = process_folder(job['temp_dir'])
+        with lock:
+            progress['status'] = 'Completed'
+            result_path = os.path.join(job['temp_dir'], 'result.pkl')
+            import pickle
+            with open(result_path, 'wb') as f:
+                pickle.dump(result, f)
+            progress['result_path'] = result_path
+    except Exception as e:
+        with lock:
+            progress['status'] = 'Error'
+            progress['error'] = str(e)
+            progress['traceback'] = traceback.format_exc()
+    finally:
+        with lock:
+            current_job = None
+        process_next_job()
+
+def process_next_job():
+    global job_queue
+    with lock:
+        if job_queue and current_job is None:
+            next_job = job_queue.pop(0)
+            thread = threading.Thread(target=process_job, args=(next_job,))
+            thread.start()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         files = request.files.getlist('files')
         if files:
-            # Clean up old temp_dir if exists
-            old_temp_dir = session.get('temp_dir')
-            if old_temp_dir and os.path.exists(old_temp_dir):
-                shutil.rmtree(old_temp_dir, ignore_errors=True)
             temp_dir = tempfile.mkdtemp()
             for f in files:
                 if f.filename.lower().endswith(('.doc', '.docx')) and not f.filename.startswith('$'):
@@ -48,16 +79,20 @@ def index():
                     file_path = os.path.join(temp_dir, safe_name)
                     os.makedirs(os.path.dirname(file_path), exist_ok=True)
                     f.save(file_path)
-            # Start background processing thread
-            thread = threading.Thread(target=background_process, args=(temp_dir,))
-            thread.start()
+            job = {'temp_dir': temp_dir, 'files': files}
+            with lock:
+                job_queue.append(job)
             session['temp_dir'] = temp_dir
+            process_next_job()
             return render_template('processing.html')
     return render_template('index.html')
 
 @app.route('/progress')
 def get_progress():
-    return jsonify(progress)
+    with lock:
+        if progress['start_time']:
+            progress['elapsed_time'] = int(time.time() - progress['start_time'])
+        return jsonify(progress)
 
 @app.route('/results')
 def results():
@@ -70,7 +105,8 @@ def results():
     import pickle
     with open(result_path, 'rb') as f:
         result = pickle.load(f)
-    return render_template('results.html', result=result)
+    matched_rows_json = json.dumps(result.get('matched_rows', []))
+    return render_template('results.html', result=result, matched_rows_json=matched_rows_json)
 
 @app.route('/export_csv')
 def export_csv():
@@ -81,8 +117,11 @@ def export_csv():
     if not os.path.exists(result_path):
         return "No data to export"
     import pickle
-    with open(result_path, 'rb') as f:
-        result = pickle.load(f)
+    try:
+        with open(result_path, 'rb') as f:
+            result = pickle.load(f)
+    except Exception as e:
+        return f"Error loading result data: {str(e)}"
     if not result or not result.get('matched_rows'):
         return "No data to export"
     output = io.StringIO()
@@ -93,7 +132,9 @@ def export_csv():
     for r in result.get('matched_rows', []):
         writer.writerow([r.get('source_file', '') , r.get('table_index', '')] + r.get('row', []))
     output.seek(0)
-    return send_file(io.BytesIO(output.getvalue().encode()), mimetype='text/csv', as_attachment=True, download_name='results.csv')
+    response = send_file(io.BytesIO(output.getvalue().encode()), mimetype='text/csv', as_attachment=True, download_name='results.csv')
+    response.headers["Content-Type"] = "text/csv"
+    return response
 
 @app.route('/export_excel')
 def export_excel():
@@ -122,52 +163,70 @@ def export_excel():
 
 @app.route('/export_pdf')
 def export_pdf():
-    temp_dir = session.get('temp_dir')
-    if not temp_dir:
-        return "No data to export"
-    result_path = os.path.join(temp_dir, 'result.pkl')
-    if not os.path.exists(result_path):
-        return "No data to export"
-    import pickle
-    with open(result_path, 'rb') as f:
-        result = pickle.load(f)
-    if not result or not result.get('matched_rows'):
-        return "No data to export"
-    output = io.BytesIO()
-    p = canvas.Canvas(output, pagesize=letter)
-    width, height = letter
-    y = height - 40
-    p.setFont("Helvetica-Bold", 14)
-    p.drawString(40, y, "Extraction Results")
-    y -= 30
-    p.setFont("Helvetica", 10)
-    p.drawString(40, y, f"Processed {result.get('processed_files', 0)} document(s). Matched {len(result.get('matched_rows', []))} row(s).")
-    y -= 20
-    max_cells = max(len(r['row']) for r in result.get('matched_rows', [])) if result.get('matched_rows') else 0
-    headers = ['Source File', 'Table Index'] + [f'Cell {i+1}' for i in range(max_cells)]
-    p.setFont("Helvetica-Bold", 8)
-    x = 40
-    for header in headers:
-        p.drawString(x, y, header)
-        x += 100
-    y -= 15
-    p.setFont("Helvetica", 8)
-    for r in result.get('matched_rows', []):
-        x = 40
-        if y < 40:
-            p.showPage()
-            y = height - 40
-        p.drawString(x, y, r.get('source_file', '') or '')
-        x += 100
-        p.drawString(x, y, str(r.get('table_index', '')) or '')
-        x += 100
-        for cell in r.get('row', []):
-            p.drawString(x, y, (cell or '')[:15])
-            x += 100
-        y -= 15
-    p.save()
-    output.seek(0)
-    return send_file(output, mimetype='application/pdf', as_attachment=True, download_name='results.pdf')
+    try:
+        temp_dir = session.get('temp_dir')
+        if not temp_dir:
+            return "No data to export"
+        result_path = os.path.join(temp_dir, 'result.pkl')
+        if not os.path.exists(result_path):
+            return "No data to export"
+        import pickle
+        with open(result_path, 'rb') as f:
+            result = pickle.load(f)
+        if not result or not result.get('matched_rows'):
+            return "No data to export"
+        output = io.BytesIO()
+        doc = SimpleDocTemplate(output, pagesize=letter)
+        styles = getSampleStyleSheet()
+        story = []
+
+        # Title
+        title = Paragraph("Extraction Results", styles['Title'])
+        story.append(title)
+
+        # Summary
+        summary = Paragraph(f"Processed {result.get('processed_files', 0)} document(s). Matched {len(result.get('matched_rows', []))} row(s).", styles['Normal'])
+        story.append(summary)
+
+        # Table data
+        max_cells = max(len(r['row']) for r in result.get('matched_rows', [])) if result.get('matched_rows') else 0
+        headers = ['Source File', 'Table Index'] + [f'Cell {i+1}' for i in range(max_cells)]
+        data = [headers]
+        for r in result.get('matched_rows', []):
+            row = [r.get('source_file', ''), str(r.get('table_index', ''))] + [cell or '' for cell in r.get('row', [])]
+            data.append(row)
+
+        # Create table
+        # Wrap cell content in Paragraphs to enable wrapping and dynamic height
+        styles = getSampleStyleSheet()
+        wrapped_data = []
+        for row in data:
+            wrapped_row = []
+            for cell in row:
+                wrapped_row.append(Paragraph(str(cell), styles['BodyText']))
+            wrapped_data.append(wrapped_row)
+
+        table = Table(wrapped_data, repeatRows=1)
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, 0), 10),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black),
+        ]))
+        story.append(table)
+
+        doc.build(story)
+        output.seek(0)
+        return send_file(output, mimetype='application/pdf', as_attachment=True, download_name='results.pdf')
+    except Exception as e:
+        import traceback
+        error_msg = f"Error generating PDF: {str(e)}\n{traceback.format_exc()}"
+        print(error_msg)
+        return f"Internal Server Error: {str(e)}", 500
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -13,8 +13,12 @@
         <p>Select a folder containing .doc and .docx files to extract specific rows from tables.</p>
         <form method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="files" class="form-label">Select Files</label>
-                <input type="file" class="form-control" id="files" name="files" multiple webkitdirectory required>
+                <label for="files" class="form-label">Select Files or Folder</label>
+                <input type="file" class="form-control" id="files" name="files" multiple webkitdirectory>
+                <div id="dropZone" class="border border-dashed border-secondary p-4 mt-2 text-center" style="min-height: 100px;">
+                    Or drag and drop files/folders here
+                </div>
+                <div id="fileList" class="mt-2"></div>
             </div>
             <button type="submit" class="btn btn-primary" id="submitBtn">Process Files</button>
         </form>

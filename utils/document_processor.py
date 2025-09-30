@@ -4,6 +4,18 @@ import pypandoc
 from docx import Document
 from .pattern_matcher import match_row
 
+def discard_adjacent_duplicates(row):
+    """
+    Discard the first value if adjacent cells have the same value.
+    """
+    if not row:
+        return row
+    result = [row[0]]
+    for cell in row[1:]:
+        if cell != result[-1]:
+            result.append(cell)
+    return result
+
 def convert_doc_to_docx(doc_path):
     output_path = doc_path.replace('.doc', '.docx')
     pypandoc.convert_file(doc_path, 'docx', outputfile=output_path)
@@ -37,7 +49,7 @@ def process_folder(folder_path):
             for table_index, table in enumerate(tables):
                 row_index = 0
                 while row_index < len(table):
-                    row = table[row_index]
+                    row = discard_adjacent_duplicates(table[row_index])
                     if match_row(row):
                         matched_row = {'row': row[:], 'source_file': file, 'table_index': table_index}
                         # Check next row for single merged cell to append

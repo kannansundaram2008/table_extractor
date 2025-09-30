@@ -15,6 +15,7 @@
             <div class="progress-bar" role="progressbar" style="width: 0%" id="progressBar"></div>
         </div>
         <p id="status">Status: Idle</p>
+        <p id="elapsed">Elapsed Time: 0 seconds</p>
         <div id="loading">
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Processing...</span>
@@ -27,6 +28,7 @@
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('status').textContent = 'Status: ' + data.status;
+                    document.getElementById('elapsed').textContent = 'Elapsed Time: ' + data.elapsed_time + ' seconds';
                     if (data.total_files > 0) {
                         const percentage = (data.processed_files / data.total_files) * 100;
                         document.getElementById('progressBar').style.width = percentage + '%';
