@@ -12,7 +12,8 @@ def has_primary_pattern(cell):
 def has_adjacent_pattern(cell):
     has_time_or_date = 'hrs' in cell.lower() or is_date(cell)
     has_direction = any(dir in cell.lower() for dir in DIRECTIONS)
-    return has_time_or_date and has_direction
+    has_officer = any(kw in cell.lower() for kw in ['i/o', 'ins', 'si', 'ssi'])
+    return (has_time_or_date + has_direction + has_officer) >= 2
 
 def is_date(text):
     try:
@@ -33,6 +34,11 @@ def match_row(row):
     return False
 
 def append_merged_cell_if_applicable(table, current_row_index):
-    if current_row_index + 1 < len(table) and len(table[current_row_index + 1]) == 1:
-        return table[current_row_index + 1][0]
+    if current_row_index + 1 < len(table):
+        next_row = table[current_row_index + 1]
+        if len(next_row) == 1:
+            cell = next_row[0]
+            colspan = cell.get('colspan', 1) if isinstance(cell, dict) else 1
+            if colspan > 1:
+                return cell
     return None

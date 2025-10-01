@@ -53,9 +53,11 @@ def process_folder(folder_path):
                     if match_row(row):
                         matched_row = {'row': row[:], 'source_file': file, 'table_index': table_index}
                         # Check next row for single merged cell to append
-                        if row_index + 1 < len(table) and len(table[row_index + 1]) == 1:
-                            matched_row['row'].append(table[row_index + 1][0])
-                            row_index += 1  # Skip next row as it is appended
+                        if row_index + 1 < len(table):
+                            next_row = discard_adjacent_duplicates(table[row_index + 1])
+                            if len(next_row) == 1:
+                                matched_row['row'].append(next_row[0])
+                                row_index += 1  # Skip next row as it is appended
                         matched_rows.append(matched_row)
                     row_index += 1
             processed_files += 1
