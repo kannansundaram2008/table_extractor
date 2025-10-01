@@ -44,5 +44,29 @@ class TestDocumentProcessor(unittest.TestCase):
         self.assertEqual(discard_adjacent_duplicates(['a', 'a', 'a']), ['a'])
         self.assertEqual(discard_adjacent_duplicates(['x', 'y', 'z']), ['x', 'y', 'z'])
 
+    def test_merged_row_appending(self):
+        # Test to verify merged row appending logic
+        table = [
+            ['A', 'B', 'C'],
+            ['A', 'B', 'C'],
+            ['MergedValue'],
+            ['D', 'E', 'F']
+        ]
+        matched_rows = []
+        row_index = 0
+        while row_index < len(table):
+            row = discard_adjacent_duplicates(table[row_index])
+            if len(row) > 0 and row != ['MergedValue']:
+                matched_row = {'row': row[:]}
+                if row_index + 1 < len(table):
+                    next_row = discard_adjacent_duplicates(table[row_index + 1])
+                    if len(next_row) == 1:
+                        matched_row['row'].append(next_row[0])
+                        row_index += 1
+                matched_rows.append(matched_row)
+            row_index += 1
+        self.assertEqual(len(matched_rows), 3)
+        self.assertEqual(matched_rows[1]['row'][-1], 'MergedValue')
+
 if __name__ == '__main__':
     unittest.main()

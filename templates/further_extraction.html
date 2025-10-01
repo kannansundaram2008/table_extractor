@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Further Extraction Results</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1>Further Extraction Results</h1>
+        </div>
+        <div class="tab-content">
+            <div class="mb-3">
+                <a href="{{ url_for('export_further_csv') }}" class="btn-custom btn-success-custom">Export CSV</a>
+                <a href="{{ url_for('export_further_excel') }}" class="btn-custom btn-primary-custom">Export Excel</a>
+                <a href="{{ url_for('export_further_pdf') }}" class="btn-custom btn-warning-custom">Export PDF</a>
+                <a href="{{ url_for('results') }}" class="btn-custom">Back to Results</a>
+                <a href="{{ url_for('index') }}" class="btn-custom">Back to Home</a>
+            </div>
+            <div class="metric-card">
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th>Source File</th>
+                            <th>Table Index</th>
+                            <th>Police Station</th>
+                            <th>CR No</th>
+                            <th>Section of Law</th>
+                            <th>Date of Occurrence</th>
+                            <th>Date of Report</th>
+                            <th>Place of Occurrence</th>
+                            <th>Complainant</th>
+                            <th>Victims</th>
+                            <th>Accused</th>
+                            <th>Property Lost</th>
+                            <th>Property Recovered</th>
+                            <th>Property Seized</th>
+                            <th>Gist</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for parsed_row in parsed_rows %}
+                            <tr>
+                                <td>{{ parsed_row.source_file }}</td>
+                                <td>{{ parsed_row.table_index }}</td>
+                                <td>{{ parsed_row.parsed.police_station }}</td>
+                                <td>{{ parsed_row.parsed.cr_no }}</td>
+                                <td>{{ parsed_row.parsed.section_of_law }}</td>
+                                <td>{{ parsed_row.parsed.date_of_occurrence }}</td>
+                                <td>{{ parsed_row.parsed.date_of_report }}</td>
+                                <td>{{ parsed_row.parsed.place_of_occurrence }}</td>
+                                <td>
+                                    Name: {{ parsed_row.parsed.complainant.name }}<br>
+                                    Address: {{ parsed_row.parsed.complainant.address }}<br>
+                                    Sex: {{ parsed_row.parsed.complainant.sex }}<br>
+                                    Age: {{ parsed_row.parsed.complainant.age }}
+                                </td>
+                                <td>
+                                    <ul>
+                                        {% for victim in parsed_row.parsed.victims %}
+                                            <li>{{ victim.name }}, {{ victim.age }}, {{ victim.address }}, {{ victim.sex }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        {% for accused in parsed_row.parsed.accused %}
+                                            <li>{{ accused.name }}, {{ accused.age }}, {{ accused.address }}, {{ accused.sex }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        {% for prop in parsed_row.parsed.property_lost %}
+                                            <li>{{ prop.item }}: {{ prop.quantity }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        {% for prop in parsed_row.parsed.property_recovered %}
+                                            <li>{{ prop.item }}: {{ prop.quantity }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        {% for prop in parsed_row.parsed.property_seized %}
+                                            <li>{{ prop.item }}: {{ prop.quantity }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td>{{ parsed_row.parsed.gist }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
