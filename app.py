@@ -83,7 +83,9 @@ def index():
             job = {'temp_dir': temp_dir, 'files': files}
             with lock:
                 job_queue.append(job)
+            # Save job id or temp_dir in session for tracking
             session['temp_dir'] = temp_dir
+            session.modified = True
             process_next_job()
             return render_template('processing.html')
     return render_template('index.html')
