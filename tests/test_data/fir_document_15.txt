@@ -1,0 +1,7 @@
+| Police Station | Borivali Police Station |
+                | CR Number | 932/2020 |
+                | Date | 03/03/2023 |
+                | Complainant | Ritu Saxena |
+                | Accused | Vikram Reddy |
+                | Location | Panvel |
+                | Sections | Section 376 IPC |

@@ -45,7 +45,7 @@ body {
     margin: 20px auto;
     max-width: 1400px;
     backdrop-filter: blur(10px);
-    overflow: hidden;
+    overflow-x: auto;
 }
 
 /* Header Styles */
@@ -174,7 +174,7 @@ body {
     transition: var(--transition);
     border-left: 4px solid var(--secondary-color);
     position: relative;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .metric-card::before {
@@ -313,6 +313,11 @@ body {
 
 .btn-danger-custom {
     background: var(--gradient-danger);
+    color: white;
+}
+
+.btn-info-custom {
+    background: var(--gradient-info, linear-gradient(135deg, #17a2b8 0%, #00f2fe 100%));
     color: white;
 }
 

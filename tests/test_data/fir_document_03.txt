@@ -1,0 +1,7 @@
+| Police Station | Mumbai Central Police Station |
+                | CR Number | 635/2020 |
+                | Date | 14/02/2023 |
+                | Complainant | Manoj Kumar |
+                | Accused | Rajesh Kumar |
+                | Location | Worli Sea Face |
+                | Sections | Section 420 IPC |

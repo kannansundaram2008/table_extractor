@@ -1,0 +1,3071 @@
+{
+  "metadata": {
+    "generated_at": "2025-10-21T06:12:32.715651",
+    "total_test_cases": 127,
+    "case_types": [
+      "theft",
+      "assault",
+      "fraud",
+      "vehicle_theft",
+      "burglary"
+    ]
+  },
+  "standard_cases": [
+    {
+      "id": "theft_001",
+      "case_type": "theft",
+      "fir_row": [
+        "Andheri Police Station, CR No 427/2023, Section 406 IPC",
+        "02/07/2023, 03/07/2023, 18:09hrs, Goregaon East",
+        "Sneha Patel S/o Arun Singh, Age 40, Address: 753 Andheri East",
+        "Meera Joshi S/o Kavita Gupta, Age 34, Address: 921 Borivali West",
+        "Property Lost: Mobile Phone worth Rs. 52,035",
+        "Deepak Agarwal S/o Deepak Agarwal, Age 44, Address: 645 Panvel",
+        "Sneha Patel reported theft of property by Deepak Agarwal"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Patel S/o Arun",
+          "Address",
+          "Sneha Patel",
+          "Arun Singh",
+          "Andheri East"
+        ],
+        "ORG": [
+          "Andheri Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "03/07/2023",
+          "02/07/2023"
+        ],
+        "LAW": [
+          "Section 406 IPC"
+        ],
+        "MONEY": [
+          "52,035"
+        ]
+      }
+    },
+    {
+      "id": "theft_002",
+      "case_type": "theft",
+      "fir_row": [
+        "Andheri Police Station, CR No 821/2020, Section 420 IPC",
+        "17/04/2023, 18/04/2023, 08:07hrs, Kandivali East",
+        "Meera Joshi S/o Ritu Saxena, Age 27, Address: 985 Navi Mumbai",
+        "Meera Joshi S/o Ritu Saxena, Age 27, Address: 985 Navi Mumbai",
+        "Property Lost: Television worth Rs. 32,793, Tablet worth Rs. 9,080",
+        "Meera Joshi S/o Ritu Saxena, Age 38, Address: 622 Worli Sea Face",
+        "Meera Joshi reported theft of property by Meera Joshi"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Joshi S/o Ritu",
+          "Ritu Saxena",
+          "Navi Mumbai",
+          "Address",
+          "Meera Joshi"
+        ],
+        "ORG": [
+          "Andheri Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "18/04/2023",
+          "17/04/2023"
+        ],
+        "LAW": [
+          "Section 420 IPC"
+        ],
+        "MONEY": [
+          "32,793",
+          "9,080"
+        ]
+      }
+    },
+    {
+      "id": "theft_003",
+      "case_type": "theft",
+      "fir_row": [
+        "Andheri Police Station, CR No 520/2022, Section 302 IPC",
+        "26/10/2023, 29/10/2023, 19:24hrs, Worli Sea Face",
+        "Divya Patel D/o Sneha Patel, Age 68, Address: 489 Thane West",
+        "Deepak Agarwal S/o Kavita Gupta, Age 60, Address: 213 Kalyan",
+        "Property Lost: Documents worth Rs. 99,325, Gold Chain worth Rs. 88,680",
+        "Priya Sharma S/o Rajesh Kumar, Age 30, Address: 404 Thane West",
+        "Divya Patel reported theft of property by Priya Sharma"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Divya Patel",
+          "Age",
+          "Address",
+          "Sneha Patel",
+          "Thane West",
+          "Patel D/o Sneha"
+        ],
+        "ORG": [
+          "Andheri Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "29/10/2023",
+          "26/10/2023"
+        ],
+        "LAW": [
+          "Section 302 IPC"
+        ],
+        "MONEY": [
+          "88,680",
+          "99,325"
+        ]
+      }
+    },
+    {
+      "id": "theft_004",
+      "case_type": "theft",
+      "fir_row": [
+        "Thane Police Station, CR No 472/2021, Section 379 IPC",
+        "07/04/2023, 07/04/2023, 19:04hrs, Malad West",
+        "Divya Patel W/o Priya Sharma, Age 50, Address: 256 Borivali West",
+        "Divya Patel W/o Priya Sharma, Age 50, Address: 256 Borivali West",
+        "Property Lost: Motorcycle worth Rs. 88,725, Camera worth Rs. 50,194",
+        "Anjali Desai D/o Amit Singh, Age 48, Address: 415 Panvel",
+        "Divya Patel reported theft of property by Anjali Desai"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Divya Patel",
+          "Age",
+          "Borivali West",
+          "Address",
+          "Priya Sharma"
+        ],
+        "ORG": [
+          "Thane Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "07/04/2023"
+        ],
+        "LAW": [
+          "Section 379 IPC"
+        ],
+        "MONEY": [
+          "88,725",
+          "50,194"
+        ]
+      }
+    },
+    {
+      "id": "theft_005",
+      "case_type": "theft",
+      "fir_row": [
+        "Dadar Police Station, CR No 154/2023, Section 498A IPC",
+        "22/02/2023, 24/02/2023, 13:46hrs, Dadar TT",
+        "Divya Patel W/o Divya Patel, Age 51, Address: 638 Worli Sea Face",
+        "Divya Patel W/o Divya Patel, Age 51, Address: 638 Worli Sea Face",
+        "Property Lost: Tablet worth Rs. 56,189",
+        "Sneha Patel D/o Kavita Gupta, Age 45, Address: 931 Panvel",
+        "Divya Patel reported theft of property by Sneha Patel"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Address",
+          "Worli Sea Face",
+          "Divya Patel"
+        ],
+        "ORG": [
+          "Dadar Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "22/02/2023",
+          "24/02/2023"
+        ],
+        "LAW": [],
+        "MONEY": [
+          "56,189"
+        ]
+      }
+    },
+    {
+      "id": "theft_006",
+      "case_type": "theft",
+      "fir_row": [
+        "Kandivali Police Station, CR No 433/2023, Section 379 IPC",
+        "09/09/2023, 09/09/2023, 21:59hrs, Dadar TT",
+        "Manoj Kumar S/o Anjali Desai, Age 38, Address: 333 Dadar TT",
+        "Manoj Kumar S/o Anjali Desai, Age 38, Address: 333 Dadar TT",
+        "Property Lost: Mobile Phone worth Rs. 12,314, Cash worth Rs. 96,230",
+        "Sneha Patel D/o Pooja Sharma, Age 21, Address: 728 Worli Sea Face",
+        "Manoj Kumar reported theft of property by Sneha Patel"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Dadar",
+          "Age",
+          "Manoj Kumar",
+          "Kumar S/o Anjali",
+          "Anjali Desai",
+          "Address"
+        ],
+        "ORG": [
+          "Kandivali Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "09/09/2023"
+        ],
+        "LAW": [
+          "Section 379 IPC"
+        ],
+        "MONEY": [
+          "12,314",
+          "96,230"
+        ]
+      }
+    },
+    {
+      "id": "theft_007",
+      "case_type": "theft",
+      "fir_row": [
+        "Mumbai Central Police Station, CR No 209/2020, Section 376 IPC",
+        "02/02/2023, 04/02/2023, 09:00hrs, Thane West",
+        "Rohit Mehta S/o Priya Sharma, Age 26, Address: 573 Bandra West",
+        "Manoj Kumar W/o Suresh Tiwari, Age 21, Address: 159 Panvel",
+        "Property Lost: Documents worth Rs. 98,258, Motorcycle worth Rs. 51,262, Cash worth Rs. 97,766",
+        "Manoj Kumar S/o Divya Patel, Age 58, Address: 753 Thane West",
+        "Rohit Mehta reported theft of property by Manoj Kumar"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Rohit Mehta",
+          "Age",
+          "Bandra West",
+          "Address",
+          "Priya Sharma",
+          "Mehta S/o Priya"
+        ],
+        "ORG": [
+          "Mumbai Central Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "02/02/2023",
+          "04/02/2023"
+        ],
+        "LAW": [
+          "Section 376 IPC"
+        ],
+        "MONEY": [
+          "51,262",
+          "97,766",
+          "98,258"
+        ]
+      }
+    },
+    {
+      "id": "theft_008",
+      "case_type": "theft",
+      "fir_row": [
+        "Dadar Police Station, CR No 561/2022, Section 406 IPC",
+        "02/01/2023, 02/01/2023, 19:55hrs, Dadar TT",
+        "Arun Singh S/o Divya Patel, Age 25, Address: 406 Andheri East",
+        "Suresh Tiwari W/o Arun Singh, Age 33, Address: 198 Navi Mumbai",
+        "Property Lost: Mobile Phone worth Rs. 83,238",
+        "Kavita Gupta S/o Suresh Tiwari, Age 54, Address: 486 Dadar TT",
+        "Arun Singh reported theft of property by Kavita Gupta"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Divya Patel",
+          "Singh S/o Divya",
+          "Age",
+          "Address",
+          "Arun Singh",
+          "Andheri East"
+        ],
+        "ORG": [
+          "Dadar Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "02/01/2023"
+        ],
+        "LAW": [
+          "Section 406 IPC"
+        ],
+        "MONEY": [
+          "83,238"
+        ]
+      }
+    },
+    {
+      "id": "theft_009",
+      "case_type": "theft",
+      "fir_row": [
+        "Goregaon Police Station, CR No 323/2020, Section 323 IPC",
+        "03/06/2023, 04/06/2023, 18:05hrs, Malad West",
+        "Divya Patel S/o Arun Singh, Age 50, Address: 486 Thane West",
+        "Vikram Reddy D/o Rohit Mehta, Age 41, Address: 201 Navi Mumbai",
+        "Property Lost: Motorcycle worth Rs. 59,976, Camera worth Rs. 21,129",
+        "Priya Sharma S/o Amit Singh, Age 40, Address: 939 Worli Sea Face",
+        "Divya Patel reported theft of property by Priya Sharma"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Divya Patel",
+          "Age",
+          "Patel S/o Arun",
+          "Address",
+          "Thane West",
+          "Arun Singh"
+        ],
+        "ORG": [
+          "Goregaon Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "04/06/2023",
+          "03/06/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": [
+          "21,129",
+          "59,976"
+        ]
+      }
+    },
+    {
+      "id": "theft_010",
+      "case_type": "theft",
+      "fir_row": [
+        "Dadar Police Station, CR No 441/2021, Section 323 IPC",
+        "15/10/2023, 15/10/2023, 08:53hrs, Kalyan",
+        "Amit Singh S/o Kavita Gupta, Age 59, Address: 696 Kalyan",
+        "Priya Sharma D/o Anjali Desai, Age 42, Address: 443 Thane West",
+        "Property Lost: Tablet worth Rs. 19,748",
+        "Anjali Desai S/o Deepak Agarwal, Age 49, Address: 233 Andheri East",
+        "Amit Singh reported theft of property by Anjali Desai"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Kavita Gupta",
+          "Age",
+          "Amit Singh",
+          "Singh S/o Kavita",
+          "Address",
+          "Kalyan"
+        ],
+        "ORG": [
+          "Dadar Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "15/10/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": [
+          "19,748"
+        ]
+      }
+    },
+    {
+      "id": "assault_001",
+      "case_type": "assault",
+      "fir_row": [
+        "Borivali Police Station, CR No 664/2023, Section 420 IPC",
+        "26/02/2023, 01/03/2023, 11:35hrs, Thane West",
+        "Meera Joshi S/o Meera Joshi, Age 51, Address: 662 Thane West",
+        "Meera Joshi S/o Meera Joshi, Age 51, Address: 662 Thane West",
+        "",
+        "Meera Joshi D/o Meera Joshi, Age 50, Address: 648 Kalyan",
+        "Meera Joshi was assaulted by Meera Joshi causing injuries"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Joshi S/o Meera",
+          "Age",
+          "Address",
+          "Thane West",
+          "Meera Joshi"
+        ],
+        "ORG": [
+          "Borivali Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "01/03/2023",
+          "26/02/2023"
+        ],
+        "LAW": [
+          "Section 420 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "assault_002",
+      "case_type": "assault",
+      "fir_row": [
+        "Bandra Police Station, CR No 609/2022, Section 323 IPC",
+        "04/11/2023, 06/11/2023, 20:04hrs, Panvel",
+        "Deepak Agarwal D/o Manoj Kumar, Age 27, Address: 863 Navi Mumbai",
+        "Deepak Agarwal D/o Manoj Kumar, Age 27, Address: 863 Navi Mumbai",
+        "",
+        "Manoj Kumar D/o Amit Singh, Age 28, Address: 111 Kalyan",
+        "Deepak Agarwal was assaulted by Manoj Kumar causing injuries"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Manoj Kumar",
+          "Agarwal D/o Manoj",
+          "Deepak Agarwal",
+          "Navi Mumbai",
+          "Address"
+        ],
+        "ORG": [
+          "Bandra Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "06/11/2023",
+          "04/11/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "assault_003",
+      "case_type": "assault",
+      "fir_row": [
+        "Dadar Police Station, CR No 803/2022, Section 323 IPC",
+        "05/06/2023, 06/06/2023, 11:48hrs, Dadar TT",
+        "Rajesh Kumar S/o Manoj Kumar, Age 66, Address: 715 Bandra West",
+        "Divya Patel W/o Vikram Reddy, Age 22, Address: 642 Borivali West",
+        "",
+        "Ritu Saxena D/o Manoj Kumar, Age 20, Address: 544 Panvel",
+        "Rajesh Kumar was assaulted by Ritu Saxena causing injuries"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Rajesh Kumar",
+          "Age",
+          "Kumar S/o Manoj",
+          "Bandra West",
+          "Manoj Kumar",
+          "Address"
+        ],
+        "ORG": [
+          "Dadar Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "06/06/2023",
+          "05/06/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "assault_004",
+      "case_type": "assault",
+      "fir_row": [
+        "Thane Police Station, CR No 818/2021, Section 379 IPC",
+        "04/03/2023, 04/03/2023, 11:13hrs, Borivali West",
+        "Arun Singh S/o Ritu Saxena, Age 46, Address: 169 Thane West",
+        "Arun Singh S/o Ritu Saxena, Age 46, Address: 169 Thane West",
+        "",
+        "Sneha Patel D/o Amit Singh, Age 59, Address: 805 Andheri East",
+        "Arun Singh was assaulted by Sneha Patel causing injuries"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Singh S/o Ritu",
+          "Ritu Saxena",
+          "Address",
+          "Thane West",
+          "Arun Singh"
+        ],
+        "ORG": [
+          "Thane Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "04/03/2023"
+        ],
+        "LAW": [
+          "Section 379 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "assault_005",
+      "case_type": "assault",
+      "fir_row": [
+        "Kandivali Police Station, CR No 870/2022, Section 323 IPC",
+        "04/09/2023, 05/09/2023, 20:53hrs, Borivali West",
+        "Manoj Kumar W/o Suresh Tiwari, Age 35, Address: 762 Goregaon East",
+        "Manoj Kumar W/o Suresh Tiwari, Age 35, Address: 762 Goregaon East",
+        "",
+        "Amit Singh D/o Suresh Tiwari, Age 34, Address: 487 Malad West",
+        "Manoj Kumar was assaulted by Amit Singh causing injuries"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Goregaon East",
+          "Manoj Kumar",
+          "Suresh Tiwari",
+          "Address"
+        ],
+        "ORG": [
+          "Kandivali Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "05/09/2023",
+          "04/09/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "assault_006",
+      "case_type": "assault",
+      "fir_row": [
+        "Goregaon Police Station, CR No 788/2021, Section 307 IPC",
+        "07/10/2023, 09/10/2023, 13:44hrs, Dadar TT",
+        "Rohit Mehta W/o Deepak Agarwal, Age 62, Address: 656 Kandivali East",
+        "Rohit Mehta W/o Deepak Agarwal, Age 62, Address: 656 Kandivali East",
+        "",
+        "Manoj Kumar S/o Vikram Reddy, Age 51, Address: 175 Borivali West",
+        "Rohit Mehta was assaulted by Manoj Kumar causing injuries"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Rohit Mehta",
+          "Age",
+          "Kandivali East",
+          "Deepak Agarwal",
+          "Address"
+        ],
+        "ORG": [
+          "Goregaon Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "09/10/2023",
+          "07/10/2023"
+        ],
+        "LAW": [
+          "Section 307 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "assault_007",
+      "case_type": "assault",
+      "fir_row": [
+        "Dadar Police Station, CR No 707/2022, Section 379 IPC",
+        "05/12/2023, 08/12/2023, 11:32hrs, Panvel",
+        "Anjali Desai W/o Meera Joshi, Age 42, Address: 406 Worli Sea Face",
+        "Anjali Desai W/o Meera Joshi, Age 42, Address: 406 Worli Sea Face",
+        "",
+        "Ritu Saxena D/o Sneha Patel, Age 54, Address: 542 Goregaon East",
+        "Anjali Desai was assaulted by Ritu Saxena causing injuries"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Worli Sea Face",
+          "Age",
+          "Anjali Desai",
+          "Address",
+          "Meera Joshi"
+        ],
+        "ORG": [
+          "Dadar Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "08/12/2023",
+          "05/12/2023"
+        ],
+        "LAW": [
+          "Section 379 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "assault_008",
+      "case_type": "assault",
+      "fir_row": [
+        "Bandra Police Station, CR No 342/2021, Section 376 IPC",
+        "05/08/2023, 07/08/2023, 13:07hrs, Goregaon East",
+        "Sneha Patel D/o Manoj Kumar, Age 29, Address: 362 Goregaon East",
+        "Sneha Patel D/o Manoj Kumar, Age 29, Address: 362 Goregaon East",
+        "",
+        "Sneha Patel D/o Priya Sharma, Age 42, Address: 748 Worli Sea Face",
+        "Sneha Patel was assaulted by Sneha Patel causing injuries"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Patel D/o Manoj",
+          "Age",
+          "Goregaon East",
+          "Manoj Kumar",
+          "Address",
+          "Sneha Patel"
+        ],
+        "ORG": [
+          "Bandra Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "07/08/2023",
+          "05/08/2023"
+        ],
+        "LAW": [
+          "Section 376 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "assault_009",
+      "case_type": "assault",
+      "fir_row": [
+        "Mumbai Central Police Station, CR No 585/2020, Section 498A IPC",
+        "05/08/2023, 06/08/2023, 08:25hrs, Dadar TT",
+        "Anjali Desai D/o Anjali Desai, Age 58, Address: 416 Dadar TT",
+        "Rajesh Kumar S/o Arun Singh, Age 63, Address: 714 Bandra West",
+        "",
+        "Kavita Gupta S/o Divya Patel, Age 40, Address: 677 Borivali West",
+        "Anjali Desai was assaulted by Kavita Gupta causing injuries"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Dadar",
+          "Age",
+          "Desai D/o Anjali",
+          "Anjali Desai",
+          "Address"
+        ],
+        "ORG": [
+          "Mumbai Central Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "06/08/2023",
+          "05/08/2023"
+        ],
+        "LAW": [],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "assault_010",
+      "case_type": "assault",
+      "fir_row": [
+        "Thane Police Station, CR No 216/2023, Section 376 IPC",
+        "25/01/2023, 28/01/2023, 22:11hrs, Navi Mumbai",
+        "Arun Singh S/o Suresh Tiwari, Age 67, Address: 667 Dadar TT",
+        "Pooja Sharma W/o Amit Singh, Age 58, Address: 629 Dadar TT",
+        "",
+        "Ritu Saxena S/o Suresh Tiwari, Age 32, Address: 602 Dadar TT",
+        "Arun Singh was assaulted by Ritu Saxena causing injuries"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Dadar",
+          "Singh S/o Suresh",
+          "Age",
+          "Suresh Tiwari",
+          "Address",
+          "Arun Singh"
+        ],
+        "ORG": [
+          "Thane Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "28/01/2023",
+          "25/01/2023"
+        ],
+        "LAW": [
+          "Section 376 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "fraud_001",
+      "case_type": "fraud",
+      "fir_row": [
+        "Dadar Police Station, CR No 801/2022, Section 323 IPC",
+        "07/07/2023, 08/07/2023, 22:15hrs, Borivali West",
+        "Kavita Gupta S/o Arun Singh, Age 47, Address: 504 Andheri East",
+        "Kavita Gupta S/o Arun Singh, Age 47, Address: 504 Andheri East",
+        "",
+        "Kavita Gupta D/o Meera Joshi, Age 41, Address: 276 Bandra West",
+        "Kavita Gupta was defrauded by Kavita Gupta in financial transaction"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Kavita Gupta",
+          "Gupta S/o Arun",
+          "Age",
+          "Address",
+          "Arun Singh",
+          "Andheri East"
+        ],
+        "ORG": [
+          "Dadar Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "07/07/2023",
+          "08/07/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "fraud_002",
+      "case_type": "fraud",
+      "fir_row": [
+        "Kandivali Police Station, CR No 619/2021, Section 323 IPC",
+        "26/09/2023, 27/09/2023, 10:29hrs, Bandra West",
+        "Vikram Reddy D/o Divya Patel, Age 39, Address: 824 Kandivali East",
+        "Manoj Kumar W/o Divya Patel, Age 68, Address: 260 Thane West",
+        "",
+        "Kavita Gupta D/o Suresh Tiwari, Age 37, Address: 600 Thane West",
+        "Vikram Reddy was defrauded by Kavita Gupta in financial transaction"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Divya Patel",
+          "Vikram Reddy",
+          "Age",
+          "Kandivali East",
+          "Address",
+          "Reddy D/o Divya"
+        ],
+        "ORG": [
+          "Kandivali Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "27/09/2023",
+          "26/09/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "fraud_003",
+      "case_type": "fraud",
+      "fir_row": [
+        "Worli Police Station, CR No 537/2021, Section 379 IPC",
+        "19/01/2023, 19/01/2023, 17:35hrs, Bandra West",
+        "Amit Singh D/o Rohit Mehta, Age 66, Address: 167 Bandra West",
+        "Deepak Agarwal W/o Deepak Agarwal, Age 50, Address: 168 Bandra West",
+        "",
+        "Deepak Agarwal D/o Sneha Patel, Age 39, Address: 261 Kalyan",
+        "Amit Singh was defrauded by Deepak Agarwal in financial transaction"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Singh D/o Rohit",
+          "Rohit Mehta",
+          "Age",
+          "Bandra West",
+          "Address",
+          "Amit Singh"
+        ],
+        "ORG": [
+          "Worli Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "19/01/2023"
+        ],
+        "LAW": [
+          "Section 379 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "fraud_004",
+      "case_type": "fraud",
+      "fir_row": [
+        "Dadar Police Station, CR No 208/2022, Section 420 IPC",
+        "10/05/2023, 12/05/2023, 14:41hrs, Goregaon East",
+        "Rohit Mehta W/o Manoj Kumar, Age 64, Address: 149 Kalyan",
+        "Rajesh Kumar W/o Ritu Saxena, Age 40, Address: 214 Malad West",
+        "",
+        "Sneha Patel D/o Rajesh Kumar, Age 53, Address: 504 Malad West",
+        "Rohit Mehta was defrauded by Sneha Patel in financial transaction"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Rohit Mehta",
+          "Age",
+          "Manoj Kumar",
+          "Address",
+          "Kalyan"
+        ],
+        "ORG": [
+          "Dadar Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "10/05/2023",
+          "12/05/2023"
+        ],
+        "LAW": [
+          "Section 420 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "fraud_005",
+      "case_type": "fraud",
+      "fir_row": [
+        "Worli Police Station, CR No 613/2020, Section 379 IPC",
+        "21/09/2023, 24/09/2023, 11:44hrs, Goregaon East",
+        "Vikram Reddy W/o Priya Sharma, Age 67, Address: 242 Kandivali East",
+        "Vikram Reddy W/o Priya Sharma, Age 67, Address: 242 Kandivali East",
+        "",
+        "Ritu Saxena D/o Anjali Desai, Age 52, Address: 400 Goregaon East",
+        "Vikram Reddy was defrauded by Ritu Saxena in financial transaction"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Vikram Reddy",
+          "Age",
+          "Kandivali East",
+          "Address",
+          "Priya Sharma"
+        ],
+        "ORG": [
+          "Worli Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "21/09/2023",
+          "24/09/2023"
+        ],
+        "LAW": [
+          "Section 379 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "fraud_006",
+      "case_type": "fraud",
+      "fir_row": [
+        "Borivali Police Station, CR No 199/2022, Section 376 IPC",
+        "23/04/2023, 25/04/2023, 08:24hrs, Kalyan",
+        "Vikram Reddy W/o Pooja Sharma, Age 42, Address: 423 Navi Mumbai",
+        "Vikram Reddy W/o Pooja Sharma, Age 42, Address: 423 Navi Mumbai",
+        "",
+        "Amit Singh S/o Divya Patel, Age 50, Address: 395 Kalyan",
+        "Vikram Reddy was defrauded by Amit Singh in financial transaction"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Vikram Reddy",
+          "Age",
+          "Pooja Sharma",
+          "Navi Mumbai",
+          "Address"
+        ],
+        "ORG": [
+          "Borivali Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "23/04/2023",
+          "25/04/2023"
+        ],
+        "LAW": [
+          "Section 376 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "fraud_007",
+      "case_type": "fraud",
+      "fir_row": [
+        "Borivali Police Station, CR No 646/2020, Section 406 IPC",
+        "02/01/2023, 02/01/2023, 11:44hrs, Thane West",
+        "Arun Singh S/o Manoj Kumar, Age 40, Address: 477 Malad West",
+        "Arun Singh S/o Manoj Kumar, Age 40, Address: 477 Malad West",
+        "",
+        "Rajesh Kumar S/o Anjali Desai, Age 34, Address: 610 Panvel",
+        "Arun Singh was defrauded by Rajesh Kumar in financial transaction"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Manoj Kumar",
+          "Malad West",
+          "Address",
+          "Arun Singh",
+          "Singh S/o Manoj"
+        ],
+        "ORG": [
+          "Borivali Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "02/01/2023"
+        ],
+        "LAW": [
+          "Section 406 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "fraud_008",
+      "case_type": "fraud",
+      "fir_row": [
+        "Goregaon Police Station, CR No 585/2022, Section 376 IPC",
+        "22/11/2023, 23/11/2023, 18:09hrs, Panvel",
+        "Vikram Reddy S/o Priya Sharma, Age 70, Address: 167 Navi Mumbai",
+        "Vikram Reddy S/o Priya Sharma, Age 70, Address: 167 Navi Mumbai",
+        "",
+        "Anjali Desai D/o Manoj Kumar, Age 18, Address: 832 Worli Sea Face",
+        "Vikram Reddy was defrauded by Anjali Desai in financial transaction"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Vikram Reddy",
+          "Age",
+          "Reddy S/o Priya",
+          "Navi Mumbai",
+          "Address",
+          "Priya Sharma"
+        ],
+        "ORG": [
+          "Goregaon Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "23/11/2023",
+          "22/11/2023"
+        ],
+        "LAW": [
+          "Section 376 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "fraud_009",
+      "case_type": "fraud",
+      "fir_row": [
+        "Bandra Police Station, CR No 324/2022, Section 323 IPC",
+        "28/11/2023, 30/11/2023, 17:09hrs, Goregaon East",
+        "Suresh Tiwari D/o Kavita Gupta, Age 60, Address: 755 Worli Sea Face",
+        "Suresh Tiwari D/o Kavita Gupta, Age 60, Address: 755 Worli Sea Face",
+        "",
+        "Anjali Desai S/o Suresh Tiwari, Age 57, Address: 290 Borivali West",
+        "Suresh Tiwari was defrauded by Anjali Desai in financial transaction"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Worli Sea Face",
+          "Kavita Gupta",
+          "Age",
+          "Suresh Tiwari",
+          "Address",
+          "Tiwari D/o Kavita"
+        ],
+        "ORG": [
+          "Bandra Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "28/11/2023",
+          "30/11/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "fraud_010",
+      "case_type": "fraud",
+      "fir_row": [
+        "Malad Police Station, CR No 753/2021, Section 323 IPC",
+        "08/08/2023, 10/08/2023, 22:02hrs, Andheri East",
+        "Pooja Sharma W/o Kavita Gupta, Age 63, Address: 772 Bandra West",
+        "Arun Singh W/o Amit Singh, Age 56, Address: 510 Andheri East",
+        "",
+        "Sneha Patel S/o Deepak Agarwal, Age 28, Address: 976 Thane West",
+        "Pooja Sharma was defrauded by Sneha Patel in financial transaction"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Kavita Gupta",
+          "Age",
+          "Bandra West",
+          "Pooja Sharma",
+          "Address"
+        ],
+        "ORG": [
+          "Malad Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "10/08/2023",
+          "08/08/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "vehicle_theft_001",
+      "case_type": "vehicle_theft",
+      "fir_row": [
+        "Mumbai Central Police Station, CR No 620/2020, Section 394 IPC",
+        "17/06/2023, 17/06/2023, 16:43hrs, Navi Mumbai",
+        "Sneha Patel W/o Divya Patel, Age 34, Address: 250 Kandivali East",
+        "Sneha Patel W/o Divya Patel, Age 34, Address: 250 Kandivali East",
+        "Property Lost: Motorcycle worth Rs. 321,770",
+        "Priya Sharma D/o Anjali Desai, Age 28, Address: 779 Malad West",
+        "Sneha Patel's vehicle was stolen by Priya Sharma"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Divya Patel",
+          "Age",
+          "Kandivali East",
+          "Address",
+          "Sneha Patel"
+        ],
+        "ORG": [
+          "Mumbai Central Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "17/06/2023"
+        ],
+        "LAW": [
+          "Section 394 IPC"
+        ],
+        "MONEY": [
+          "321,770"
+        ]
+      }
+    },
+    {
+      "id": "vehicle_theft_002",
+      "case_type": "vehicle_theft",
+      "fir_row": [
+        "Goregaon Police Station, CR No 461/2021, Section 406 IPC",
+        "18/04/2023, 20/04/2023, 21:41hrs, Borivali West",
+        "Deepak Agarwal W/o Amit Singh, Age 63, Address: 501 Malad West",
+        "Deepak Agarwal W/o Amit Singh, Age 63, Address: 501 Malad West",
+        "Property Lost: Scooter worth Rs. 89,388",
+        "Anjali Desai S/o Sneha Patel, Age 36, Address: 233 Borivali West",
+        "Deepak Agarwal's vehicle was stolen by Anjali Desai"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Malad West",
+          "Deepak Agarwal",
+          "Address",
+          "Amit Singh"
+        ],
+        "ORG": [
+          "Goregaon Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "20/04/2023",
+          "18/04/2023"
+        ],
+        "LAW": [
+          "Section 406 IPC"
+        ],
+        "MONEY": [
+          "89,388"
+        ]
+      }
+    },
+    {
+      "id": "vehicle_theft_003",
+      "case_type": "vehicle_theft",
+      "fir_row": [
+        "Malad Police Station, CR No 887/2020, Section 406 IPC",
+        "19/04/2023, 21/04/2023, 19:33hrs, Borivali West",
+        "Vikram Reddy W/o Manoj Kumar, Age 49, Address: 745 Kandivali East",
+        "Vikram Reddy W/o Manoj Kumar, Age 49, Address: 745 Kandivali East",
+        "Property Lost: Motorcycle worth Rs. 292,563",
+        "Ritu Saxena S/o Meera Joshi, Age 59, Address: 894 Worli Sea Face",
+        "Vikram Reddy's vehicle was stolen by Ritu Saxena"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Vikram Reddy",
+          "Age",
+          "Manoj Kumar",
+          "Kandivali East",
+          "Address"
+        ],
+        "ORG": [
+          "Malad Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "21/04/2023",
+          "19/04/2023"
+        ],
+        "LAW": [
+          "Section 406 IPC"
+        ],
+        "MONEY": [
+          "292,563"
+        ]
+      }
+    },
+    {
+      "id": "vehicle_theft_004",
+      "case_type": "vehicle_theft",
+      "fir_row": [
+        "Bandra Police Station, CR No 805/2023, Section 323 IPC",
+        "15/08/2023, 17/08/2023, 08:51hrs, Worli Sea Face",
+        "Ritu Saxena D/o Manoj Kumar, Age 52, Address: 498 Worli Sea Face",
+        "Rohit Mehta W/o Kavita Gupta, Age 20, Address: 404 Dadar TT",
+        "Property Lost: Truck worth Rs. 72,166",
+        "Rajesh Kumar S/o Divya Patel, Age 23, Address: 664 Dadar TT",
+        "Ritu Saxena's vehicle was stolen by Rajesh Kumar"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Worli Sea Face",
+          "Age",
+          "Manoj Kumar",
+          "Ritu Saxena",
+          "Address",
+          "Saxena D/o Manoj"
+        ],
+        "ORG": [
+          "Bandra Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "15/08/2023",
+          "17/08/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": [
+          "72,166"
+        ]
+      }
+    },
+    {
+      "id": "vehicle_theft_005",
+      "case_type": "vehicle_theft",
+      "fir_row": [
+        "Dadar Police Station, CR No 197/2020, Section 420 IPC",
+        "22/05/2023, 24/05/2023, 18:26hrs, Panvel",
+        "Deepak Agarwal S/o Meera Joshi, Age 66, Address: 196 Thane West",
+        "Vikram Reddy S/o Pooja Sharma, Age 59, Address: 874 Panvel",
+        "Property Lost: Motorcycle worth Rs. 51,321",
+        "Amit Singh S/o Ritu Saxena, Age 22, Address: 778 Andheri East",
+        "Deepak Agarwal's vehicle was stolen by Amit Singh"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Agarwal S/o Meera",
+          "Deepak Agarwal",
+          "Address",
+          "Thane West",
+          "Meera Joshi"
+        ],
+        "ORG": [
+          "Dadar Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "22/05/2023",
+          "24/05/2023"
+        ],
+        "LAW": [
+          "Section 420 IPC"
+        ],
+        "MONEY": [
+          "51,321"
+        ]
+      }
+    },
+    {
+      "id": "vehicle_theft_006",
+      "case_type": "vehicle_theft",
+      "fir_row": [
+        "Worli Police Station, CR No 913/2020, Section 420 IPC",
+        "16/03/2023, 16/03/2023, 11:33hrs, Thane West",
+        "Rajesh Kumar D/o Rohit Mehta, Age 64, Address: 765 Andheri East",
+        "Pooja Sharma D/o Amit Singh, Age 52, Address: 814 Navi Mumbai",
+        "Property Lost: Scooter worth Rs. 337,561",
+        "Sneha Patel D/o Ritu Saxena, Age 41, Address: 780 Panvel",
+        "Rajesh Kumar's vehicle was stolen by Sneha Patel"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Rajesh Kumar",
+          "Rohit Mehta",
+          "Age",
+          "Kumar D/o Rohit",
+          "Address",
+          "Andheri East"
+        ],
+        "ORG": [
+          "Worli Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "16/03/2023"
+        ],
+        "LAW": [
+          "Section 420 IPC"
+        ],
+        "MONEY": [
+          "337,561"
+        ]
+      }
+    },
+    {
+      "id": "vehicle_theft_007",
+      "case_type": "vehicle_theft",
+      "fir_row": [
+        "Malad Police Station, CR No 201/2023, Section 498A IPC",
+        "18/04/2023, 18/04/2023, 10:18hrs, Worli Sea Face",
+        "Suresh Tiwari S/o Anjali Desai, Age 29, Address: 298 Andheri East",
+        "Suresh Tiwari S/o Anjali Desai, Age 29, Address: 298 Andheri East",
+        "Property Lost: Motorcycle worth Rs. 455,482",
+        "Divya Patel D/o Pooja Sharma, Age 41, Address: 768 Dadar TT",
+        "Suresh Tiwari's vehicle was stolen by Divya Patel"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Anjali Desai",
+          "Suresh Tiwari",
+          "Address",
+          "Tiwari S/o Anjali",
+          "Andheri East"
+        ],
+        "ORG": [
+          "Malad Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "18/04/2023"
+        ],
+        "LAW": [],
+        "MONEY": [
+          "455,482"
+        ]
+      }
+    },
+    {
+      "id": "vehicle_theft_008",
+      "case_type": "vehicle_theft",
+      "fir_row": [
+        "Dadar Police Station, CR No 979/2023, Section 498A IPC",
+        "04/07/2023, 06/07/2023, 16:24hrs, Borivali West",
+        "Anjali Desai W/o Deepak Agarwal, Age 69, Address: 897 Andheri East",
+        "Anjali Desai W/o Deepak Agarwal, Age 69, Address: 897 Andheri East",
+        "Property Lost: Scooter worth Rs. 231,029",
+        "Meera Joshi S/o Divya Patel, Age 39, Address: 653 Panvel",
+        "Anjali Desai's vehicle was stolen by Meera Joshi"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Deepak Agarwal",
+          "Anjali Desai",
+          "Address",
+          "Andheri East"
+        ],
+        "ORG": [
+          "Dadar Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "06/07/2023",
+          "04/07/2023"
+        ],
+        "LAW": [],
+        "MONEY": [
+          "231,029"
+        ]
+      }
+    },
+    {
+      "id": "vehicle_theft_009",
+      "case_type": "vehicle_theft",
+      "fir_row": [
+        "Dadar Police Station, CR No 309/2021, Section 307 IPC",
+        "25/06/2023, 25/06/2023, 15:15hrs, Andheri East",
+        "Manoj Kumar D/o Priya Sharma, Age 41, Address: 696 Worli Sea Face",
+        "Manoj Kumar D/o Priya Sharma, Age 41, Address: 696 Worli Sea Face",
+        "Property Lost: Car worth Rs. 395,480",
+        "Rajesh Kumar D/o Sneha Patel, Age 30, Address: 839 Bandra West",
+        "Manoj Kumar's vehicle was stolen by Rajesh Kumar"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Worli Sea Face",
+          "Kumar D/o Priya",
+          "Age",
+          "Manoj Kumar",
+          "Address",
+          "Priya Sharma"
+        ],
+        "ORG": [
+          "Dadar Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "25/06/2023"
+        ],
+        "LAW": [
+          "Section 307 IPC"
+        ],
+        "MONEY": [
+          "395,480"
+        ]
+      }
+    },
+    {
+      "id": "vehicle_theft_010",
+      "case_type": "vehicle_theft",
+      "fir_row": [
+        "Dadar Police Station, CR No 537/2020, Section 406 IPC",
+        "13/06/2023, 13/06/2023, 20:36hrs, Andheri East",
+        "Divya Patel D/o Kavita Gupta, Age 50, Address: 856 Andheri East",
+        "Rajesh Kumar S/o Suresh Tiwari, Age 50, Address: 551 Navi Mumbai",
+        "Property Lost: Truck worth Rs. 213,663",
+        "Rohit Mehta S/o Rajesh Kumar, Age 26, Address: 437 Panvel",
+        "Divya Patel's vehicle was stolen by Rohit Mehta"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Divya Patel",
+          "Kavita Gupta",
+          "Patel D/o Kavita",
+          "Age",
+          "Address",
+          "Andheri East"
+        ],
+        "ORG": [
+          "Dadar Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "13/06/2023"
+        ],
+        "LAW": [
+          "Section 406 IPC"
+        ],
+        "MONEY": [
+          "213,663"
+        ]
+      }
+    },
+    {
+      "id": "burglary_001",
+      "case_type": "burglary",
+      "fir_row": [
+        "Bandra Police Station, CR No 906/2021, Section 376 IPC",
+        "20/10/2023, 22/10/2023, 19:10hrs, Panvel",
+        "Meera Joshi D/o Arun Singh, Age 63, Address: 917 Andheri East",
+        "Meera Joshi D/o Divya Patel, Age 39, Address: 187 Thane West",
+        "",
+        "Kavita Gupta D/o Ritu Saxena, Age 59, Address: 336 Bandra West",
+        "Meera Joshi's residence was burgled by Kavita Gupta"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Meera Joshi",
+          "Joshi D/o Arun",
+          "Address",
+          "Arun Singh",
+          "Andheri East"
+        ],
+        "ORG": [
+          "Bandra Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "22/10/2023",
+          "20/10/2023"
+        ],
+        "LAW": [
+          "Section 376 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "burglary_002",
+      "case_type": "burglary",
+      "fir_row": [
+        "Goregaon Police Station, CR No 938/2022, Section 302 IPC",
+        "28/04/2023, 28/04/2023, 20:25hrs, Goregaon East",
+        "Divya Patel D/o Manoj Kumar, Age 48, Address: 526 Goregaon East",
+        "Sneha Patel D/o Priya Sharma, Age 50, Address: 255 Bandra West",
+        "",
+        "Kavita Gupta S/o Arun Singh, Age 19, Address: 200 Andheri East",
+        "Divya Patel's residence was burgled by Kavita Gupta"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Patel D/o Manoj",
+          "Divya Patel",
+          "Age",
+          "Goregaon East",
+          "Manoj Kumar",
+          "Address"
+        ],
+        "ORG": [
+          "Goregaon Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "28/04/2023"
+        ],
+        "LAW": [
+          "Section 302 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "burglary_003",
+      "case_type": "burglary",
+      "fir_row": [
+        "Kandivali Police Station, CR No 822/2022, Section 376 IPC",
+        "25/02/2023, 26/02/2023, 15:53hrs, Worli Sea Face",
+        "Sneha Patel S/o Divya Patel, Age 47, Address: 325 Panvel",
+        "Priya Sharma D/o Sneha Patel, Age 70, Address: 817 Malad West",
+        "",
+        "Deepak Agarwal D/o Anjali Desai, Age 57, Address: 600 Borivali West",
+        "Sneha Patel's residence was burgled by Deepak Agarwal"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Divya Patel",
+          "Age",
+          "Patel S/o Divya",
+          "Address",
+          "Sneha Patel",
+          "Panvel"
+        ],
+        "ORG": [
+          "Kandivali Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "25/02/2023",
+          "26/02/2023"
+        ],
+        "LAW": [
+          "Section 376 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "burglary_004",
+      "case_type": "burglary",
+      "fir_row": [
+        "Malad Police Station, CR No 524/2023, Section 406 IPC",
+        "19/12/2023, 20/12/2023, 09:02hrs, Kandivali East",
+        "Anjali Desai D/o Manoj Kumar, Age 39, Address: 629 Worli Sea Face",
+        "Rohit Mehta S/o Priya Sharma, Age 48, Address: 173 Borivali West",
+        "",
+        "Pooja Sharma S/o Arun Singh, Age 42, Address: 248 Worli Sea Face",
+        "Anjali Desai's residence was burgled by Pooja Sharma"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Worli Sea Face",
+          "Age",
+          "Manoj Kumar",
+          "Anjali Desai",
+          "Address",
+          "Desai D/o Manoj"
+        ],
+        "ORG": [
+          "Malad Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "20/12/2023",
+          "19/12/2023"
+        ],
+        "LAW": [
+          "Section 406 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "burglary_005",
+      "case_type": "burglary",
+      "fir_row": [
+        "Thane Police Station, CR No 335/2020, Section 323 IPC",
+        "12/07/2023, 13/07/2023, 22:37hrs, Kalyan",
+        "Arun Singh D/o Amit Singh, Age 68, Address: 212 Navi Mumbai",
+        "Arun Singh D/o Amit Singh, Age 68, Address: 212 Navi Mumbai",
+        "",
+        "Divya Patel D/o Meera Joshi, Age 27, Address: 912 Panvel",
+        "Arun Singh's residence was burgled by Divya Patel"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Singh D/o Amit",
+          "Navi Mumbai",
+          "Address",
+          "Arun Singh",
+          "Amit Singh"
+        ],
+        "ORG": [
+          "Thane Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "12/07/2023",
+          "13/07/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "burglary_006",
+      "case_type": "burglary",
+      "fir_row": [
+        "Goregaon Police Station, CR No 407/2023, Section 307 IPC",
+        "14/05/2023, 14/05/2023, 19:06hrs, Thane West",
+        "Priya Sharma W/o Ritu Saxena, Age 42, Address: 350 Goregaon East",
+        "Priya Sharma W/o Ritu Saxena, Age 42, Address: 350 Goregaon East",
+        "",
+        "Rajesh Kumar D/o Arun Singh, Age 31, Address: 719 Kalyan",
+        "Priya Sharma's residence was burgled by Rajesh Kumar"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Goregaon East",
+          "Ritu Saxena",
+          "Address",
+          "Priya Sharma"
+        ],
+        "ORG": [
+          "Goregaon Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "14/05/2023"
+        ],
+        "LAW": [
+          "Section 307 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "burglary_007",
+      "case_type": "burglary",
+      "fir_row": [
+        "Bandra Police Station, CR No 276/2023, Section 394 IPC",
+        "09/07/2023, 10/07/2023, 18:35hrs, Thane West",
+        "Vikram Reddy D/o Pooja Sharma, Age 33, Address: 824 Bandra West",
+        "Vikram Reddy D/o Pooja Sharma, Age 33, Address: 824 Bandra West",
+        "",
+        "Suresh Tiwari D/o Arun Singh, Age 34, Address: 897 Navi Mumbai",
+        "Vikram Reddy's residence was burgled by Suresh Tiwari"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Vikram Reddy",
+          "Age",
+          "Reddy D/o Pooja",
+          "Bandra West",
+          "Pooja Sharma",
+          "Address"
+        ],
+        "ORG": [
+          "Bandra Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "10/07/2023",
+          "09/07/2023"
+        ],
+        "LAW": [
+          "Section 394 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "burglary_008",
+      "case_type": "burglary",
+      "fir_row": [
+        "Mumbai Central Police Station, CR No 616/2022, Section 323 IPC",
+        "11/03/2023, 12/03/2023, 22:39hrs, Thane West",
+        "Suresh Tiwari D/o Sneha Patel, Age 58, Address: 651 Worli Sea Face",
+        "Suresh Tiwari D/o Sneha Patel, Age 58, Address: 651 Worli Sea Face",
+        "",
+        "Deepak Agarwal S/o Vikram Reddy, Age 18, Address: 975 Kalyan",
+        "Suresh Tiwari's residence was burgled by Deepak Agarwal"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Worli Sea Face",
+          "Age",
+          "Suresh Tiwari",
+          "Address",
+          "Sneha Patel",
+          "Tiwari D/o Sneha"
+        ],
+        "ORG": [
+          "Mumbai Central Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "12/03/2023",
+          "11/03/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "burglary_009",
+      "case_type": "burglary",
+      "fir_row": [
+        "Bandra Police Station, CR No 952/2022, Section 323 IPC",
+        "21/12/2023, 23/12/2023, 17:42hrs, Kalyan",
+        "Deepak Agarwal W/o Arun Singh, Age 45, Address: 166 Malad West",
+        "Deepak Agarwal W/o Arun Singh, Age 45, Address: 166 Malad West",
+        "",
+        "Arun Singh D/o Sneha Patel, Age 47, Address: 218 Borivali West",
+        "Deepak Agarwal's residence was burgled by Arun Singh"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Age",
+          "Malad West",
+          "Deepak Agarwal",
+          "Address",
+          "Arun Singh"
+        ],
+        "ORG": [
+          "Bandra Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "21/12/2023",
+          "23/12/2023"
+        ],
+        "LAW": [
+          "Section 323 IPC"
+        ],
+        "MONEY": []
+      }
+    },
+    {
+      "id": "burglary_010",
+      "case_type": "burglary",
+      "fir_row": [
+        "Mumbai Central Police Station, CR No 194/2022, Section 307 IPC",
+        "04/02/2023, 07/02/2023, 10:13hrs, Kandivali East",
+        "Manoj Kumar S/o Rohit Mehta, Age 64, Address: 164 Malad West",
+        "Manoj Kumar S/o Rohit Mehta, Age 64, Address: 164 Malad West",
+        "",
+        "Rohit Mehta S/o Meera Joshi, Age 18, Address: 210 Malad West",
+        "Manoj Kumar's residence was burgled by Rohit Mehta"
+      ],
+      "expected_entities": {
+        "PERSON": [
+          "Kumar S/o Rohit",
+          "Rohit Mehta",
+          "Age",
+          "Manoj Kumar",
+          "Malad West",
+          "Address"
+        ],
+        "ORG": [
+          "Mumbai Central Police Station"
+        ],
+        "GPE": [],
+        "DATE": [
+          "07/02/2023",
+          "04/02/2023"
+        ],
+        "LAW": [
+          "Section 307 IPC"
+        ],
+        "MONEY": []
+      }
+    }
+  ],
+  "edge_cases": {
+    "empty_fields": [
+      ", CR No 123/2023, ",
+      ", , , ",
+      ", , , ",
+      "",
+      "",
+      "",
+      "Case with empty fields"
+    ],
+    "unicode_names": [
+      "केंद्र पुलिस स्टेशन, CR No १२३/२०२३, Section ३७९ IPC",
+      "१५/०३/२०२३, १६/०३/२०२३, १४:३०hrs, आंधेरी ईस्ट",
+      "जॉन डो S/o रॉबर्ट डो, Age ३५, Address: बांद्रा वेस्ट",
+      "प्रिया शर्मा D/o अनिल शर्मा, Age २८, Address: आंधेरी ईस्ट",
+      "मोबाइल फोन worth Rs. १५,०००",
+      "राजेश कुमार S/o विजय कुमार, Age २५, Address: जोगेश्वरी",
+      "यूनिकोड टेस्ट केस"
+    ],
+    "special_characters": [
+      "Test@#$% Police Station, CR No 123/456, Section 379 IPC",
+      "15/03/2023, Test&Location#",
+      "O'Connor-Smith Jr., Age 35, Address: 123 Main@#$%",
+      "",
+      "Property with $peci@l characters & symbols",
+      "Accused@#$% Name, Age 25",
+      "Test case with special characters @#$%^&*()"
+    ],
+    "very_long_content": [
+      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA Police Station, CR No 999/2023",
+      "01/01/2023, AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name Very Long Name , Age 35",
+      "",
+      "Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description Very long property description ",
+      "Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name Very long accused name , Age 25",
+      "Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description Very long gist description "
+    ],
+    "minimal_data": [
+      "PS, CR 1/23",
+      "1/1/23",
+      "Name",
+      "",
+      "",
+      "",
+      "Minimal"
+    ],
+    "malformed_dates": [
+      "Police Station, CR No 123/2023",
+      "32/13/2023, 15/25/2023, 25:70hrs, Invalid Location",
+      "Invalid Date Format: 2023/13/45, Age -5",
+      "",
+      "",
+      "",
+      "Malformed date formats"
+    ],
+    "multiple_sections": [
+      "Mumbai Police Station, CR No 123/2023, Section 379 IPC, Section 323 IPC, Section 420 IPC, Section 406 IPC",
+      "15/03/2023, 16/03/2023, 14:30hrs, Andheri East",
+      "John Doe S/o Robert Doe, Age 35",
+      "Multiple victims case",
+      "Multiple properties lost",
+      "Multiple accused persons",
+      "Complex case with multiple sections and parties"
+    ]
+  },
+  "integration_cases": [
+    {
+      "id": "integration_001",
+      "description": "Integration test case 1 - fraud",
+      "fir_row": [
+        "Worli Police Station, CR No 484/2020, Section 498A IPC",
+        "01/01/2023, 02/01/2023, 10:06hrs, Borivali West",
+        "Manoj Kumar W/o Meera Joshi, Age 62, Address: 217 Bandra West",
+        "Suresh Tiwari D/o Meera Joshi, Age 46, Address: 810 Bandra West",
+        "",
+        "Sneha Patel D/o Priya Sharma, Age 21, Address: 809 Navi Mumbai",
+        "Manoj Kumar was defrauded by Sneha Patel in financial transaction"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_002",
+      "description": "Integration test case 2 - theft",
+      "fir_row": [
+        "Goregaon Police Station, CR No 778/2021, Section 302 IPC",
+        "09/09/2023, 12/09/2023, 08:11hrs, Navi Mumbai",
+        "Deepak Agarwal S/o Divya Patel, Age 55, Address: 868 Dadar TT",
+        "Deepak Agarwal S/o Divya Patel, Age 55, Address: 868 Dadar TT",
+        "Property Lost: Gold Chain worth Rs. 54,449, Watch worth Rs. 86,873, Motorcycle worth Rs. 93,702",
+        "Manoj Kumar S/o Priya Sharma, Age 36, Address: 731 Andheri East",
+        "Deepak Agarwal reported theft of property by Manoj Kumar"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_003",
+      "description": "Integration test case 3 - burglary",
+      "fir_row": [
+        "Bandra Police Station, CR No 401/2020, Section 420 IPC",
+        "09/12/2023, 10/12/2023, 21:17hrs, Thane West",
+        "Anjali Desai S/o Priya Sharma, Age 61, Address: 120 Malad West",
+        "Anjali Desai S/o Priya Sharma, Age 61, Address: 120 Malad West",
+        "",
+        "Divya Patel S/o Kavita Gupta, Age 49, Address: 963 Thane West",
+        "Anjali Desai's residence was burgled by Divya Patel"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_004",
+      "description": "Integration test case 4 - vehicle_theft",
+      "fir_row": [
+        "Mumbai Central Police Station, CR No 972/2021, Section 379 IPC",
+        "04/12/2023, 05/12/2023, 20:12hrs, Dadar TT",
+        "Anjali Desai D/o Meera Joshi, Age 43, Address: 616 Bandra West",
+        "Anjali Desai D/o Meera Joshi, Age 43, Address: 616 Bandra West",
+        "Property Lost: Car worth Rs. 73,525",
+        "Amit Singh D/o Rohit Mehta, Age 51, Address: 306 Borivali West",
+        "Anjali Desai's vehicle was stolen by Amit Singh"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_005",
+      "description": "Integration test case 5 - fraud",
+      "fir_row": [
+        "Thane Police Station, CR No 121/2021, Section 420 IPC",
+        "14/03/2023, 16/03/2023, 16:11hrs, Dadar TT",
+        "Suresh Tiwari S/o Ritu Saxena, Age 27, Address: 535 Bandra West",
+        "Suresh Tiwari S/o Ritu Saxena, Age 27, Address: 535 Bandra West",
+        "",
+        "Pooja Sharma D/o Arun Singh, Age 48, Address: 339 Dadar TT",
+        "Suresh Tiwari was defrauded by Pooja Sharma in financial transaction"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_006",
+      "description": "Integration test case 6 - fraud",
+      "fir_row": [
+        "Worli Police Station, CR No 718/2020, Section 376 IPC",
+        "27/12/2023, 29/12/2023, 11:34hrs, Andheri East",
+        "Ritu Saxena W/o Rohit Mehta, Age 49, Address: 334 Bandra West",
+        "Ritu Saxena W/o Rohit Mehta, Age 49, Address: 334 Bandra West",
+        "",
+        "Anjali Desai D/o Rajesh Kumar, Age 47, Address: 239 Kalyan",
+        "Ritu Saxena was defrauded by Anjali Desai in financial transaction"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_007",
+      "description": "Integration test case 7 - fraud",
+      "fir_row": [
+        "Kandivali Police Station, CR No 661/2023, Section 498A IPC",
+        "15/02/2023, 15/02/2023, 21:39hrs, Worli Sea Face",
+        "Deepak Agarwal S/o Meera Joshi, Age 70, Address: 314 Goregaon East",
+        "Deepak Agarwal S/o Meera Joshi, Age 70, Address: 314 Goregaon East",
+        "",
+        "Rohit Mehta S/o Pooja Sharma, Age 33, Address: 539 Goregaon East",
+        "Deepak Agarwal was defrauded by Rohit Mehta in financial transaction"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_008",
+      "description": "Integration test case 8 - vehicle_theft",
+      "fir_row": [
+        "Mumbai Central Police Station, CR No 370/2021, Section 379 IPC",
+        "28/06/2023, 29/06/2023, 14:32hrs, Bandra West",
+        "Ritu Saxena W/o Sneha Patel, Age 28, Address: 745 Kalyan",
+        "Ritu Saxena W/o Sneha Patel, Age 28, Address: 745 Kalyan",
+        "Property Lost: Truck worth Rs. 82,458",
+        "Vikram Reddy D/o Vikram Reddy, Age 46, Address: 350 Navi Mumbai",
+        "Ritu Saxena's vehicle was stolen by Vikram Reddy"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_009",
+      "description": "Integration test case 9 - theft",
+      "fir_row": [
+        "Borivali Police Station, CR No 766/2023, Section 376 IPC",
+        "07/12/2023, 08/12/2023, 17:56hrs, Panvel",
+        "Suresh Tiwari S/o Suresh Tiwari, Age 31, Address: 326 Bandra West",
+        "Suresh Tiwari S/o Suresh Tiwari, Age 31, Address: 326 Bandra West",
+        "Property Lost: Laptop Computer worth Rs. 84,125",
+        "Anjali Desai S/o Amit Singh, Age 38, Address: 855 Panvel",
+        "Suresh Tiwari reported theft of property by Anjali Desai"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_010",
+      "description": "Integration test case 10 - burglary",
+      "fir_row": [
+        "Kandivali Police Station, CR No 861/2022, Section 498A IPC",
+        "22/12/2023, 24/12/2023, 11:44hrs, Panvel",
+        "Sneha Patel W/o Meera Joshi, Age 62, Address: 579 Dadar TT",
+        "Sneha Patel W/o Meera Joshi, Age 62, Address: 579 Dadar TT",
+        "",
+        "Deepak Agarwal S/o Arun Singh, Age 39, Address: 588 Panvel",
+        "Sneha Patel's residence was burgled by Deepak Agarwal"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_011",
+      "description": "Integration test case 11 - theft",
+      "fir_row": [
+        "Thane Police Station, CR No 523/2022, Section 379 IPC",
+        "03/06/2023, 03/06/2023, 16:22hrs, Kalyan",
+        "Priya Sharma S/o Arun Singh, Age 29, Address: 160 Dadar TT",
+        "Priya Sharma S/o Arun Singh, Age 29, Address: 160 Dadar TT",
+        "Property Lost: Gold Chain worth Rs. 34,697, Documents worth Rs. 60,772",
+        "Pooja Sharma S/o Rajesh Kumar, Age 43, Address: 558 Thane West",
+        "Priya Sharma reported theft of property by Pooja Sharma"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_012",
+      "description": "Integration test case 12 - vehicle_theft",
+      "fir_row": [
+        "Thane Police Station, CR No 411/2023, Section 406 IPC",
+        "28/01/2023, 31/01/2023, 10:36hrs, Thane West",
+        "Rohit Mehta D/o Manoj Kumar, Age 70, Address: 716 Dadar TT",
+        "Rohit Mehta D/o Manoj Kumar, Age 70, Address: 716 Dadar TT",
+        "Property Lost: Truck worth Rs. 187,586",
+        "Pooja Sharma S/o Ritu Saxena, Age 49, Address: 859 Kandivali East",
+        "Rohit Mehta's vehicle was stolen by Pooja Sharma"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_013",
+      "description": "Integration test case 13 - theft",
+      "fir_row": [
+        "Dadar Police Station, CR No 859/2023, Section 323 IPC",
+        "15/12/2023, 15/12/2023, 18:49hrs, Thane West",
+        "Kavita Gupta S/o Priya Sharma, Age 45, Address: 904 Navi Mumbai",
+        "Sneha Patel D/o Manoj Kumar, Age 60, Address: 915 Bandra West",
+        "Property Lost: Tablet worth Rs. 19,542",
+        "Meera Joshi D/o Priya Sharma, Age 52, Address: 602 Navi Mumbai",
+        "Kavita Gupta reported theft of property by Meera Joshi"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_014",
+      "description": "Integration test case 14 - assault",
+      "fir_row": [
+        "Goregaon Police Station, CR No 537/2022, Section 307 IPC",
+        "12/07/2023, 15/07/2023, 22:39hrs, Dadar TT",
+        "Meera Joshi W/o Rohit Mehta, Age 59, Address: 997 Kalyan",
+        "Meera Joshi W/o Rohit Mehta, Age 59, Address: 997 Kalyan",
+        "",
+        "Vikram Reddy S/o Manoj Kumar, Age 27, Address: 253 Navi Mumbai",
+        "Meera Joshi was assaulted by Vikram Reddy causing injuries"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_015",
+      "description": "Integration test case 15 - assault",
+      "fir_row": [
+        "Bandra Police Station, CR No 571/2021, Section 323 IPC",
+        "02/07/2023, 04/07/2023, 18:32hrs, Thane West",
+        "Divya Patel W/o Ritu Saxena, Age 24, Address: 452 Dadar TT",
+        "Divya Patel W/o Ritu Saxena, Age 24, Address: 452 Dadar TT",
+        "",
+        "Pooja Sharma D/o Divya Patel, Age 32, Address: 716 Malad West",
+        "Divya Patel was assaulted by Pooja Sharma causing injuries"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_016",
+      "description": "Integration test case 16 - vehicle_theft",
+      "fir_row": [
+        "Dadar Police Station, CR No 398/2023, Section 302 IPC",
+        "24/11/2023, 25/11/2023, 15:44hrs, Andheri East",
+        "Arun Singh W/o Sneha Patel, Age 39, Address: 370 Navi Mumbai",
+        "Arun Singh D/o Ritu Saxena, Age 49, Address: 549 Goregaon East",
+        "Property Lost: Truck worth Rs. 102,585",
+        "Pooja Sharma D/o Divya Patel, Age 41, Address: 462 Andheri East",
+        "Arun Singh's vehicle was stolen by Pooja Sharma"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_017",
+      "description": "Integration test case 17 - theft",
+      "fir_row": [
+        "Mumbai Central Police Station, CR No 305/2022, Section 498A IPC",
+        "20/01/2023, 20/01/2023, 21:58hrs, Kalyan",
+        "Suresh Tiwari W/o Suresh Tiwari, Age 38, Address: 889 Thane West",
+        "Arun Singh D/o Divya Patel, Age 31, Address: 191 Kandivali East",
+        "Property Lost: Motorcycle worth Rs. 97,513",
+        "Manoj Kumar D/o Suresh Tiwari, Age 23, Address: 836 Andheri East",
+        "Suresh Tiwari reported theft of property by Manoj Kumar"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_018",
+      "description": "Integration test case 18 - theft",
+      "fir_row": [
+        "Thane Police Station, CR No 210/2021, Section 302 IPC",
+        "03/01/2023, 04/01/2023, 11:17hrs, Worli Sea Face",
+        "Rajesh Kumar S/o Sneha Patel, Age 29, Address: 824 Kalyan",
+        "Rajesh Kumar S/o Sneha Patel, Age 29, Address: 824 Kalyan",
+        "Property Lost: Gold Chain worth Rs. 58,288, Car worth Rs. 28,671, Documents worth Rs. 70,514",
+        "Vikram Reddy S/o Vikram Reddy, Age 59, Address: 957 Thane West",
+        "Rajesh Kumar reported theft of property by Vikram Reddy"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_019",
+      "description": "Integration test case 19 - burglary",
+      "fir_row": [
+        "Thane Police Station, CR No 421/2021, Section 420 IPC",
+        "09/09/2023, 11/09/2023, 17:17hrs, Kandivali East",
+        "Amit Singh W/o Divya Patel, Age 56, Address: 546 Bandra West",
+        "Amit Singh W/o Divya Patel, Age 56, Address: 546 Bandra West",
+        "",
+        "Arun Singh D/o Rohit Mehta, Age 25, Address: 929 Worli Sea Face",
+        "Amit Singh's residence was burgled by Arun Singh"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    },
+    {
+      "id": "integration_020",
+      "description": "Integration test case 20 - vehicle_theft",
+      "fir_row": [
+        "Andheri Police Station, CR No 959/2021, Section 302 IPC",
+        "07/04/2023, 08/04/2023, 13:36hrs, Dadar TT",
+        "Pooja Sharma D/o Arun Singh, Age 43, Address: 603 Dadar TT",
+        "Pooja Sharma D/o Arun Singh, Age 43, Address: 603 Dadar TT",
+        "Property Lost: Car worth Rs. 80,645",
+        "Deepak Agarwal D/o Divya Patel, Age 60, Address: 815 Andheri East",
+        "Pooja Sharma's vehicle was stolen by Deepak Agarwal"
+      ],
+      "expected_pipeline_behavior": {
+        "should_parse": true,
+        "should_extract_entities": true,
+        "should_anonymize": true,
+        "should_validate": true
+      }
+    }
+  ],
+  "performance_cases": [
+    {
+      "id": "performance_001",
+      "fir_row": [
+        "Kandivali Police Station, CR No 712/2020, Section 323 IPC",
+        "19/01/2023, 22/01/2023, 22:52hrs, Navi Mumbai",
+        "Suresh Tiwari S/o Manoj Kumar, Age 54, Address: 854 Worli Sea Face",
+        "Vikram Reddy D/o Suresh Tiwari, Age 34, Address: 536 Worli Sea Face",
+        "",
+        "Arun Singh D/o Anjali Desai, Age 51, Address: 231 Malad West",
+        "Suresh Tiwari was defrauded by Arun Singh in financial transaction"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_002",
+      "fir_row": [
+        "Borivali Police Station, CR No 570/2022, Section 394 IPC",
+        "22/04/2023, 24/04/2023, 18:52hrs, Kandivali East",
+        "Rajesh Kumar D/o Sneha Patel, Age 47, Address: 263 Bandra West",
+        "Rajesh Kumar D/o Sneha Patel, Age 47, Address: 263 Bandra West",
+        "Property Lost: Cash worth Rs. 86,149",
+        "Sneha Patel S/o Pooja Sharma, Age 44, Address: 114 Kalyan",
+        "Rajesh Kumar reported theft of property by Sneha Patel"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_003",
+      "fir_row": [
+        "Andheri Police Station, CR No 773/2021, Section 302 IPC",
+        "04/01/2023, 05/01/2023, 09:18hrs, Worli Sea Face",
+        "Pooja Sharma D/o Divya Patel, Age 70, Address: 602 Kandivali East",
+        "Pooja Sharma D/o Divya Patel, Age 70, Address: 602 Kandivali East",
+        "",
+        "Amit Singh S/o Manoj Kumar, Age 54, Address: 205 Goregaon East",
+        "Pooja Sharma was assaulted by Amit Singh causing injuries"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_004",
+      "fir_row": [
+        "Mumbai Central Police Station, CR No 377/2021, Section 302 IPC",
+        "08/02/2023, 09/02/2023, 22:44hrs, Andheri East",
+        "Divya Patel D/o Anjali Desai, Age 22, Address: 253 Worli Sea Face",
+        "Divya Patel D/o Manoj Kumar, Age 37, Address: 156 Panvel",
+        "Property Lost: Cash worth Rs. 8,561, Tablet worth Rs. 51,218, Camera worth Rs. 22,303",
+        "Amit Singh S/o Arun Singh, Age 48, Address: 961 Andheri East",
+        "Divya Patel reported theft of property by Amit Singh"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_005",
+      "fir_row": [
+        "Kandivali Police Station, CR No 876/2022, Section 394 IPC",
+        "17/12/2023, 18/12/2023, 15:52hrs, Navi Mumbai",
+        "Kavita Gupta S/o Meera Joshi, Age 68, Address: 422 Bandra West",
+        "Kavita Gupta S/o Meera Joshi, Age 68, Address: 422 Bandra West",
+        "",
+        "Divya Patel S/o Sneha Patel, Age 55, Address: 999 Andheri East",
+        "Kavita Gupta was defrauded by Divya Patel in financial transaction"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_006",
+      "fir_row": [
+        "Borivali Police Station, CR No 207/2022, Section 420 IPC",
+        "27/06/2023, 29/06/2023, 20:32hrs, Worli Sea Face",
+        "Ritu Saxena S/o Anjali Desai, Age 63, Address: 516 Dadar TT",
+        "Ritu Saxena S/o Anjali Desai, Age 63, Address: 516 Dadar TT",
+        "",
+        "Kavita Gupta D/o Vikram Reddy, Age 41, Address: 690 Kalyan",
+        "Ritu Saxena's residence was burgled by Kavita Gupta"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_007",
+      "fir_row": [
+        "Borivali Police Station, CR No 841/2023, Section 307 IPC",
+        "20/10/2023, 20/10/2023, 18:54hrs, Kalyan",
+        "Anjali Desai W/o Pooja Sharma, Age 69, Address: 176 Kandivali East",
+        "Anjali Desai W/o Pooja Sharma, Age 69, Address: 176 Kandivali East",
+        "Property Lost: Documents worth Rs. 49,253, Television worth Rs. 19,725, Laptop Computer worth Rs. 48,442",
+        "Anjali Desai D/o Amit Singh, Age 56, Address: 405 Andheri East",
+        "Anjali Desai reported theft of property by Anjali Desai"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_008",
+      "fir_row": [
+        "Andheri Police Station, CR No 877/2022, Section 376 IPC",
+        "15/09/2023, 16/09/2023, 08:18hrs, Thane West",
+        "Anjali Desai S/o Sneha Patel, Age 40, Address: 444 Navi Mumbai",
+        "Divya Patel D/o Rohit Mehta, Age 56, Address: 798 Worli Sea Face",
+        "",
+        "Vikram Reddy S/o Rajesh Kumar, Age 51, Address: 635 Kandivali East",
+        "Anjali Desai was assaulted by Vikram Reddy causing injuries"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_009",
+      "fir_row": [
+        "Goregaon Police Station, CR No 167/2021, Section 323 IPC",
+        "18/11/2023, 19/11/2023, 15:21hrs, Goregaon East",
+        "Vikram Reddy W/o Ritu Saxena, Age 51, Address: 434 Worli Sea Face",
+        "Vikram Reddy W/o Ritu Saxena, Age 51, Address: 434 Worli Sea Face",
+        "Property Lost: Scooter worth Rs. 433,346",
+        "Vikram Reddy D/o Priya Sharma, Age 56, Address: 488 Worli Sea Face",
+        "Vikram Reddy's vehicle was stolen by Vikram Reddy"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_010",
+      "fir_row": [
+        "Goregaon Police Station, CR No 252/2023, Section 376 IPC",
+        "22/01/2023, 22/01/2023, 15:01hrs, Andheri East",
+        "Rajesh Kumar W/o Anjali Desai, Age 35, Address: 885 Borivali West",
+        "Rajesh Kumar W/o Anjali Desai, Age 35, Address: 885 Borivali West",
+        "Property Lost: Cash worth Rs. 69,334, Jewelry Box worth Rs. 93,063",
+        "Divya Patel S/o Rohit Mehta, Age 51, Address: 124 Goregaon East",
+        "Rajesh Kumar reported theft of property by Divya Patel"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_011",
+      "fir_row": [
+        "Mumbai Central Police Station, CR No 456/2021, Section 420 IPC",
+        "04/10/2023, 07/10/2023, 15:52hrs, Kalyan",
+        "Deepak Agarwal W/o Sneha Patel, Age 61, Address: 371 Kalyan",
+        "Deepak Agarwal W/o Sneha Patel, Age 61, Address: 371 Kalyan",
+        "",
+        "Vikram Reddy D/o Kavita Gupta, Age 18, Address: 284 Borivali West",
+        "Deepak Agarwal's residence was burgled by Vikram Reddy"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_012",
+      "fir_row": [
+        "Goregaon Police Station, CR No 318/2021, Section 307 IPC",
+        "09/02/2023, 09/02/2023, 15:11hrs, Goregaon East",
+        "Vikram Reddy S/o Manoj Kumar, Age 47, Address: 738 Dadar TT",
+        "Sneha Patel D/o Priya Sharma, Age 33, Address: 683 Worli Sea Face",
+        "Property Lost: Motorcycle worth Rs. 269,370",
+        "Ritu Saxena D/o Amit Singh, Age 48, Address: 302 Malad West",
+        "Vikram Reddy's vehicle was stolen by Ritu Saxena"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_013",
+      "fir_row": [
+        "Goregaon Police Station, CR No 552/2022, Section 379 IPC",
+        "23/03/2023, 24/03/2023, 16:36hrs, Borivali West",
+        "Sneha Patel S/o Pooja Sharma, Age 33, Address: 775 Bandra West",
+        "Sneha Patel S/o Pooja Sharma, Age 33, Address: 775 Bandra West",
+        "Property Lost: Truck worth Rs. 146,347",
+        "Suresh Tiwari S/o Rajesh Kumar, Age 26, Address: 652 Bandra West",
+        "Sneha Patel's vehicle was stolen by Suresh Tiwari"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_014",
+      "fir_row": [
+        "Thane Police Station, CR No 966/2023, Section 394 IPC",
+        "06/07/2023, 06/07/2023, 08:39hrs, Andheri East",
+        "Deepak Agarwal W/o Manoj Kumar, Age 37, Address: 457 Worli Sea Face",
+        "Deepak Agarwal W/o Manoj Kumar, Age 37, Address: 457 Worli Sea Face",
+        "Property Lost: Camera worth Rs. 61,582, Gold Chain worth Rs. 6,173, Documents worth Rs. 16,676",
+        "Rohit Mehta S/o Priya Sharma, Age 29, Address: 653 Andheri East",
+        "Deepak Agarwal reported theft of property by Rohit Mehta"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_015",
+      "fir_row": [
+        "Worli Police Station, CR No 613/2020, Section 498A IPC",
+        "21/01/2023, 24/01/2023, 19:52hrs, Kalyan",
+        "Manoj Kumar S/o Amit Singh, Age 25, Address: 837 Panvel",
+        "Manoj Kumar S/o Amit Singh, Age 25, Address: 837 Panvel",
+        "Property Lost: Cash worth Rs. 86,944, Tablet worth Rs. 19,146",
+        "Sneha Patel D/o Ritu Saxena, Age 50, Address: 616 Kalyan",
+        "Manoj Kumar reported theft of property by Sneha Patel"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_016",
+      "fir_row": [
+        "Kandivali Police Station, CR No 390/2023, Section 302 IPC",
+        "10/02/2023, 10/02/2023, 08:30hrs, Bandra West",
+        "Ritu Saxena W/o Deepak Agarwal, Age 32, Address: 698 Borivali West",
+        "Ritu Saxena W/o Deepak Agarwal, Age 32, Address: 698 Borivali West",
+        "",
+        "Priya Sharma D/o Anjali Desai, Age 58, Address: 568 Panvel",
+        "Ritu Saxena's residence was burgled by Priya Sharma"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_017",
+      "fir_row": [
+        "Dadar Police Station, CR No 449/2022, Section 498A IPC",
+        "15/08/2023, 15/08/2023, 14:14hrs, Andheri East",
+        "Deepak Agarwal S/o Deepak Agarwal, Age 27, Address: 342 Navi Mumbai",
+        "Deepak Agarwal S/o Deepak Agarwal, Age 27, Address: 342 Navi Mumbai",
+        "",
+        "Manoj Kumar S/o Manoj Kumar, Age 29, Address: 360 Dadar TT",
+        "Deepak Agarwal was defrauded by Manoj Kumar in financial transaction"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_018",
+      "fir_row": [
+        "Borivali Police Station, CR No 442/2020, Section 394 IPC",
+        "03/07/2023, 06/07/2023, 22:46hrs, Goregaon East",
+        "Manoj Kumar W/o Divya Patel, Age 29, Address: 292 Dadar TT",
+        "Anjali Desai W/o Divya Patel, Age 31, Address: 586 Andheri East",
+        "Property Lost: Scooter worth Rs. 245,109",
+        "Manoj Kumar D/o Arun Singh, Age 27, Address: 610 Dadar TT",
+        "Manoj Kumar's vehicle was stolen by Manoj Kumar"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_019",
+      "fir_row": [
+        "Thane Police Station, CR No 831/2020, Section 406 IPC",
+        "14/10/2023, 14/10/2023, 19:34hrs, Panvel",
+        "Pooja Sharma S/o Priya Sharma, Age 50, Address: 180 Kandivali East",
+        "Pooja Sharma S/o Priya Sharma, Age 50, Address: 180 Kandivali East",
+        "Property Lost: Motorcycle worth Rs. 8,434",
+        "Suresh Tiwari D/o Amit Singh, Age 45, Address: 400 Dadar TT",
+        "Pooja Sharma reported theft of property by Suresh Tiwari"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_020",
+      "fir_row": [
+        "Borivali Police Station, CR No 205/2021, Section 323 IPC",
+        "09/08/2023, 11/08/2023, 19:08hrs, Navi Mumbai",
+        "Pooja Sharma W/o Deepak Agarwal, Age 47, Address: 476 Malad West",
+        "Pooja Sharma W/o Deepak Agarwal, Age 47, Address: 476 Malad West",
+        "",
+        "Suresh Tiwari D/o Pooja Sharma, Age 26, Address: 206 Worli Sea Face",
+        "Pooja Sharma's residence was burgled by Suresh Tiwari"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_021",
+      "fir_row": [
+        "Andheri Police Station, CR No 255/2021, Section 376 IPC",
+        "09/11/2023, 09/11/2023, 14:37hrs, Kalyan",
+        "Kavita Gupta W/o Meera Joshi, Age 58, Address: 757 Dadar TT",
+        "Priya Sharma S/o Kavita Gupta, Age 42, Address: 156 Worli Sea Face",
+        "",
+        "Kavita Gupta D/o Sneha Patel, Age 59, Address: 873 Thane West",
+        "Kavita Gupta was defrauded by Kavita Gupta in financial transaction"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_022",
+      "fir_row": [
+        "Kandivali Police Station, CR No 176/2023, Section 307 IPC",
+        "26/06/2023, 26/06/2023, 15:50hrs, Andheri East",
+        "Pooja Sharma W/o Vikram Reddy, Age 64, Address: 352 Thane West",
+        "Pooja Sharma W/o Vikram Reddy, Age 64, Address: 352 Thane West",
+        "",
+        "Deepak Agarwal D/o Pooja Sharma, Age 48, Address: 901 Panvel",
+        "Pooja Sharma's residence was burgled by Deepak Agarwal"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_023",
+      "fir_row": [
+        "Borivali Police Station, CR No 516/2023, Section 406 IPC",
+        "19/10/2023, 21/10/2023, 22:59hrs, Andheri East",
+        "Priya Sharma W/o Ritu Saxena, Age 58, Address: 247 Kalyan",
+        "Rohit Mehta D/o Sneha Patel, Age 55, Address: 794 Borivali West",
+        "",
+        "Arun Singh D/o Manoj Kumar, Age 60, Address: 566 Worli Sea Face",
+        "Priya Sharma's residence was burgled by Arun Singh"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_024",
+      "fir_row": [
+        "Goregaon Police Station, CR No 229/2022, Section 498A IPC",
+        "22/03/2023, 22/03/2023, 10:49hrs, Kalyan",
+        "Ritu Saxena S/o Suresh Tiwari, Age 20, Address: 264 Dadar TT",
+        "Sneha Patel S/o Amit Singh, Age 63, Address: 632 Panvel",
+        "Property Lost: Gold Chain worth Rs. 37,378, Jewelry Box worth Rs. 82,042",
+        "Divya Patel D/o Kavita Gupta, Age 52, Address: 362 Dadar TT",
+        "Ritu Saxena reported theft of property by Divya Patel"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_025",
+      "fir_row": [
+        "Andheri Police Station, CR No 336/2020, Section 379 IPC",
+        "11/04/2023, 11/04/2023, 22:23hrs, Goregaon East",
+        "Meera Joshi D/o Pooja Sharma, Age 62, Address: 665 Dadar TT",
+        "Meera Joshi D/o Pooja Sharma, Age 62, Address: 665 Dadar TT",
+        "Property Lost: Documents worth Rs. 83,507, Jewelry Box worth Rs. 14,858, Tablet worth Rs. 27,236",
+        "Ritu Saxena D/o Meera Joshi, Age 30, Address: 749 Kandivali East",
+        "Meera Joshi reported theft of property by Ritu Saxena"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_026",
+      "fir_row": [
+        "Kandivali Police Station, CR No 704/2020, Section 302 IPC",
+        "09/10/2023, 10/10/2023, 20:38hrs, Dadar TT",
+        "Meera Joshi D/o Rajesh Kumar, Age 25, Address: 306 Bandra West",
+        "Priya Sharma S/o Rohit Mehta, Age 56, Address: 638 Navi Mumbai",
+        "Property Lost: Laptop Computer worth Rs. 85,671, Motorcycle worth Rs. 31,548",
+        "Priya Sharma D/o Sneha Patel, Age 27, Address: 896 Goregaon East",
+        "Meera Joshi reported theft of property by Priya Sharma"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_027",
+      "fir_row": [
+        "Dadar Police Station, CR No 228/2021, Section 323 IPC",
+        "20/01/2023, 23/01/2023, 12:00hrs, Bandra West",
+        "Rajesh Kumar S/o Kavita Gupta, Age 60, Address: 193 Bandra West",
+        "Priya Sharma S/o Suresh Tiwari, Age 61, Address: 893 Borivali West",
+        "Property Lost: Camera worth Rs. 13,519, Gold Chain worth Rs. 8,973",
+        "Divya Patel S/o Priya Sharma, Age 55, Address: 629 Dadar TT",
+        "Rajesh Kumar reported theft of property by Divya Patel"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_028",
+      "fir_row": [
+        "Andheri Police Station, CR No 515/2020, Section 376 IPC",
+        "08/12/2023, 08/12/2023, 12:43hrs, Panvel",
+        "Sneha Patel D/o Sneha Patel, Age 48, Address: 929 Bandra West",
+        "Sneha Patel D/o Sneha Patel, Age 48, Address: 929 Bandra West",
+        "",
+        "Arun Singh S/o Amit Singh, Age 29, Address: 929 Kandivali East",
+        "Sneha Patel was defrauded by Arun Singh in financial transaction"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_029",
+      "fir_row": [
+        "Mumbai Central Police Station, CR No 454/2020, Section 323 IPC",
+        "18/01/2023, 18/01/2023, 20:36hrs, Malad West",
+        "Amit Singh W/o Pooja Sharma, Age 36, Address: 269 Malad West",
+        "Amit Singh W/o Pooja Sharma, Age 36, Address: 269 Malad West",
+        "",
+        "Ritu Saxena S/o Vikram Reddy, Age 31, Address: 441 Thane West",
+        "Amit Singh was defrauded by Ritu Saxena in financial transaction"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_030",
+      "fir_row": [
+        "Thane Police Station, CR No 379/2022, Section 302 IPC",
+        "24/08/2023, 24/08/2023, 13:20hrs, Malad West",
+        "Rajesh Kumar S/o Pooja Sharma, Age 28, Address: 846 Thane West",
+        "Manoj Kumar D/o Sneha Patel, Age 59, Address: 294 Malad West",
+        "",
+        "Kavita Gupta S/o Ritu Saxena, Age 21, Address: 336 Navi Mumbai",
+        "Rajesh Kumar was assaulted by Kavita Gupta causing injuries"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_031",
+      "fir_row": [
+        "Malad Police Station, CR No 115/2022, Section 420 IPC",
+        "06/08/2023, 09/08/2023, 16:58hrs, Panvel",
+        "Deepak Agarwal W/o Ritu Saxena, Age 29, Address: 693 Kalyan",
+        "Deepak Agarwal W/o Ritu Saxena, Age 29, Address: 693 Kalyan",
+        "Property Lost: Gold Chain worth Rs. 64,537, Mobile Phone worth Rs. 41,554",
+        "Amit Singh D/o Deepak Agarwal, Age 54, Address: 229 Panvel",
+        "Deepak Agarwal reported theft of property by Amit Singh"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_032",
+      "fir_row": [
+        "Goregaon Police Station, CR No 464/2023, Section 307 IPC",
+        "05/06/2023, 08/06/2023, 17:41hrs, Andheri East",
+        "Ritu Saxena W/o Arun Singh, Age 64, Address: 331 Goregaon East",
+        "Ritu Saxena W/o Arun Singh, Age 64, Address: 331 Goregaon East",
+        "",
+        "Anjali Desai S/o Manoj Kumar, Age 25, Address: 458 Bandra West",
+        "Ritu Saxena was assaulted by Anjali Desai causing injuries"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_033",
+      "fir_row": [
+        "Bandra Police Station, CR No 515/2020, Section 420 IPC",
+        "02/07/2023, 05/07/2023, 10:37hrs, Dadar TT",
+        "Deepak Agarwal W/o Suresh Tiwari, Age 24, Address: 277 Worli Sea Face",
+        "Divya Patel W/o Meera Joshi, Age 48, Address: 984 Panvel",
+        "",
+        "Anjali Desai D/o Rohit Mehta, Age 43, Address: 382 Kandivali East",
+        "Deepak Agarwal was assaulted by Anjali Desai causing injuries"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_034",
+      "fir_row": [
+        "Thane Police Station, CR No 597/2023, Section 323 IPC",
+        "03/03/2023, 06/03/2023, 13:31hrs, Kalyan",
+        "Deepak Agarwal S/o Meera Joshi, Age 50, Address: 807 Goregaon East",
+        "Sneha Patel D/o Manoj Kumar, Age 61, Address: 578 Kandivali East",
+        "",
+        "Kavita Gupta S/o Arun Singh, Age 56, Address: 177 Thane West",
+        "Deepak Agarwal was assaulted by Kavita Gupta causing injuries"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_035",
+      "fir_row": [
+        "Borivali Police Station, CR No 210/2021, Section 302 IPC",
+        "16/12/2023, 19/12/2023, 13:26hrs, Andheri East",
+        "Deepak Agarwal S/o Amit Singh, Age 25, Address: 391 Kalyan",
+        "Sneha Patel W/o Divya Patel, Age 33, Address: 573 Panvel",
+        "",
+        "Manoj Kumar D/o Arun Singh, Age 25, Address: 194 Worli Sea Face",
+        "Deepak Agarwal was assaulted by Manoj Kumar causing injuries"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_036",
+      "fir_row": [
+        "Andheri Police Station, CR No 699/2020, Section 406 IPC",
+        "10/04/2023, 10/04/2023, 21:36hrs, Andheri East",
+        "Anjali Desai D/o Meera Joshi, Age 39, Address: 981 Panvel",
+        "Anjali Desai D/o Meera Joshi, Age 39, Address: 981 Panvel",
+        "Property Lost: Scooter worth Rs. 480,702",
+        "Suresh Tiwari S/o Amit Singh, Age 44, Address: 611 Borivali West",
+        "Anjali Desai's vehicle was stolen by Suresh Tiwari"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_037",
+      "fir_row": [
+        "Borivali Police Station, CR No 463/2022, Section 420 IPC",
+        "05/02/2023, 05/02/2023, 15:29hrs, Kandivali East",
+        "Sneha Patel D/o Divya Patel, Age 60, Address: 124 Kalyan",
+        "Anjali Desai D/o Amit Singh, Age 36, Address: 354 Panvel",
+        "",
+        "Priya Sharma D/o Pooja Sharma, Age 58, Address: 442 Bandra West",
+        "Sneha Patel was defrauded by Priya Sharma in financial transaction"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_038",
+      "fir_row": [
+        "Kandivali Police Station, CR No 630/2020, Section 498A IPC",
+        "18/09/2023, 19/09/2023, 13:29hrs, Thane West",
+        "Arun Singh W/o Ritu Saxena, Age 47, Address: 158 Kalyan",
+        "Rohit Mehta S/o Divya Patel, Age 65, Address: 435 Kalyan",
+        "Property Lost: Motorcycle worth Rs. 335,022",
+        "Sneha Patel D/o Manoj Kumar, Age 53, Address: 773 Panvel",
+        "Arun Singh's vehicle was stolen by Sneha Patel"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_039",
+      "fir_row": [
+        "Borivali Police Station, CR No 398/2023, Section 379 IPC",
+        "04/02/2023, 04/02/2023, 13:52hrs, Thane West",
+        "Priya Sharma W/o Priya Sharma, Age 44, Address: 489 Dadar TT",
+        "Sneha Patel S/o Vikram Reddy, Age 44, Address: 350 Goregaon East",
+        "Property Lost: Cash worth Rs. 57,955",
+        "Divya Patel S/o Manoj Kumar, Age 55, Address: 204 Dadar TT",
+        "Priya Sharma reported theft of property by Divya Patel"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_040",
+      "fir_row": [
+        "Bandra Police Station, CR No 476/2023, Section 406 IPC",
+        "04/12/2023, 04/12/2023, 16:10hrs, Navi Mumbai",
+        "Kavita Gupta S/o Arun Singh, Age 64, Address: 627 Malad West",
+        "Sneha Patel W/o Amit Singh, Age 34, Address: 171 Goregaon East",
+        "Property Lost: Truck worth Rs. 405,122",
+        "Manoj Kumar D/o Priya Sharma, Age 50, Address: 966 Bandra West",
+        "Kavita Gupta's vehicle was stolen by Manoj Kumar"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_041",
+      "fir_row": [
+        "Dadar Police Station, CR No 547/2020, Section 420 IPC",
+        "02/11/2023, 05/11/2023, 12:50hrs, Borivali West",
+        "Manoj Kumar W/o Pooja Sharma, Age 58, Address: 467 Kalyan",
+        "Manoj Kumar W/o Pooja Sharma, Age 58, Address: 467 Kalyan",
+        "",
+        "Ritu Saxena D/o Suresh Tiwari, Age 47, Address: 834 Malad West",
+        "Manoj Kumar was assaulted by Ritu Saxena causing injuries"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_042",
+      "fir_row": [
+        "Goregaon Police Station, CR No 297/2020, Section 302 IPC",
+        "28/02/2023, 03/03/2023, 16:18hrs, Malad West",
+        "Manoj Kumar W/o Pooja Sharma, Age 38, Address: 662 Worli Sea Face",
+        "Manoj Kumar W/o Pooja Sharma, Age 38, Address: 662 Worli Sea Face",
+        "",
+        "Manoj Kumar D/o Kavita Gupta, Age 29, Address: 384 Dadar TT",
+        "Manoj Kumar's residence was burgled by Manoj Kumar"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_043",
+      "fir_row": [
+        "Mumbai Central Police Station, CR No 925/2020, Section 376 IPC",
+        "24/04/2023, 25/04/2023, 15:43hrs, Kandivali East",
+        "Vikram Reddy S/o Meera Joshi, Age 67, Address: 510 Dadar TT",
+        "Vikram Reddy S/o Meera Joshi, Age 67, Address: 510 Dadar TT",
+        "Property Lost: Camera worth Rs. 79,516, Cash worth Rs. 76,458, Tablet worth Rs. 79,125",
+        "Rohit Mehta D/o Divya Patel, Age 19, Address: 919 Malad West",
+        "Vikram Reddy reported theft of property by Rohit Mehta"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_044",
+      "fir_row": [
+        "Worli Police Station, CR No 516/2021, Section 420 IPC",
+        "18/03/2023, 21/03/2023, 19:35hrs, Navi Mumbai",
+        "Sneha Patel S/o Vikram Reddy, Age 61, Address: 407 Kalyan",
+        "Sneha Patel S/o Vikram Reddy, Age 61, Address: 407 Kalyan",
+        "Property Lost: Truck worth Rs. 128,566",
+        "Rajesh Kumar S/o Kavita Gupta, Age 59, Address: 385 Malad West",
+        "Sneha Patel's vehicle was stolen by Rajesh Kumar"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_045",
+      "fir_row": [
+        "Andheri Police Station, CR No 798/2020, Section 376 IPC",
+        "06/05/2023, 09/05/2023, 20:30hrs, Navi Mumbai",
+        "Rohit Mehta S/o Sneha Patel, Age 64, Address: 991 Dadar TT",
+        "Rohit Mehta D/o Deepak Agarwal, Age 65, Address: 635 Panvel",
+        "",
+        "Kavita Gupta S/o Divya Patel, Age 46, Address: 734 Worli Sea Face",
+        "Rohit Mehta's residence was burgled by Kavita Gupta"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_046",
+      "fir_row": [
+        "Worli Police Station, CR No 945/2021, Section 406 IPC",
+        "09/03/2023, 09/03/2023, 11:21hrs, Goregaon East",
+        "Rohit Mehta S/o Vikram Reddy, Age 65, Address: 307 Goregaon East",
+        "Rohit Mehta S/o Vikram Reddy, Age 65, Address: 307 Goregaon East",
+        "",
+        "Rajesh Kumar S/o Amit Singh, Age 20, Address: 561 Kalyan",
+        "Rohit Mehta was assaulted by Rajesh Kumar causing injuries"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_047",
+      "fir_row": [
+        "Worli Police Station, CR No 562/2023, Section 307 IPC",
+        "28/09/2023, 01/10/2023, 16:32hrs, Goregaon East",
+        "Manoj Kumar D/o Rohit Mehta, Age 44, Address: 180 Kandivali East",
+        "Meera Joshi S/o Manoj Kumar, Age 69, Address: 958 Borivali West",
+        "Property Lost: Cash worth Rs. 36,375",
+        "Kavita Gupta D/o Priya Sharma, Age 59, Address: 537 Thane West",
+        "Manoj Kumar reported theft of property by Kavita Gupta"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_048",
+      "fir_row": [
+        "Kandivali Police Station, CR No 369/2020, Section 498A IPC",
+        "10/11/2023, 12/11/2023, 13:13hrs, Worli Sea Face",
+        "Rajesh Kumar W/o Pooja Sharma, Age 44, Address: 233 Panvel",
+        "Rajesh Kumar W/o Pooja Sharma, Age 44, Address: 233 Panvel",
+        "",
+        "Deepak Agarwal D/o Priya Sharma, Age 21, Address: 982 Bandra West",
+        "Rajesh Kumar's residence was burgled by Deepak Agarwal"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_049",
+      "fir_row": [
+        "Thane Police Station, CR No 743/2020, Section 498A IPC",
+        "13/03/2023, 14/03/2023, 19:57hrs, Andheri East",
+        "Rajesh Kumar S/o Anjali Desai, Age 32, Address: 857 Malad West",
+        "Rajesh Kumar S/o Anjali Desai, Age 32, Address: 857 Malad West",
+        "Property Lost: Jewelry Box worth Rs. 55,042, Mobile Phone worth Rs. 42,930",
+        "Anjali Desai D/o Kavita Gupta, Age 54, Address: 483 Worli Sea Face",
+        "Rajesh Kumar reported theft of property by Anjali Desai"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    },
+    {
+      "id": "performance_050",
+      "fir_row": [
+        "Kandivali Police Station, CR No 956/2023, Section 394 IPC",
+        "18/03/2023, 20/03/2023, 15:19hrs, Bandra West",
+        "Vikram Reddy D/o Vikram Reddy, Age 27, Address: 659 Bandra West",
+        "Ritu Saxena D/o Sneha Patel, Age 33, Address: 581 Navi Mumbai",
+        "",
+        "Deepak Agarwal S/o Deepak Agarwal, Age 46, Address: 780 Dadar TT",
+        "Vikram Reddy was assaulted by Deepak Agarwal causing injuries"
+      ],
+      "expected_performance": {
+        "parsing_time": "< 2.0 seconds",
+        "memory_increase": "< 50MB",
+        "should_not_crash": true
+      }
+    }
+  ]
+}

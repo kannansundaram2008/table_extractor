@@ -1,0 +1,107 @@
+FIR Error Scenarios Test Document
+
+This document contains various error scenarios for testing error handling.
+
+Case 1: Invalid Date Formats
+Police Station: Test Police Station
+CR No: 999/2023
+Section of Law: IPC 420
+
+Date of Occurrence: 2023-13-45 (Invalid month)
+Date of Report: 2023-02-30 (Invalid date)
+Time of Occurrence: 25:70 (Invalid time)
+Time of Report: abc:def (Non-numeric time)
+Place of Occurrence: @#$%^&*() (Special characters only)
+
+Complainant Details:
+Name: Test123!@#
+Address: ñáéíóú (Unicode characters)
+Age: -5 (Negative age)
+Sex: Unknown
+
+Victim Details:
+Name: (Empty)
+Address: (Only spaces)
+Age: ABC (Non-numeric)
+Sex: (Empty)
+
+Property Lost:
+Item: (Blank)
+Value: (No value)
+
+Accused Details:
+Name: (Very long name that might cause buffer issues in some parsers - this is intentionally made extremely long to test handling of unusually long text fields in the system)
+Address: (Another extremely long address field that could potentially cause issues with text processing and memory handling in the parsing system)
+Age: 999999 (Unusually high age)
+Sex: (Multiple characters)
+
+Gist of Complaint:
+(Empty gist)
+
+Case 2: Special Characters and Encoding Issues
+Police Station: Tëst Pölïcë Stâtïön
+CR No: ñø/2023
+Section of Law: ÍPC 420, 406
+
+Date of Occurrence: 2023-06-15
+Date of Report: 2023-06-16
+Place of Occurrence: Čømmërcíál Strëët
+
+Complainant Details:
+Name: Jøhñ Døé
+Address: 123 Máíñ Strëët
+Age: 35
+Sex: M
+
+Victim Details:
+Name: Jâñé Døé
+Address: 456 Élm Strëët
+Age: 30
+Sex: F
+
+Property Lost:
+Item: Läptöp
+Value: ₹75,000
+
+Accused Details:
+Name: Ríçhård Røé
+Address: 789 Øåk Strëët
+Age: 40
+Sex: M
+
+Gist of Complaint:
+Thëft réported wíth Üníçødé çhåråçtërs
+
+Case 3: Extremely Large Numbers
+Police Station: Test Station
+CR No: 999999999/888888888
+Section of Law: IPC 420, 406, 408, 410, 412, 415, 418, 419, 420
+
+Date of Occurrence: 2023-06-15
+Date of Report: 2023-06-16
+Place of Occurrence: Test Location
+
+Complainant Details:
+Name: Test Complainant
+Address: Test Address
+Age: 150
+Sex: Male
+
+Victim Details:
+Name: Test Victim
+Address: Test Address
+Age: 200
+Sex: Female
+
+Property Lost:
+Item: Test Item
+Value: ₹999999999999
+
+Accused Details:
+Name: Test Accused
+Address: Test Address
+Age: 180
+Sex: Male
+
+Gist of Complaint:
+Test case with extremely large numbers and many legal sections to test parsing limits and handling of edge cases in the system.

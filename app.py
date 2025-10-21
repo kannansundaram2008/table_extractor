@@ -1,3 +1,6 @@
+import logging
+import pickle
+import traceback
 from flask import Flask, request, render_template, session, send_file, jsonify
 import os
 import io
@@ -8,6 +11,8 @@ import time
 import tempfile
 import shutil
 import json
+import re
+import secrets
 from utils.document_processor import process_folder
 from utils.fir_parser import parse_fir_row
 from reportlab.pdfgen import canvas
@@ -16,86 +21,272 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 
-app = Flask(__name__)
-app.secret_key = 'dsr_extract_secret_key'
+# Configure logging
+def setup_logging():
+    """Setup logging configuration."""
+    log_level = os.environ.get('LOG_LEVEL', 'INFO').upper()
+    logging.basicConfig(
+        level=getattr(logging, log_level, logging.INFO),
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler('app.log'),
+            logging.StreamHandler()
+        ]
+    )
+    return logging.getLogger(__name__)
 
-progress = {
-    'total_files': 0,
-    'processed_files': 0,
-    'status': 'Idle',
-    'start_time': None,
-    'elapsed_time': 0
-}
+logger = setup_logging()
 
-job_queue = []
-current_job = None
-lock = threading.Lock()
+def cleanup_temp_dir(temp_dir):
+    """Safely cleanup temporary directory and its contents."""
+    if not temp_dir or not os.path.exists(temp_dir):
+        return
+
+    try:
+        shutil.rmtree(temp_dir)
+        logger.info(f"Cleaned up temporary directory: {temp_dir}")
+    except OSError as e:
+        logger.error(f"Failed to cleanup temporary directory {temp_dir}: {str(e)}")
+
+def cleanup_expired_sessions():
+    """Clean up old session data and temporary files."""
+    # This would be called periodically or on shutdown
+    # For now, we'll clean up when sessions are accessed
+    pass
+
+def strip_html_tags(text):
+    """Remove HTML tags from a string."""
+    return re.sub(r'<[^>]+>', '', text)
+
+def get_secret_key():
+    """Get or generate a secure secret key."""
+    secret_key = os.environ.get('FLASK_SECRET_KEY')
+    if secret_key:
+        return secret_key
+
+    # Generate a secure random key if not provided
+    return secrets.token_hex(32)
+
+def secure_filename(filename):
+    """Sanitize filename to prevent path traversal and other security issues."""
+    import string
+
+    # Remove path separators and dangerous characters
+    filename = os.path.basename(filename)  # Remove any path components
+
+    # Keep only safe characters
+    safe_chars = string.ascii_letters + string.digits + '.-_'
+    filename = ''.join(c for c in filename if c in safe_chars)
+
+    # Ensure filename is not empty and not too long
+    if not filename:
+        filename = 'unnamed_file'
+    if len(filename) > 255:
+        name, ext = os.path.splitext(filename)
+        filename = name[:255-len(ext)] + ext
+
+    return filename
+
+def validate_file_upload(file):
+    """Validate uploaded file for security and size constraints."""
+    MAX_FILE_SIZE = 50 * 1024 * 1024  # 50MB limit
+
+    if not file or file.filename == '':
+        return False, "No file selected"
+
+    # Check file size
+    file.seek(0, os.SEEK_END)
+    file_size = file.tell()
+    file.seek(0)
+
+    if file_size > MAX_FILE_SIZE:
+        return False, f"File too large. Maximum size is {MAX_FILE_SIZE // (1024*1024)}MB"
+
+    if file_size == 0:
+        return False, "Empty file not allowed"
+
+    # Check file extension
+    allowed_extensions = {'.doc', '.docx'}
+    file_ext = os.path.splitext(file.filename.lower())[1]
+
+    if file_ext not in allowed_extensions:
+        return False, f"File type not allowed. Only {', '.join(allowed_extensions)} files are permitted"
+
+    return True, "File is valid"
+
+app = Flask(__name__,
+           template_folder='templates',
+           static_folder='static')
+app.secret_key = get_secret_key()
+
+# Security configurations
+app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max request size
+
+# Thread-safe global state management
+class JobManager:
+    def __init__(self):
+        self.lock = threading.Lock()
+        self._progress = {
+            'total_files': 0,
+            'processed_files': 0,
+            'status': 'Idle',
+            'start_time': None,
+            'elapsed_time': 0
+        }
+        self._job_queue = []
+        self._current_job = None
+
+    @property
+    def progress(self):
+        with self.lock:
+            if self._progress['start_time']:
+                self._progress['elapsed_time'] = int(time.time() - self._progress['start_time'])
+            return self._progress.copy()
+
+    @progress.setter
+    def progress(self, value):
+        with self.lock:
+            self._progress.update(value)
+
+    @property
+    def job_queue(self):
+        with self.lock:
+            return self._job_queue.copy()
+
+    def add_job(self, job):
+        with self.lock:
+            self._job_queue.append(job)
+
+    def get_next_job(self):
+        with self.lock:
+            if self._job_queue and self._current_job is None:
+                return self._job_queue.pop(0)
+            return None
+
+    @property
+    def current_job(self):
+        with self.lock:
+            return self._current_job
+
+    @current_job.setter
+    def current_job(self, value):
+        with self.lock:
+            self._current_job = value
+
+# Global job manager instance
+job_manager = JobManager()
 
 def process_job(job):
-    global progress, current_job
-    import traceback
+    temp_dir = job.get('temp_dir')
+    logger.info(f"Starting job processing for directory: {temp_dir}")
+
     try:
-        with lock:
-            current_job = job
-            progress['status'] = 'Processing'
-            progress['total_files'] = len(job['files'])
-            progress['processed_files'] = 0
-            progress['start_time'] = time.time()
-            progress['elapsed_time'] = 0
+        job_manager.current_job = job
+        job_manager.progress = {
+            'status': 'Processing',
+            'total_files': len(job['files']),
+            'processed_files': 0,
+            'start_time': time.time(),
+            'elapsed_time': 0
+        }
+
+        logger.info(f"Processing {len(job['files'])} files in {temp_dir}")
         result = process_folder(job['temp_dir'])
-        with lock:
-            progress['status'] = 'Completed'
-            result_path = os.path.join(job['temp_dir'], 'result.pkl')
-            import pickle
-            with open(result_path, 'wb') as f:
-                pickle.dump(result, f)
-            progress['result_path'] = result_path
+
+        job_manager.progress = {
+            'status': 'Completed',
+            'result_path': os.path.join(job['temp_dir'], 'result.pkl')
+        }
+
+        # Save result
+        result_path = os.path.join(job['temp_dir'], 'result.pkl')
+        with open(result_path, 'wb') as f:
+            pickle.dump(result, f)
+
+        logger.info(f"Job completed successfully. Processed {result.get('processed_files', 0)} files")
+
     except Exception as e:
-        with lock:
-            progress['status'] = 'Error'
-            progress['error'] = str(e)
-            progress['traceback'] = traceback.format_exc()
+        logger.error(f"Job failed: {str(e)}", extra={'traceback': traceback.format_exc()})
+        job_manager.progress = {
+            'status': 'Error',
+            'error': str(e),
+            'traceback': traceback.format_exc()
+        }
     finally:
-        with lock:
-            current_job = None
+        job_manager.current_job = None
         process_next_job()
 
 def process_next_job():
-    global job_queue
-    with lock:
-        if job_queue and current_job is None:
-            next_job = job_queue.pop(0)
-            thread = threading.Thread(target=process_job, args=(next_job,))
-            thread.start()
+    next_job = job_manager.get_next_job()
+    if next_job:
+        thread = threading.Thread(target=process_job, args=(next_job,))
+        thread.daemon = True  # Ensure thread doesn't prevent shutdown
+        thread.start()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         files = request.files.getlist('files')
-        if files:
-            temp_dir = tempfile.mkdtemp()
-            for f in files:
-                if f.filename.lower().endswith(('.doc', '.docx')) and not f.filename.startswith('$'):
-                    safe_name = f.filename.replace(' ', '_')
-                    file_path = os.path.join(temp_dir, safe_name)
-                    os.makedirs(os.path.dirname(file_path), exist_ok=True)
-                    f.save(file_path)
-            job = {'temp_dir': temp_dir, 'files': files}
-            with lock:
-                job_queue.append(job)
-            # Save job id or temp_dir in session for tracking
-            session['temp_dir'] = temp_dir
-            session.modified = True
-            process_next_job()
-            return render_template('processing.html')
+        if not files or all(f.filename == '' for f in files):
+            return render_template('index.html', error="No files selected")
+
+        temp_dir = tempfile.mkdtemp()
+        uploaded_files = []
+        errors = []
+
+        for f in files:
+            if f.filename == '':
+                continue
+
+            # Validate file
+            is_valid, error_msg = validate_file_upload(f)
+            if not is_valid:
+                errors.append(f"File '{f.filename}': {error_msg}")
+                continue
+
+            try:
+                # Secure the filename
+                safe_name = secure_filename(f.filename)
+                file_path = os.path.join(temp_dir, safe_name)
+
+                # Ensure parent directory exists
+                os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+                # Save file
+                f.save(file_path)
+                uploaded_files.append(f)
+
+            except Exception as e:
+                errors.append(f"Error saving file '{f.filename}': {str(e)}")
+
+        if not uploaded_files:
+            # Clean up temp directory if no files were uploaded successfully
+            try:
+                shutil.rmtree(temp_dir)
+            except OSError:
+                pass
+            return render_template('index.html', error="No valid files could be uploaded. Errors: " + "; ".join(errors))
+
+        if errors:
+            # Log warnings for files that failed
+            logger.warning(f"Some files failed to upload: {errors}")
+
+        job = {'temp_dir': temp_dir, 'files': uploaded_files}
+        job_manager.add_job(job)
+
+        # Save job info in session for tracking
+        session['temp_dir'] = temp_dir
+        session['uploaded_count'] = len(uploaded_files)
+        session.modified = True
+
+        process_next_job()
+        return render_template('processing.html')
+
     return render_template('index.html')
 
 @app.route('/progress')
 def get_progress():
-    with lock:
-        if progress['start_time']:
-            progress['elapsed_time'] = int(time.time() - progress['start_time'])
-        return jsonify(progress)
+    return jsonify(job_manager.progress)
 
 @app.route('/results')
 def results():
@@ -105,7 +296,6 @@ def results():
     result_path = os.path.join(temp_dir, 'result.pkl')
     if not os.path.exists(result_path):
         return "No results available. Please process files first."
-    import pickle
     with open(result_path, 'rb') as f:
         result = pickle.load(f)
     matched_rows_json = json.dumps(result.get('matched_rows', []))
@@ -119,7 +309,6 @@ def further_extraction():
     result_path = os.path.join(temp_dir, 'result.pkl')
     if not os.path.exists(result_path):
         return "No results available. Please process files first."
-    import pickle
     with open(result_path, 'rb') as f:
         result = pickle.load(f)
     parsed_rows = []
@@ -140,7 +329,6 @@ def export_csv():
     result_path = os.path.join(temp_dir, 'result.pkl')
     if not os.path.exists(result_path):
         return "No data to export"
-    import pickle
     try:
         with open(result_path, 'rb') as f:
             result = pickle.load(f)
@@ -154,7 +342,7 @@ def export_csv():
     headers = ['Source File', 'Table Index'] + [f'Cell {i+1}' for i in range(max_cells)]
     writer.writerow(headers)
     for r in result.get('matched_rows', []):
-        writer.writerow([r.get('source_file', '') , r.get('table_index', '')] + r.get('row', []))
+        writer.writerow([strip_html_tags(r.get('source_file', '')) , strip_html_tags(str(r.get('table_index', '')))] + [strip_html_tags(str(cell)) for cell in r.get('row', [])])
     output.seek(0)
     response = send_file(io.BytesIO(output.getvalue().encode()), mimetype='text/csv', as_attachment=True, download_name='results.csv')
     response.headers["Content-Type"] = "text/csv"
@@ -168,7 +356,6 @@ def export_excel():
     result_path = os.path.join(temp_dir, 'result.pkl')
     if not os.path.exists(result_path):
         return "No data to export"
-    import pickle
     with open(result_path, 'rb') as f:
         result = pickle.load(f)
     if not result or not result.get('matched_rows'):
@@ -179,7 +366,7 @@ def export_excel():
     headers = ['Source File', 'Table Index'] + [f'Cell {i+1}' for i in range(max_cells)]
     ws.append(headers)
     for r in result.get('matched_rows', []):
-        ws.append([r.get('source_file', '') , r.get('table_index', '')] + r.get('row', []))
+        ws.append([strip_html_tags(r.get('source_file', '')) , strip_html_tags(str(r.get('table_index', '')))] + [strip_html_tags(str(cell)) for cell in r.get('row', [])])
     output = io.BytesIO()
     wb.save(output)
     output.seek(0)
@@ -194,7 +381,6 @@ def export_pdf():
         result_path = os.path.join(temp_dir, 'result.pkl')
         if not os.path.exists(result_path):
             return "No data to export"
-        import pickle
         with open(result_path, 'rb') as f:
             result = pickle.load(f)
         if not result or not result.get('matched_rows'):
@@ -227,7 +413,7 @@ def export_pdf():
         for row in data:
             wrapped_row = []
             for cell in row:
-                wrapped_row.append(Paragraph(str(cell), styles['BodyText']))
+                wrapped_row.append(Paragraph(strip_html_tags(str(cell)), styles['BodyText']))
             wrapped_data.append(wrapped_row)
 
         table = Table(wrapped_data, repeatRows=1)
@@ -248,8 +434,8 @@ def export_pdf():
         return send_file(output, mimetype='application/pdf', as_attachment=True, download_name='results.pdf')
     except Exception as e:
         import traceback
-        error_msg = f"Error generating PDF: {str(e)}\n{traceback.format_exc()}"
-        print(error_msg)
+        error_msg = f"Error generating PDF: {str(e)}"
+        logger.error(error_msg, extra={'traceback': traceback.format_exc()})
         return f"Internal Server Error: {str(e)}", 500
 
 @app.route('/export_further_csv')
@@ -260,7 +446,6 @@ def export_further_csv():
     result_path = os.path.join(temp_dir, 'result.pkl')
     if not os.path.exists(result_path):
         return "No data to export"
-    import pickle
     with open(result_path, 'rb') as f:
         result = pickle.load(f)
     if not result or not result.get('matched_rows'):
@@ -303,6 +488,7 @@ def export_further_csv():
             prop_seized,
             pr['parsed'].get('gist', '')
         ]
+        row = [strip_html_tags(str(item)) for item in row]
         writer.writerow(row)
     output.seek(0)
     response = send_file(io.BytesIO(output.getvalue().encode()), mimetype='text/csv', as_attachment=True, download_name='further_results.csv')
@@ -317,7 +503,6 @@ def export_further_excel():
     result_path = os.path.join(temp_dir, 'result.pkl')
     if not os.path.exists(result_path):
         return "No data to export"
-    import pickle
     with open(result_path, 'rb') as f:
         result = pickle.load(f)
     if not result or not result.get('matched_rows'):
@@ -360,6 +545,7 @@ def export_further_excel():
             prop_seized,
             pr['parsed'].get('gist', '')
         ]
+        row = [strip_html_tags(str(item)) for item in row]
         ws.append(row)
     output = io.BytesIO()
     wb.save(output)
@@ -375,7 +561,6 @@ def export_further_pdf():
         result_path = os.path.join(temp_dir, 'result.pkl')
         if not os.path.exists(result_path):
             return "No data to export"
-        import pickle
         with open(result_path, 'rb') as f:
             result = pickle.load(f)
         if not result or not result.get('matched_rows'):
@@ -438,7 +623,7 @@ def export_further_pdf():
         for row in data:
             wrapped_row = []
             for cell in row:
-                wrapped_row.append(Paragraph(str(cell), styles['BodyText']))
+                wrapped_row.append(Paragraph(strip_html_tags(str(cell)), styles['BodyText']))
             wrapped_data.append(wrapped_row)
 
         table = Table(wrapped_data, repeatRows=1)
@@ -459,9 +644,36 @@ def export_further_pdf():
         return send_file(output, mimetype='application/pdf', as_attachment=True, download_name='further_results.pdf')
     except Exception as e:
         import traceback
-        error_msg = f"Error generating PDF: {str(e)}\n{traceback.format_exc()}"
-        print(error_msg)
+        error_msg = f"Error generating PDF: {str(e)}"
+        logger.error(error_msg, extra={'traceback': traceback.format_exc()})
         return f"Internal Server Error: {str(e)}", 500
 
+def main():
+    """Main application entry point with WSGI support."""
+    import os
+
+    # Check if running as PyInstaller bundle (frozen)
+    is_frozen = getattr(sys, 'frozen', False)
+
+    # Check if running in production mode (packaged or env var set)
+    production_mode = (os.environ.get('PRODUCTION_MODE', 'false').lower() == 'true' or is_frozen)
+
+    if production_mode:
+        # Use Waitress WSGI server for production
+        from waitress import serve
+        port = int(os.environ.get('PORT', 5000))
+        host = os.environ.get('HOST', '127.0.0.1')
+
+        print(f"Starting DSR_Extract in production mode on {host}:{port}")
+        print("Using Waitress WSGI server")
+        serve(app, host=host, port=port)
+    else:
+        # Use Flask development server
+        port = int(os.environ.get('PORT', 5000))
+        host = os.environ.get('HOST', '127.0.0.1')
+
+        print(f"Starting DSR_Extract in development mode on {host}:{port}")
+        app.run(debug=True, host=host, port=port)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    main()

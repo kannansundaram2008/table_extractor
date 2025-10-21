@@ -1,0 +1,7 @@
+| Police Station | Kandivali Police Station |
+                | CR Number | 676/2020 |
+                | Date | 19/03/2023 |
+                | Complainant | Kavita Gupta |
+                | Accused | Priya Sharma |
+                | Location | Thane West |
+                | Sections | Section 498A IPC |

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIR Document Annotation Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #667eea;
+        }
+
+        .stat-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .task-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .task-section h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .task-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .task-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            background: #fafafa;
+        }
+
+        .task-item.pending {
+            border-left: 4px solid #ffc107;
+        }
+
+        .task-item.in-progress {
+            border-left: 4px solid #17a2b8;
+        }
+
+        .task-item.completed {
+            border-left: 4px solid #28a745;
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .task-id {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .task-priority {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .priority-high {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .priority-medium {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .priority-low {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .task-meta {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .annotation-form {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .example-data {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .field-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+
+        .field-label {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+
+        .field-original {
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+
+        .field-corrected {
+            margin-bottom: 0.5rem;
+        }
+
+        .correction-actions {
+            margin-top: 0.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>FIR Document Annotation Interface</h1>
+            <p>Review and correct extraction results for machine learning training</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="total-tasks">0</h3>
+                <p>Total Tasks</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="pending-tasks">0</h3>
+                <p>Pending</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="completed-tasks">0</h3>
+                <p>Completed</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="avg-quality">0.0</h3>
+                <p>Avg Quality Score</p>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <h2>Annotation Tasks</h2>
+            <div id="task-list" class="task-list">
+                <div class="loading">Loading tasks...</div>
+            </div>
+        </div>
+
+        <div class="task-section" id="annotation-section" style="display: none;">
+            <h2>Annotation Task: <span id="current-task-id"></span></h2>
+
+            <div id="example-data" class="example-data">
+                <h3>Extraction Results</h3>
+                <div id="example-content"></div>
+            </div>
+
+            <form id="annotation-form" class="annotation-form">
+                <h3>Corrections</h3>
+                <div id="corrections-container"></div>
+
+                <div class="form-group">
+                    <label for="annotator-notes">Notes:</label>
+                    <textarea id="annotator-notes" class="form-control" rows="3" placeholder="Add any additional notes or observations..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Submit Annotation</button>
+                    <button type="button" class="btn btn-secondary" onclick="skipTask()">Skip Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>FIR Document Training Data Collection System v1.0</p>
+    </div>
+
+    <script>
+        let currentTask = null;
+        let annotatorId = 'default';
+
+        // Initialize the interface
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTasks();
+            setInterval(loadTasks, 30000); // Refresh every 30 seconds
+        });
+
+        async function loadTasks() {
+            try {
+                const response = await fetch(`/api/tasks?annotator_id=${annotatorId}`);
+                const data = await response.json();
+
+                if (data.error) {
+                    document.getElementById('task-list').innerHTML = '<div class="error">Error loading tasks: ' + data.error + '</div>';
+                    return;
+                }
+
+                displayTasks(data.tasks);
+                updateStats(data);
+
+            } catch (error) {
+                console.error('Error loading tasks:', error);
+                document.getElementById('task-list').innerHTML = '<div class="error">Error loading tasks. Please try again.</div>';
+            }
+        }
+
+        function displayTasks(tasks) {
+            const taskListElement = document.getElementById('task-list');
+
+            if (tasks.length === 0) {
+                taskListElement.innerHTML = '<div class="task-item">No pending tasks available.</div>';
+                return;
+            }
+
+            const tasksHtml = tasks.map(task => `
+                <div class="task-item ${task.status}">
+                    <div class="task-header">
+                        <span class="task-id">Task ${task.id.substring(0, 8)}...</span>
+                        <span class="task-priority priority-${getPriorityClass(task.priority)}">
+                            Priority ${task.priority}
+                        </span>
+                    </div>
+                    <div class="task-meta">
+                        Created: ${new Date(task.created_at).toLocaleString()} |
+                        Status: ${task.status} |
+                        Est. Time: ${task.estimated_time}min
+                    </div>
+                    <button class="btn" onclick="startAnnotation('${task.id}')">Start Annotation</button>
+                </div>
+            `).join('');
+
+            taskListElement.innerHTML = tasksHtml;
+        }
+
+        function getPriorityClass(priority) {
+            if (priority >= 8) return 'high';
+            if (priority >= 5) return 'medium';
+            return 'low';
+        }
+
+        function updateStats(data) {
+            document.getElementById('total-tasks').textContent = data.total || 0;
+            document.getElementById('pending-tasks').textContent = data.tasks.filter(t => t.status === 'pending').length;
+            document.getElementById('completed-tasks').textContent = data.tasks.filter(t => t.status === 'completed').length;
+        }
+
+        async function startAnnotation(taskId) {
+            try {
+                // Get the example data
+                const response = await fetch(`/api/example?example_id=${taskId}`);
+                const data = await response.json();
+
+                if (data.error) {
+                    alert('Error loading example: ' + data.error);
+                    return;
+                }
+
+                currentTask = { id: taskId, example: data.example };
+                displayAnnotationForm(data.example);
+
+            } catch (error) {
+                console.error('Error starting annotation:', error);
+                alert('Error starting annotation. Please try again.');
+            }
+        }
+
+        function displayAnnotationForm(example) {
+            // Show annotation section
+            document.getElementById('annotation-section').style.display = 'block';
+            document.getElementById('current-task-id').textContent = currentTask.id.substring(0, 8) + '...';
+
+            // Display example data
+            const exampleContent = document.getElementById('example-content');
+            const fields = ['police_station', 'cr_no', 'section_of_law', 'date_of_occurrence',
+                           'complainant', 'victims', 'accused', 'gist'];
+
+            const fieldsHtml = fields.map(field => {
+                const value = example.actual_output[field];
+                const confidence = example.confidence_scores[field] || 0;
+
+                return `
+                    <div class="field-item">
+                        <div class="field-label">${field.replace(/_/g, ' ').toUpperCase()}</div>
+                        <div class="field-original">Extracted: ${value || 'Not found'}</div>
+                        <div class="field-original">Confidence: ${(confidence * 100).toFixed(1)}%</div>
+                        <div class="field-corrected">
+                            <input type="text" class="form-control" value="${value || ''}"
+                                   placeholder="Corrected value (leave empty if correct)">
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            exampleContent.innerHTML = `<div class="field-grid">${fieldsHtml}</div>`;
+
+            // Scroll to annotation section
+            document.getElementById('annotation-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function submitAnnotation() {
+            if (!currentTask) return;
+
+            const corrections = [];
+            const fieldInputs = document.querySelectorAll('#example-content input');
+
+            fieldInputs.forEach((input, index) => {
+                const fieldName = ['police_station', 'cr_no', 'section_of_law', 'date_of_occurrence',
+                                  'complainant', 'victims', 'accused', 'gist'][index];
+
+                if (input.value.trim() && input.value.trim() !== currentTask.example.actual_output[fieldName]) {
+                    corrections.push({
+                        field_name: fieldName,
+                        original_value: currentTask.example.actual_output[fieldName] || '',
+                        corrected_value: input.value.trim(),
+                        correction_type: 'correction',
+                        confidence: 1.0,
+                        reasoning: 'Manual correction by annotator'
+                    });
+                }
+            });
+
+            const notes = document.getElementById('annotator-notes').value;
+
+            try {
+                const response = await fetch('/api/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        task_id: currentTask.id,
+                        annotator_id: annotatorId,
+                        corrections: corrections,
+                        notes: notes
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Annotation submitted successfully!');
+                    document.getElementById('annotation-section').style.display = 'none';
+                    loadTasks();
+                } else {
+                    alert('Error submitting annotation: ' + result.error);
+                }
+
+            } catch (error) {
+                console.error('Error submitting annotation:', error);
+                alert('Error submitting annotation. Please try again.');
+            }
+        }
+
+        function skipTask() {
+            if (confirm('Are you sure you want to skip this task?')) {
+                document.getElementById('annotation-section').style.display = 'none';
+                currentTask = null;
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('annotation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitAnnotation();
+        });
+    </script>
+</body>
+</html>

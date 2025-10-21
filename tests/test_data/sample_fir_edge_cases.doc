@@ -1,0 +1,103 @@
+FIR Edge Cases Test Document
+
+This document contains various edge cases for testing FIR parsing.
+
+Case 1: Empty Fields
+Police Station:
+CR No:
+Section of Law:
+
+Date of Occurrence:
+Date of Report:
+Place of Occurrence:
+
+Complainant Details:
+Name:
+Address:
+Age:
+Sex:
+
+Victim Details:
+Name:
+Address:
+Age:
+Sex:
+
+Property Lost:
+Property Recovered:
+Property Seized:
+
+Accused Details:
+Name:
+Address:
+Age:
+Sex:
+
+Gist of Complaint:
+
+Case 2: Malformed Data
+Police Station:: Central Police Station
+CR No:: 123::/::456
+Section of Law:: IPC:: 420::
+
+Date of Occurrence:: 2023::06::15
+Date of Report:: 2023::06::16
+Place of Occurrence:: Downtown:::: Market
+
+Complainant Details::
+Name:: John:::: Doe
+Address:: 123:::: Main:::: Street
+Age:: 35::
+Sex:: M::
+
+Victim Details::
+Name:: Jane:::: Doe
+Address:: 456:::: Elm:::: Street
+Age:: 30::
+Sex:: F::
+
+Property Lost::
+Item:: Laptop:::: Computer
+Value:: ₹75,000::::
+
+Accused Details::
+Name:: Richard:::: Roe
+Address:: 789:::: Oak:::: Street
+Age:: 40::
+Sex:: M::
+
+Gist of Complaint::
+Theft:::: reported:::: with:::: extra:::: colons::::
+
+Case 3: Multiple Victims and Accused
+Police Station: North Police Station
+CR No: 555/2023
+Section of Law: IPC 395, 397
+
+Date of Occurrence: 2023-09-05
+Date of Report: 2023-09-05
+Place of Occurrence: Highway Junction
+
+Complainant Details:
+Name: Transport Company Manager
+Address: Industrial Area, Bangalore
+Age: 40
+Sex: Male
+
+Victim Details:
+Victim 1: Name: Driver Kumar, Age: 35, Address: Bangalore, Sex: Male
+Victim 2: Name: Helper Singh, Age: 28, Address: Bangalore, Sex: Male
+Victim 3: Name: Transport Company, Address: Industrial Area, Bangalore
+
+Property Lost:
+Item: Truck, Registration: KA05AB1234, Value: ₹15,00,000
+Item: Goods worth ₹5,00,000
+Item: Cash ₹50,000
+
+Accused Details:
+Accused 1: Name: Raju, Age: 25, Address: Unknown, Sex: Male
+Accused 2: Name: Bablu, Age: 30, Address: Unknown, Sex: Male
+Accused 3: Name: Chandu, Age: 28, Address: Unknown, Sex: Male
+
+Gist of Complaint:
+A truck was stopped by armed robbers on the highway. The driver and helper were threatened at gunpoint and the truck with valuable goods was stolen.

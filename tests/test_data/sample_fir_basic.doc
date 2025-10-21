@@ -1,0 +1,84 @@
+FIR Data Extraction Test Document
+
+This document contains a sample FIR table for testing purposes.
+
+Table 1: Basic FIR Information
+
+Police Station: Central Police Station
+CR No: 123/2023
+Section of Law: IPC 420, 406
+
+Date of Occurrence: 2023-06-15
+Date of Report: 2023-06-16
+Time of Occurrence: 14:30
+Time of Report: 16:45
+Place of Occurrence: Downtown Market Area
+
+Complainant Details:
+Name: Rajesh Kumar
+Address: 123 MG Road, Bangalore
+Age: 45
+Sex: Male
+
+Victim Details:
+Name: Priya Kumar
+Address: 123 MG Road, Bangalore
+Age: 42
+Sex: Female
+
+Property Lost:
+Item: Gold Chain
+Value: ₹50,000
+Description: 22 carat gold chain with pendant
+
+Property Recovered:
+Item: Gold Chain
+Value: ₹50,000
+Status: Recovered from accused
+
+Accused Details:
+Name: Vikram Singh
+Address: 456 Residency Road, Bangalore
+Age: 35
+Sex: Male
+
+Gist of Complaint:
+The complainant reported that his wife was wearing a gold chain when she was approached by the accused who snatched the chain and fled the scene. The accused was later apprehended by the police with the stolen property.
+
+Table 2: Another FIR Case
+
+Police Station: East Police Station
+CR No: 456/2023
+Section of Law: IPC 379
+
+Date of Occurrence: 2023-07-20
+Date of Report: 2023-07-20
+Time of Occurrence: 09:15
+Time of Report: 11:30
+Place of Occurrence: City Mall Parking
+
+Complainant Details:
+Name: Anita Sharma
+Address: 789 Ring Road, Bangalore
+Age: 28
+Sex: Female
+
+Victim Details:
+Name: Anita Sharma
+Address: 789 Ring Road, Bangalore
+Age: 28
+Sex: Female
+
+Property Lost:
+Item: Mobile Phone
+Brand: Samsung Galaxy S23
+Value: ₹75,000
+
+Accused Details:
+Name: Unknown
+Address: Not Available
+Age: 25-30
+Sex: Male
+
+Gist of Complaint:
+The complainant parked her car in the mall parking lot and when she returned, found that someone had broken into her car and stolen her mobile phone from the dashboard.

@@ -1,0 +1,6 @@
+Document
+with
+inconsistent
+line
+breaks
+and	mixed	whitespace

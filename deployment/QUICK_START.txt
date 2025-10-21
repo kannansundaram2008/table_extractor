@@ -1,0 +1,23 @@
+🚀 DSR Extract - Quick Start Guide
+==================================
+
+1. Double-click DSR_Extract.exe
+2. Wait for "Starting DSR_Extract in production mode" message
+3. Open web browser
+4. Go to: http://127.0.0.1:5000/
+5. Upload FIR documents:
+   • .docx files: ✅ Work immediately
+   • .doc files: 🔶 Require Pandoc (see README.txt)
+6. Click "Process Files"
+7. View results and export data
+
+📋 SUPPORTED FORMATS
+   • .docx files: ✅ Full support (no additional software needed)
+   • .doc files: ⚠️ Requires Pandoc installation
+
+🔧 FOR .DOC FILE SUPPORT
+   Install Pandoc from: https://pandoc.org/installing.html
+   Or use: winget install JohnMacFarlane.Pandoc
+
+✅ Ready to use!
+📖 See README.txt for detailed instructions & troubleshooting

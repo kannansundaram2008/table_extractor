@@ -20,7 +20,8 @@
                 <a href="{{ url_for('index') }}" class="btn-custom">Back to Home</a>
             </div>
             <div class="metric-card">
-                <table class="table-custom">
+                <div class="table-responsive">
+                    <table class="table-custom">
                     <thead>
                         <tr>
                             <th>Source File</th>
@@ -60,14 +61,14 @@
                                 <td>
                                     <ul>
                                         {% for victim in parsed_row.parsed.victims %}
-                                            <li>{{ victim.name }}, {{ victim.age }}, {{ victim.address }}, {{ victim.sex }}</li>
+                                            <li>Name:{{ victim.name }}, Age:{{ victim.age }}, Address:{{ victim.address }}, Sex:{{ victim.sex }}</li>
                                         {% endfor %}
                                     </ul>
                                 </td>
                                 <td>
                                     <ul>
                                         {% for accused in parsed_row.parsed.accused %}
-                                            <li>{{ accused.name }}, {{ accused.age }}, {{ accused.address }}, {{ accused.sex }}</li>
+                                            <li>Name:{{ accused.name }}, Age:{{ accused.age }}, Address:{{ accused.address }}, Sex:{{ accused.sex }}</li>
                                         {% endfor %}
                                     </ul>
                                 </td>

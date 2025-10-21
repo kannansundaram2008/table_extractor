@@ -1,0 +1,1 @@
+Document with HTML-like content: <script>alert('test')</script>

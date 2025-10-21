@@ -1,0 +1,208 @@
+{
+  "categories": {
+    "CRIMINAL": {
+      "name": "Criminal Cases",
+      "description": "Cases involving criminal offenses and violations of penal laws",
+      "keywords": [
+        "theft", "burglary", "robbery", "assault", "murder", "homicide", "rape", "sexual assault",
+        "kidnapping", "abduction", "criminal intimidation", "hurt", "grievous hurt",
+        "wrongful confinement", "criminal trespass", "house trespass", "mischief",
+        "criminal misappropriation", "cheating", "forgery", "counterfeiting",
+        "attempt to murder", "culpable homicide", "dowry death", "abetment",
+        "criminal conspiracy", "rioting", "unlawful assembly", "dacoity",
+        "preparation to commit dacoity", "belonging to gang of dacoits"
+      ],
+      "ipc_sections": [
+        "IPC 302", "IPC 307", "IPC 376", "IPC 377", "IPC 379", "IPC 380", "IPC 390",
+        "IPC 392", "IPC 393", "IPC 394", "IPC 395", "IPC 396", "IPC 397", "IPC 398",
+        "IPC 399", "IPC 400", "IPC 401", "IPC 402", "IPC 420", "IPC 465", "IPC 467",
+        "IPC 468", "IPC 471", "IPC 323", "IPC 324", "IPC 325", "IPC 326", "IPC 354",
+        "IPC 363", "IPC 364", "IPC 365", "IPC 366", "IPC 367", "IPC 368", "IPC 369",
+        "IPC 370", "IPC 371", "IPC 372", "IPC 373", "IPC 374", "IPC 375", "IPC 378",
+        "IPC 383", "IPC 384", "IPC 385", "IPC 386", "IPC 387", "IPC 388", "IPC 389",
+        "IPC 404", "IPC 406", "IPC 407", "IPC 408", "IPC 409", "IPC 411", "IPC 412",
+        "IPC 413", "IPC 414", "IPC 415", "IPC 416", "IPC 417", "IPC 418", "IPC 419",
+        "IPC 435", "IPC 436", "IPC 437", "IPC 438", "IPC 440", "IPC 441", "IPC 442",
+        "IPC 443", "IPC 444", "IPC 445", "IPC 446", "IPC 447", "IPC 448", "IPC 449",
+        "IPC 450", "IPC 451", "IPC 452", "IPC 453", "IPC 454", "IPC 455", "IPC 456",
+        "IPC 457", "IPC 458", "IPC 459", "IPC 460", "IPC 461", "IPC 462"
+      ],
+      "priority": 1,
+      "severity": "high"
+    },
+    "CIVIL": {
+      "name": "Civil Cases",
+      "description": "Cases involving civil disputes and private rights",
+      "keywords": [
+        "property dispute", "civil suit", "injunction", "specific performance",
+        "declaration", "partition", "possession", "easement", "nuisance",
+        "trespass", "defamation", "malicious prosecution", "conspiracy",
+        "breach of contract", "damages", "compensation", "recovery of money",
+        "movable property", "immovable property", "title", "ownership",
+        "succession", "inheritance", "will", "probate", "letters of administration",
+        "guardianship", "custody", "maintenance", "divorce", "judicial separation",
+        "restitution of conjugal rights", "nullity of marriage", "domestic violence",
+        "family dispute", "matrimonial", "adoption", "minority", "lunacy"
+      ],
+      "ipc_sections": [
+        "civil matter", "civil dispute", "property", "contract", "family",
+        "matrimonial", "succession", "inheritance", "partition"
+      ],
+      "priority": 3,
+      "severity": "medium"
+    },
+    "TRAFFIC": {
+      "name": "Traffic Cases",
+      "description": "Cases involving traffic violations and motor vehicle accidents",
+      "keywords": [
+        "accident", "rash driving", "negligent driving", "drunken driving",
+        "driving under influence", "hit and run", "motor vehicle accident",
+        "traffic violation", "over speeding", "dangerous driving",
+        "driving without license", "driving without insurance",
+        "signal jumping", "wrong parking", "vehicle theft",
+        "motor vehicle", "car", "truck", "bus", "motorcycle", "scooter",
+        "auto rickshaw", "tempo", "jeep", "van", "lorry", "trailer",
+        "road accident", "highway", "intersection", "collision",
+        "pedestrian", "cyclist", "driver", "license", "registration",
+        "permit", "insurance", "pollution", "fitness certificate"
+      ],
+      "ipc_sections": [
+        "IPC 279", "IPC 337", "IPC 338", "IPC 304A", "MV Act", "Motor Vehicles Act",
+        "rash and negligent driving", "causing hurt", "causing grievous hurt"
+      ],
+      "priority": 4,
+      "severity": "medium"
+    },
+    "CYBER": {
+      "name": "Cyber Crimes",
+      "description": "Cases involving computer and internet related offenses",
+      "keywords": [
+        "cyber crime", "online fraud", "phishing", "hacking", "data theft",
+        "identity theft", "credit card fraud", "banking fraud", "ATM fraud",
+        "cheating by personation", "forgery of electronic record",
+        "cyber stalking", "cyber bullying", "revenge porn",
+        "morphing", "fake profile", "social media", "email", "website",
+        "computer", "internet", "online", "digital", "electronic",
+        "password", "username", "account", "transaction", "payment",
+        "upi", "net banking", "mobile banking", "wallet", "cryptocurrency",
+        "bitcoin", "blockchain", "dark web", "virus", "malware",
+        "ransomware", "DDoS", "denial of service", "data breach",
+        "privacy violation", "unauthorized access", "computer related offenses"
+      ],
+      "ipc_sections": [
+        "IPC 66", "IPC 66A", "IPC 66B", "IPC 66C", "IPC 66D", "IPC 66E",
+        "IPC 66F", "IPC 419", "IPC 420", "IPC 463", "IPC 465", "IPC 468",
+        "IPC 469", "IPC 470", "IPC 471", "IPC 474", "IPC 475", "IPC 476",
+        "IT Act", "Information Technology Act", "cyber", "online"
+      ],
+      "priority": 2,
+      "severity": "high"
+    },
+    "ECONOMIC": {
+      "name": "Economic Offenses",
+      "description": "Cases involving financial crimes and economic offenses",
+      "keywords": [
+        "fraud", "corruption", "bribery", "money laundering", "black money",
+        "tax evasion", "forgery", "counterfeiting", "cheating", "misappropriation",
+        "criminal breach of trust", "falsification of accounts",
+        "bank fraud", "insurance fraud", "investment fraud", "ponzi scheme",
+        "chit fund scam", "financial scam", "economic offense",
+        "white collar crime", "corporate fraud", "securities fraud",
+        "money", "currency", "cheque", "draft", "bill", "note", "bond",
+        "share", "stock", "debenture", "mutual fund", "insurance policy",
+        "loan", "credit", "debit", "account", "transaction", "transfer",
+        "deposit", "withdrawal", "payment", "receipt", "invoice", "bill",
+        "voucher", "ledger", "balance sheet", "profit and loss", "audit"
+      ],
+      "ipc_sections": [
+        "IPC 403", "IPC 404", "IPC 405", "IPC 406", "IPC 407", "IPC 408",
+        "IPC 409", "IPC 410", "IPC 411", "IPC 412", "IPC 413", "IPC 414",
+        "IPC 415", "IPC 416", "IPC 417", "IPC 418", "IPC 419", "IPC 420",
+        "IPC 421", "IPC 422", "IPC 423", "IPC 424", "IPC 463", "IPC 464",
+        "IPC 465", "IPC 466", "IPC 467", "IPC 468", "IPC 469", "IPC 470",
+        "IPC 471", "IPC 472", "IPC 473", "IPC 474", "IPC 475", "IPC 476",
+        "IPC 477", "IPC 477A", "IPC 478", "IPC 479", "IPC 480", "IPC 481",
+        "IPC 482", "IPC 483", "IPC 484", "IPC 485", "IPC 486", "IPC 487",
+        "IPC 488", "IPC 489", "IPC 489A", "IPC 489B", "IPC 489C", "IPC 489D",
+        "IPC 489E", "PC Act", "Prevention of Corruption Act"
+      ],
+      "priority": 2,
+      "severity": "high"
+    },
+    "NARCOTICS": {
+      "name": "Narcotics Cases",
+      "description": "Cases involving drugs and narcotics offenses",
+      "keywords": [
+        "drug", "narcotic", "opium", "heroin", "cocaine", "cannabis", "marijuana",
+        "hashish", "charas", "ganja", "brown sugar", "smack", "ecstasy", "LSD",
+        "methamphetamine", "amphetamine", "psychotropic substance",
+        "controlled substance", "prohibited substance", "intoxicant",
+        "drug possession", "drug trafficking", "drug smuggling",
+        "drug peddling", "drug consumption", "drug abuse", "drug addict",
+        "NDPS", "Narcotic Drugs and Psychotropic Substances",
+        "contraband", "illegal substance", "banned drug", "prescription drug",
+        "medicine", "tablet", "capsule", "injection", "syrup", "powder",
+        "liquid", "plant", "seed", "resin", "extract", "derivative"
+      ],
+      "ipc_sections": [
+        "IPC 27A", "NDPS Act", "Narcotic Drugs and Psychotropic Substances Act",
+        "drug", "narcotic", "opium", "heroin", "cocaine", "cannabis"
+      ],
+      "priority": 1,
+      "severity": "high"
+    },
+    "MISCELLANEOUS": {
+      "name": "Miscellaneous Cases",
+      "description": "Other cases that don't fit into main categories",
+      "keywords": [
+        "other", "miscellaneous", "general", "various", "sundry", "etcetera",
+        "public nuisance", "obstruction", "public way", "negligence",
+        "carelessness", "rashness", "recklessness", "careless driving",
+        "negligent act", "omission", "commission", "act", "deed", "incident",
+        "event", "occurrence", "happening", "episode", "case", "matter",
+        "issue", "problem", "complaint", "grievance", "petition", "application"
+      ],
+      "ipc_sections": [
+        "IPC 268", "IPC 283", "IPC 290", "IPC 291", "IPC 336", "IPC 337",
+        "IPC 338", "IPC 339", "IPC 340", "IPC 341", "IPC 342", "IPC 343",
+        "IPC 344", "IPC 345", "IPC 346", "IPC 347", "IPC 348", "IPC 349",
+        "IPC 350", "IPC 351", "IPC 352", "IPC 353", "IPC 354A", "IPC 354B",
+        "IPC 354C", "IPC 354D", "IPC 509", "other", "miscellaneous"
+      ],
+      "priority": 5,
+      "severity": "low"
+    }
+  },
+  "classification_rules": {
+    "min_keyword_matches": 2,
+    "min_section_matches": 1,
+    "confidence_thresholds": {
+      "high": 0.8,
+      "medium": 0.6,
+      "low": 0.4
+    },
+    "category_priority_weights": {
+      "CRIMINAL": 1.0,
+      "CYBER": 0.9,
+      "ECONOMIC": 0.9,
+      "NARCOTICS": 1.0,
+      "CIVIL": 0.7,
+      "TRAFFIC": 0.6,
+      "MISCELLANEOUS": 0.5
+    }
+  },
+  "feature_weights": {
+    "keyword_matches": 0.4,
+    "section_matches": 0.3,
+    "context_similarity": 0.2,
+    "pattern_recognition": 0.1
+  },
+  "training_config": {
+    "test_size": 0.2,
+    "validation_size": 0.1,
+    "random_state": 42,
+    "n_estimators": 100,
+    "max_features": 5000,
+    "ngram_range": [1, 3]
+  }
+}

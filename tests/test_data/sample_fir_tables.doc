@@ -1,0 +1,74 @@
+FIR Document with Table Structures
+
+This document contains FIR data in table format for testing table extraction functionality.
+
+Table 1: FIR Case Details
+
+| Field | Details |
+|-------|---------|
+| Police Station | Central Police Station |
+| CR No | 111/2023 |
+| Section of Law | IPC 420, 406 |
+| Date of Occurrence | 2023-05-10 |
+| Date of Report | 2023-05-11 |
+| Time of Occurrence | 16:30 |
+| Time of Report | 18:15 |
+| Place of Occurrence | Commercial Street |
+
+Table 2: Complainant Information
+
+| Field | Details |
+|-------|---------|
+| Name | Amit Patel |
+| Address | 567 Brigade Road, Bangalore |
+| Age | 38 |
+| Sex | Male |
+| Occupation | Businessman |
+
+Table 3: Victim Information
+
+| Victim No | Name | Age | Address | Sex |
+|-----------|------|-----|---------|-----|
+| 1 | Sunita Patel | 35 | 567 Brigade Road, Bangalore | Female |
+| 2 | Rohan Patel | 12 | 567 Brigade Road, Bangalore | Male |
+
+Table 4: Property Details
+
+| Property Type | Item | Description | Value |
+|---------------|------|-------------|-------|
+| Lost | Gold Jewelry | Necklace and Earrings | ₹3,50,000 |
+| Lost | Cash | Indian Rupees | ₹1,25,000 |
+| Recovered | Gold Jewelry | Necklace (partial) | ₹2,00,000 |
+| Seized | Documents | Property papers | N/A |
+
+Table 5: Accused Information
+
+| Accused No | Name | Age | Address | Sex | Role |
+|------------|------|-----|---------|-----|------|
+| 1 | Karan Mehta | 32 | 890 Residency Road, Bangalore | Male | Main accused |
+| 2 | Priya Sharma | 28 | 321 MG Road, Bangalore | Female | Accomplice |
+
+Table 6: Case Summary
+
+| Field | Details |
+|-------|---------|
+| Gist | The complainant reported a case of cheating and criminal breach of trust. The accused persons had taken money and jewelry from the complainant under the pretext of investing in a business venture but failed to return the same. |
+| Status | Under Investigation |
+| IO Name | Inspector Rajesh Kumar |
+| Court | City Civil Court |
+
+Table 7: Empty Table Test
+
+| Field | Details |
+|-------|---------|
+
+Table 8: Single Row Table
+
+| Information | Single entry for testing |
+
+Table 9: Large Table with Many Columns
+
+| Col1 | Col2 | Col3 | Col4 | Col5 | Col6 | Col7 | Col8 | Col9 | Col10 |
+|------|------|------|------|------|------|------|------|------|-------|
+| Data1 | Data2 | Data3 | Data4 | Data5 | Data6 | Data7 | Data8 | Data9 | Data10 |
+| Test1 | Test2 | Test3 | Test4 | Test5 | Test6 | Test7 | Test8 | Test9 | Test10 |

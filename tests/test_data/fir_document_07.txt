@@ -1,0 +1,7 @@
+| Police Station | Andheri Police Station |
+                | CR Number | 767/2022 |
+                | Date | 17/06/2023 |
+                | Complainant | Amit Singh |
+                | Accused | Divya Patel |
+                | Location | Panvel |
+                | Sections | Section 406 IPC |

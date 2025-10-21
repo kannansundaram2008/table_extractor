@@ -1,0 +1,7 @@
+| Police Station | Mumbai Central Police Station |
+                | CR Number | 189/2022 |
+                | Date | 08/07/2023 |
+                | Complainant | Amit Singh |
+                | Accused | Vikram Reddy |
+                | Location | Dadar TT |
+                | Sections | Section 394 IPC |

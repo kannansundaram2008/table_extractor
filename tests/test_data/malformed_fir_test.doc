@@ -1,0 +1,35 @@
+Malformed FIR Test Case
+
+Police Station:: {random.choice(['Central', 'East', 'West'])} Police Station
+CR No:: {random.randint(100, 999)}::/::{random.randint(2020, 2025)}
+Section of Law:: IPC:: {random.randint(100, 500)}::
+
+Date of Occurrence:: {self.random_date()}
+Date of Report:: {self.random_date()}
+Place of Occurrence:: {self.random_string(20)}:::: Area
+
+Complainant Details::
+Name:: {random.choice(['John', 'Jane'])}:::: {random.choice(['Doe', 'Smith'])}
+Address:: {random.randint(100, 999)}:::: {self.random_string(10)}:::: Street
+Age:: {random.randint(20, 60)}::
+Sex:: {random.choice(['M', 'F'])}::
+
+Victim Details::
+Name:: {random.choice(['John', 'Jane'])}:::: {random.choice(['Doe', 'Smith'])}
+Address:: {random.randint(100, 999)}:::: {self.random_string(10)}:::: Street
+Age:: {random.randint(15, 70)}::
+Sex:: {random.choice(['M', 'F'])}::
+
+Property Lost::
+Item:: {random.choice(['Phone', 'Laptop', 'Cash'])}:::: {random.choice(['Samsung', 'Dell', 'Cash'])}
+Value:: ₹{random.randint(1000, 50000)}::::
+
+Accused Details::
+Name:: {random.choice(['Richard', 'Robert'])}:::: {random.choice(['Roe', 'Smith'])}
+Address:: {random.randint(100, 999)}:::: {self.random_string(10)}:::: Nagar
+Age:: {random.randint(20, 60)}::
+Sex:: {random.choice(['M', 'F'])}::
+
+Gist of Complaint::
+{random.choice(['Theft', 'Burglary', 'Cheating'])}:::: reported:::: with:::: extra:::: colons::::
+
