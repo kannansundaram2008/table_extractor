@@ -6,7 +6,7 @@ from datetime import datetime
 from typing import Dict, List, Optional, Any
 
 # Enhanced NER using spaCy and custom rules
-from utils.enhanced_ner import extract_entities_with_ner, EnhancedNER
+from utils.enhanced_ner import extract_entities_with_ner, EnhancedNER, Entity
 
 # ML Pattern Learner for enhanced entity extraction
 from utils.ml_pattern_learner import MLPatternLearner
@@ -118,14 +118,32 @@ class EnhancedFIRParser:
                 logger.warning(f"Failed to initialize training logger: {e}")
                 self.enable_logging = False
 
-        # Performance tracking
+        # Enhanced performance tracking with comprehensive NER monitoring
         self.performance_stats = {
             'total_parsing_time': 0.0,
             'total_ner_time': 0.0,
             'total_ml_time': 0.0,
             'parse_count': 0,
             'ner_call_count': 0,
-            'ml_call_count': 0
+            'ml_call_count': 0,
+            'ner_entity_count': 0,
+            'ner_confidence_distribution': {},
+            'ner_type_distribution': {},
+            'ner_processing_times': [],
+            'fallback_usage_count': 0,
+            'validation_scores': [],
+            'error_count': 0,
+            'avg_confidence_by_type': {},
+            'ner_success_rate': 0.0
+        }
+
+        # NER-specific monitoring
+        self.ner_monitoring = {
+            'entity_extraction_stats': {},
+            'confidence_threshold_hits': 0,
+            'low_confidence_entities': 0,
+            'relationship_extraction_count': 0,
+            'context_analysis_results': []
         }
 
     def parse_fir_row_enhanced(self, row_cells: List[str], source_file: str = "unknown") -> Dict[str, Any]:
@@ -304,19 +322,20 @@ class EnhancedFIRParser:
                     parsed['confidence_scores']['section_of_law'] = 0.85
 
     def _parse_column_6_enhanced(self, cell_text: str, parsed: Dict[str, Any]):
-        """Enhanced parsing of 6th column with NER integration."""
+        """Enhanced parsing of 6th column with comprehensive NER integration."""
         ner_start = time.time()
 
-        # Extract entities using enhanced NER
+        # Extract entities using enhanced NER with full capabilities
         entities_result = self.ner_system.extract_entities(cell_text)
 
         ner_time = time.time() - ner_start
         parsed['processing_metadata']['ner_processing_time'] = ner_time
-        self.performance_stats['total_ner_time'] += ner_time
-        self.performance_stats['ner_call_count'] += 1
 
-        # Extract dates with confidence scoring
-        dates = self._extract_dates_with_confidence(cell_text, entities_result)
+        # Update comprehensive NER performance statistics
+        self._update_ner_performance_stats(entities_result, ner_time)
+
+        # Enhanced date extraction with multiple strategies
+        dates = self._extract_dates_with_confidence_enhanced(cell_text, entities_result)
         if len(dates) >= 2:
             parsed['date_of_occurrence'] = dates[0]['text']
             parsed['date_of_report'] = dates[1]['text']
@@ -326,53 +345,68 @@ class EnhancedFIRParser:
             parsed['date_of_occurrence'] = dates[0]['text']
             parsed['confidence_scores']['date_of_occurrence'] = dates[0]['confidence']
 
-        # Extract times
-        time_matches = re.findall(r'\b(\d{1,2}[:.-]\d{2})hrs?\b', cell_text, re.IGNORECASE)
-        if time_matches:
-            parsed['do_time'] = time_matches[0].strip() + 'hrs'
-            parsed['confidence_scores']['do_time'] = 0.9
-            if len(time_matches) > 1:
-                parsed['dr_time'] = time_matches[1].strip() + 'hrs'
-                parsed['confidence_scores']['dr_time'] = 0.9
+        # Enhanced time extraction using NER
+        times = self._extract_times_with_ner(cell_text, entities_result)
+        if times:
+            parsed['do_time'] = times[0]['text']
+            parsed['confidence_scores']['do_time'] = times[0]['confidence']
+            if len(times) > 1:
+                parsed['dr_time'] = times[1]['text']
+                parsed['confidence_scores']['dr_time'] = times[1]['confidence']
 
-        # Extract location with NER enhancement
-        location = self._extract_location_with_ner(cell_text, entities_result)
+        # Enhanced location extraction with NER and context analysis
+        location = self._extract_location_with_ner_enhanced(cell_text, entities_result)
         if location:
             parsed['place_of_occurrence'] = location['text']
             parsed['confidence_scores']['place_of_occurrence'] = location['confidence']
 
+        # Extract additional contextual information using NER relationships
+        contextual_info = self._extract_contextual_information(cell_text, entities_result)
+        if contextual_info:
+            parsed.update(contextual_info)
+
     def _parse_column_7_enhanced(self, cell_text: str, parsed: Dict[str, Any]):
-        """Enhanced parsing of 7th column (complainant) with NER integration."""
-        # Use enhanced NER for person and location extraction
+        """Enhanced parsing of 7th column (complainant) with comprehensive NER integration."""
+        # Use enhanced NER for comprehensive entity extraction
         entities_result = self.ner_system.extract_entities(cell_text)
 
-        # Extract person entities
+        # Enhanced person extraction with relationship context
         persons = [e for e in entities_result.entities if e.label == 'PERSON']
         if persons:
             # Use highest confidence person as complainant name
             persons.sort(key=lambda x: x.confidence, reverse=True)
-            parsed['complainant']['name'] = persons[0].text
-            parsed['confidence_scores']['complainant_name'] = persons[0].confidence
 
-        # Extract location entities for address
-        locations = [e for e in entities_result.entities if e.label == 'GPE']
-        if locations:
-            parsed['complainant']['address'] = locations[0].text
-            parsed['confidence_scores']['complainant_address'] = locations[0].confidence
+            # Check for complainant context in relationships
+            complainant_person = self._find_entity_with_relationship(persons, 'PERSON-complainant', entities_result)
+            if complainant_person:
+                parsed['complainant']['name'] = complainant_person.text
+                parsed['confidence_scores']['complainant_name'] = complainant_person.confidence
+            else:
+                parsed['complainant']['name'] = persons[0].text
+                parsed['confidence_scores']['complainant_name'] = persons[0].confidence
 
-        # Extract age if present
-        age_match = re.search(r'\((\d{1,2})\)|(\d{1,2})(?:\s*/\s*(\d{1,4}))?', cell_text)
-        if age_match:
-            parsed['complainant']['age'] = age_match.group(1) or age_match.group(2)
-            parsed['confidence_scores']['complainant_age'] = 0.9
+        # Enhanced address extraction with multiple strategies
+        addresses = self._extract_addresses_enhanced(cell_text, entities_result)
+        if addresses:
+            parsed['complainant']['address'] = addresses[0]['text']
+            parsed['confidence_scores']['complainant_address'] = addresses[0]['confidence']
 
-        # Determine sex based on relationship indicators
-        if 'S/o' in cell_text:
-            parsed['complainant']['sex'] = 'Male'
-            parsed['confidence_scores']['complainant_sex'] = 0.8
-        elif 'D/o' in cell_text or 'W/o' in cell_text:
-            parsed['complainant']['sex'] = 'Female'
-            parsed['confidence_scores']['complainant_sex'] = 0.8
+        # Enhanced age extraction with NER support
+        age_info = self._extract_age_with_ner(cell_text, entities_result)
+        if age_info:
+            parsed['complainant']['age'] = age_info['age']
+            parsed['confidence_scores']['complainant_age'] = age_info['confidence']
+
+        # Enhanced sex determination with NER context
+        sex_info = self._determine_sex_with_context(cell_text, entities_result)
+        if sex_info:
+            parsed['complainant']['sex'] = sex_info['sex']
+            parsed['confidence_scores']['complainant_sex'] = sex_info['confidence']
+
+        # Extract additional complainant details using NER
+        additional_details = self._extract_complainant_details(cell_text, entities_result)
+        if additional_details:
+            parsed['complainant'].update(additional_details)
 
     def _parse_column_8_enhanced(self, cell_text: str, parsed: Dict[str, Any]):
         """Enhanced parsing of 8th column (victims) with NER integration."""
@@ -542,6 +576,343 @@ class EnhancedFIRParser:
 
         return None
 
+    def _update_ner_performance_stats(self, entities_result, ner_time: float):
+        """Update comprehensive NER performance statistics."""
+        # Basic stats
+        self.performance_stats['total_ner_time'] += ner_time
+        self.performance_stats['ner_call_count'] += 1
+        self.performance_stats['ner_processing_times'].append(ner_time)
+
+        # Entity count and distribution
+        entity_count = len(entities_result.entities)
+        self.performance_stats['ner_entity_count'] += entity_count
+
+        # Entity type distribution
+        for entity in entities_result.entities:
+            entity_type = entity.label
+            if entity_type not in self.performance_stats['ner_type_distribution']:
+                self.performance_stats['ner_type_distribution'][entity_type] = 0
+            self.performance_stats['ner_type_distribution'][entity_type] += 1
+
+        # Confidence distribution
+        for entity in entities_result.entities:
+            confidence_bucket = f"{entity.confidence:.1f}"
+            if confidence_bucket not in self.performance_stats['ner_confidence_distribution']:
+                self.performance_stats['ner_confidence_distribution'][confidence_bucket] = 0
+            self.performance_stats['ner_confidence_distribution'][confidence_bucket] += 1
+
+            # Track low confidence entities
+            if entity.confidence < self.confidence_threshold:
+                self.ner_monitoring['low_confidence_entities'] += 1
+
+        # Relationship extraction stats
+        if hasattr(entities_result, 'relationships'):
+            relationship_count = len(entities_result.relationships)
+            self.ner_monitoring['relationship_extraction_count'] += relationship_count
+
+        # Context analysis results
+        if hasattr(entities_result, 'context_analysis'):
+            self.ner_monitoring['context_analysis_results'].append(entities_result.context_analysis)
+
+        # NER success rate calculation
+        if self.performance_stats['ner_call_count'] > 0:
+            success_rate = (self.performance_stats['ner_call_count'] - self.ner_monitoring['low_confidence_entities']) / self.performance_stats['ner_call_count']
+            self.performance_stats['ner_success_rate'] = success_rate
+
+    def _extract_dates_with_confidence_enhanced(self, text: str, entities_result) -> List[Dict[str, Any]]:
+        """Enhanced date extraction with multiple strategies and confidence scoring."""
+        dates = []
+
+        # Use NER dates first with enhanced confidence
+        ner_dates = [e for e in entities_result.entities if e.label == 'DATE']
+        for date_entity in ner_dates:
+            if date_entity.confidence >= self.confidence_threshold:
+                dates.append({
+                    'text': date_entity.text,
+                    'confidence': date_entity.confidence,
+                    'source': 'ner'
+                })
+
+        # Enhanced regex patterns for dates
+        if not dates:
+            date_patterns = [
+                r'\b\d{1,2}[/-]\d{1,2}[/-]\d{2,4}\b',
+                r'\b\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{2,4}\b',
+                r'\b\d{1,2}(?:st|nd|rd|th)?\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{2,4}\b',
+            ]
+
+            for pattern in date_patterns:
+                matches = re.findall(pattern, text)
+                for match in matches:
+                    # Calculate confidence based on format
+                    confidence = self._calculate_regex_date_confidence(match)
+                    if confidence >= self.confidence_threshold:
+                        dates.append({
+                            'text': match,
+                            'confidence': confidence,
+                            'source': 'regex'
+                        })
+
+        # Sort by confidence
+        dates.sort(key=lambda x: x['confidence'], reverse=True)
+        return dates
+
+    def _calculate_regex_date_confidence(self, date_str: str) -> float:
+        """Calculate confidence for regex-based date extraction."""
+        confidence = 0.7  # Base confidence for regex matches
+
+        # Boost confidence for standard formats
+        if re.match(r'\d{1,2}[/-]\d{1,2}[/-]\d{4}', date_str):
+            confidence += 0.15
+        elif re.match(r'\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{4}', date_str):
+            confidence += 0.1
+
+        return min(1.0, confidence)
+
+    def _extract_times_with_ner(self, text: str, entities_result) -> List[Dict[str, Any]]:
+        """Extract times using enhanced NER."""
+        times = []
+
+        # Use NER times first
+        ner_times = [e for e in entities_result.entities if e.label == 'TIME']
+        for time_entity in ner_times:
+            if time_entity.confidence >= self.confidence_threshold:
+                times.append({
+                    'text': time_entity.text,
+                    'confidence': time_entity.confidence,
+                    'source': 'ner'
+                })
+
+        # Fallback to regex if no NER times found
+        if not times:
+            time_patterns = [
+                r'\b\d{1,2}[:.]\d{2}\s*(?:AM|PM|hrs?|hours?)\b',
+                r'\b\d{1,2}[:.]\d{2}\s*hours?\b',
+            ]
+
+            for pattern in time_patterns:
+                matches = re.findall(pattern, text, re.IGNORECASE)
+                for match in matches:
+                    times.append({
+                        'text': match,
+                        'confidence': 0.8,  # High confidence for structured time patterns
+                        'source': 'regex'
+                    })
+
+        return times
+
+    def _extract_location_with_ner_enhanced(self, text: str, entities_result) -> Optional[Dict[str, Any]]:
+        """Enhanced location extraction with NER and context analysis."""
+        # Use NER locations first
+        locations = [e for e in entities_result.entities if e.label == 'GPE']
+        if locations:
+            # Use highest confidence location
+            locations.sort(key=lambda x: x.confidence, reverse=True)
+            return {
+                'text': locations[0].text,
+                'confidence': locations[0].confidence,
+                'source': 'ner'
+            }
+
+        # Enhanced regex-based location extraction
+        directions = [
+            'east', 'west', 'north', 'south', 'northeast', 'northwest',
+            'southeast', 'southwest', 'पूर्व', 'पश्चिम', 'उत्तर', 'दक्षिण'
+        ]
+
+        # Find time references to locate text after time
+        time_end = 0
+        for match in re.finditer(r'\b(\d{1,2}[:.-]\d{2})hrs?\b', text, re.IGNORECASE):
+            time_end = match.end()
+
+        if time_end:
+            after_time = text[time_end:].strip()
+            for direction in directions:
+                dir_pos = after_time.lower().find(direction)
+                if dir_pos != -1:
+                    location_text = after_time[:dir_pos + len(direction)].strip()
+                    if len(location_text) > 2:  # Filter very short locations
+                        return {
+                            'text': location_text,
+                            'confidence': 0.7,
+                            'source': 'directional'
+                        }
+
+        # General location pattern fallback
+        location_indicators = [
+            'at', 'in', 'near', 'from', 'to', 'opposite', 'behind', 'beside'
+        ]
+
+        for indicator in location_indicators:
+            pattern = rf'\b{indicator}\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\b'
+            matches = re.findall(pattern, text, re.IGNORECASE)
+            for match in matches:
+                if len(match) > 2:  # Filter very short locations
+                    return {
+                        'text': match,
+                        'confidence': 0.6,
+                        'source': 'indicator'
+                    }
+
+        return None
+
+    def _extract_contextual_information(self, text: str, entities_result) -> Dict[str, Any]:
+        """Extract additional contextual information using NER relationships."""
+        contextual_info = {}
+
+        # Analyze entity relationships for additional context
+        if hasattr(entities_result, 'relationships') and entities_result.relationships:
+            for relationship in entities_result.relationships:
+                if relationship['confidence'] >= self.confidence_threshold:
+                    rel_type = relationship['relationship_type']
+
+                    # Extract contextual clues from relationships
+                    if 'PERSON-complainant' in rel_type:
+                        contextual_info['has_complainant_context'] = True
+                    elif 'PERSON-victim' in rel_type:
+                        contextual_info['has_victim_context'] = True
+                    elif 'PERSON-accused' in rel_type:
+                        contextual_info['has_accused_context'] = True
+
+        # Use context analysis from NER result
+        if hasattr(entities_result, 'context_analysis'):
+            context_analysis = entities_result.context_analysis
+            contextual_info['is_legal_document'] = context_analysis.get('is_legal_document', False)
+            contextual_info['document_type'] = context_analysis.get('document_type', 'unknown')
+            contextual_info['legal_context_score'] = context_analysis.get('context_score', 0.0)
+
+        return contextual_info
+
+    def _find_entity_with_relationship(self, entities: List[Entity], relationship_type: str, entities_result) -> Optional[Entity]:
+        """Find entity that has a specific relationship type."""
+        if not hasattr(entities_result, 'relationships'):
+            return None
+
+        entity_texts = {e.text for e in entities}
+
+        for relationship in entities_result.relationships:
+            if relationship_type in relationship['relationship_type']:
+                if relationship['entity1'] in entity_texts:
+                    # Find the entity object
+                    for entity in entities:
+                        if entity.text == relationship['entity1']:
+                            return entity
+                elif relationship['entity2'] in entity_texts:
+                    # Find the entity object
+                    for entity in entities:
+                        if entity.text == relationship['entity2']:
+                            return entity
+
+        return None
+
+    def _extract_addresses_enhanced(self, text: str, entities_result) -> List[Dict[str, Any]]:
+        """Enhanced address extraction with multiple strategies."""
+        addresses = []
+
+        # Use NER locations first
+        locations = [e for e in entities_result.entities if e.label == 'GPE']
+        for location in locations:
+            addresses.append({
+                'text': location.text,
+                'confidence': location.confidence,
+                'source': 'ner'
+            })
+
+        # Pattern-based address extraction
+        address_patterns = [
+            r'address[:\-]\s*([^,\n]+)',
+            r'r/o[:\-]\s*([^,\n]+)',
+            r'resident[:\-]\s*([^,\n]+)',
+        ]
+
+        for pattern in address_patterns:
+            matches = re.findall(pattern, text, re.IGNORECASE)
+            for match in matches:
+                addresses.append({
+                    'text': match.strip(),
+                    'confidence': 0.7,
+                    'source': 'pattern'
+                })
+
+        return addresses
+
+    def _extract_age_with_ner(self, text: str, entities_result) -> Optional[Dict[str, Any]]:
+        """Extract age information using NER and patterns."""
+        # Look for quantity entities that might represent age
+        quantities = [e for e in entities_result.entities if e.label == 'QUANTITY']
+        for quantity in quantities:
+            # Check if quantity is likely an age (1-100 range)
+            qty_match = re.search(r'\d+', quantity.text)
+            if qty_match:
+                age = int(qty_match.group())
+                if 1 <= age <= 100:
+                    return {
+                        'age': str(age),
+                        'confidence': quantity.confidence
+                    }
+
+        # Fallback to regex patterns
+        age_patterns = [
+            r'\((\d{1,2})\)',
+            r'age[:\-]\s*(\d{1,2})',
+            r'(\d{1,2})(?:\s*years?\s*old)?',
+        ]
+
+        for pattern in age_patterns:
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                age = match.group(1)
+                if 1 <= int(age) <= 100:
+                    return {
+                        'age': age,
+                        'confidence': 0.8
+                    }
+
+        return None
+
+    def _determine_sex_with_context(self, text: str, entities_result) -> Optional[Dict[str, Any]]:
+        """Enhanced sex determination using context and relationships."""
+        # Check for relationship indicators first
+        if 'S/o' in text or 'Son of' in text:
+            return {'sex': 'Male', 'confidence': 0.9}
+        elif 'D/o' in text or 'Daughter of' in text:
+            return {'sex': 'Female', 'confidence': 0.9}
+        elif 'W/o' in text or 'Wife of' in text:
+            return {'sex': 'Female', 'confidence': 0.9}
+
+        # Use NER relationships for context
+        if hasattr(entities_result, 'relationships'):
+            for relationship in entities_result.relationships:
+                if 'complainant' in relationship['relationship_type']:
+                    if 'S/o' in text or 'Son' in text:
+                        return {'sex': 'Male', 'confidence': 0.7}
+                    elif 'D/o' in text or 'Daughter' in text:
+                        return {'sex': 'Female', 'confidence': 0.7}
+
+        return None
+
+    def _extract_complainant_details(self, text: str, entities_result) -> Dict[str, Any]:
+        """Extract additional complainant details using NER."""
+        details = {}
+
+        # Extract phone numbers
+        phones = [e for e in entities_result.entities if e.label == 'PHONE']
+        if phones:
+            details['phone'] = phones[0].text
+            if 'confidence_scores' not in details:
+                details['confidence_scores'] = {}
+            details['confidence_scores']['complainant_phone'] = phones[0].confidence
+
+        # Extract ID numbers
+        ids = [e for e in entities_result.entities if e.label == 'ID']
+        if ids:
+            details['id_number'] = ids[0].text
+            if 'confidence_scores' not in details:
+                details['confidence_scores'] = {}
+            details['confidence_scores']['complainant_id'] = ids[0].confidence
+
+        return details
+
     def _extract_dates_with_confidence(self, text: str, entities_result) -> List[Dict[str, Any]]:
         """Extract dates with confidence scores."""
         dates = []
@@ -688,15 +1059,135 @@ class EnhancedFIRParser:
         return prop if prop['item'] and prop['confidence'] > 0.5 else None
 
     def get_performance_stats(self) -> Dict[str, Any]:
-        """Get performance statistics for monitoring."""
+        """Get comprehensive performance statistics including NER monitoring."""
         stats = self.performance_stats.copy()
 
+        # Basic averages
         if stats['parse_count'] > 0:
             stats['avg_parsing_time'] = stats['total_parsing_time'] / stats['parse_count']
             stats['avg_ner_time'] = stats['total_ner_time'] / stats['ner_call_count'] if stats['ner_call_count'] > 0 else 0
             stats['avg_ml_time'] = stats['total_ml_time'] / stats['ml_call_count'] if stats['ml_call_count'] > 0 else 0
 
+        # NER-specific statistics
+        if stats['ner_entity_count'] > 0:
+            stats['avg_entities_per_call'] = stats['ner_entity_count'] / stats['ner_call_count']
+
+        # Confidence analysis
+        if stats['ner_confidence_distribution']:
+            stats['confidence_analysis'] = {
+                'most_common_confidence': max(stats['ner_confidence_distribution'].keys(),
+                                           key=lambda x: stats['ner_confidence_distribution'][x]),
+                'high_confidence_ratio': sum(count for bucket, count in stats['ner_confidence_distribution'].items()
+                                          if float(bucket) >= 0.8) / stats['ner_entity_count'],
+                'low_confidence_ratio': sum(count for bucket, count in stats['ner_confidence_distribution'].items()
+                                         if float(bucket) < 0.6) / stats['ner_entity_count']
+            }
+
+        # Entity type analysis
+        if stats['ner_type_distribution']:
+            total_entities = sum(stats['ner_type_distribution'].values())
+            stats['entity_type_percentages'] = {
+                entity_type: (count / total_entities) * 100
+                for entity_type, count in stats['ner_type_distribution'].items()
+            }
+
+        # NER monitoring data
+        stats['ner_monitoring'] = self.ner_monitoring.copy()
+
+        # Processing time analysis
+        if stats['ner_processing_times']:
+            import statistics
+            stats['ner_time_analysis'] = {
+                'min_time': min(stats['ner_processing_times']),
+                'max_time': max(stats['ner_processing_times']),
+                'avg_time': statistics.mean(stats['ner_processing_times']),
+                'median_time': statistics.median(stats['ner_processing_times'])
+            }
+
+        # Success rate analysis
+        if stats['ner_call_count'] > 0:
+            stats['success_analysis'] = {
+                'ner_success_rate': stats['ner_success_rate'],
+                'fallback_rate': stats['fallback_usage_count'] / stats['ner_call_count'],
+                'error_rate': stats['error_count'] / stats['parse_count']
+            }
+
         return stats
+
+    def get_ner_detailed_stats(self) -> Dict[str, Any]:
+        """Get detailed NER-specific performance statistics."""
+        return {
+            'entity_extraction_stats': self.ner_monitoring['entity_extraction_stats'],
+            'confidence_analysis': self._analyze_confidence_distribution(),
+            'relationship_stats': {
+                'total_relationships': self.ner_monitoring['relationship_extraction_count'],
+                'avg_relationships_per_call': self.ner_monitoring['relationship_extraction_count'] / max(1, self.performance_stats['ner_call_count'])
+            },
+            'context_analysis_summary': self._summarize_context_analysis(),
+            'performance_trends': self._analyze_performance_trends()
+        }
+
+    def _analyze_confidence_distribution(self) -> Dict[str, Any]:
+        """Analyze confidence score distribution."""
+        confidence_dist = self.performance_stats['ner_confidence_distribution']
+
+        if not confidence_dist:
+            return {'message': 'No confidence data available'}
+
+        total_entities = sum(confidence_dist.values())
+
+        return {
+            'distribution': confidence_dist,
+            'high_confidence_entities': sum(count for bucket, count in confidence_dist.items() if float(bucket) >= 0.8),
+            'medium_confidence_entities': sum(count for bucket, count in confidence_dist.items() if 0.6 <= float(bucket) < 0.8),
+            'low_confidence_entities': sum(count for bucket, count in confidence_dist.items() if float(bucket) < 0.6),
+            'confidence_percentages': {
+                'high': (sum(count for bucket, count in confidence_dist.items() if float(bucket) >= 0.8) / total_entities) * 100,
+                'medium': (sum(count for bucket, count in confidence_dist.items() if 0.6 <= float(bucket) < 0.8) / total_entities) * 100,
+                'low': (sum(count for bucket, count in confidence_dist.items() if float(bucket) < 0.6) / total_entities) * 100
+            }
+        }
+
+    def _summarize_context_analysis(self) -> Dict[str, Any]:
+        """Summarize context analysis results."""
+        if not self.ner_monitoring['context_analysis_results']:
+            return {'message': 'No context analysis data available'}
+
+        context_results = self.ner_monitoring['context_analysis_results']
+
+        # Count document types
+        document_types = {}
+        legal_documents = 0
+
+        for result in context_results:
+            doc_type = result.get('document_type', 'unknown')
+            document_types[doc_type] = document_types.get(doc_type, 0) + 1
+
+            if result.get('is_legal_document', False):
+                legal_documents += 1
+
+        return {
+            'total_analyses': len(context_results),
+            'legal_documents_ratio': legal_documents / len(context_results),
+            'document_type_distribution': document_types,
+            'avg_context_score': sum(r.get('context_score', 0) for r in context_results) / len(context_results)
+        }
+
+    def _analyze_performance_trends(self) -> Dict[str, Any]:
+        """Analyze performance trends over time."""
+        if len(self.performance_stats['ner_processing_times']) < 2:
+            return {'message': 'Insufficient data for trend analysis'}
+
+        recent_times = self.performance_stats['ner_processing_times'][-10:]  # Last 10 calls
+
+        import statistics
+
+        return {
+            'recent_avg_time': statistics.mean(recent_times),
+            'recent_trend': 'improving' if statistics.mean(recent_times) < statistics.mean(self.performance_stats['ner_processing_times']) else 'degrading',
+            'time_variance': statistics.variance(recent_times) if len(recent_times) > 1 else 0,
+            'calls_analyzed': len(recent_times)
+        }
 
     def reset_performance_stats(self):
         """Reset performance statistics."""
@@ -706,7 +1197,24 @@ class EnhancedFIRParser:
             'total_ml_time': 0.0,
             'parse_count': 0,
             'ner_call_count': 0,
-            'ml_call_count': 0
+            'ml_call_count': 0,
+            'ner_entity_count': 0,
+            'ner_confidence_distribution': {},
+            'ner_type_distribution': {},
+            'ner_processing_times': [],
+            'fallback_usage_count': 0,
+            'validation_scores': [],
+            'error_count': 0,
+            'avg_confidence_by_type': {},
+            'ner_success_rate': 0.0
+        }
+
+        self.ner_monitoring = {
+            'entity_extraction_stats': {},
+            'confidence_threshold_hits': 0,
+            'low_confidence_entities': 0,
+            'relationship_extraction_count': 0,
+            'context_analysis_results': []
         }
 
 

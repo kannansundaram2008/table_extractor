@@ -247,10 +247,20 @@
         }
 
         .footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             text-align: center;
             margin-top: 3rem;
-            color: #666;
+            padding: 3rem 0;
             font-size: 0.9rem;
+        }
+
+        .ner-entities-container {
+            margin: 1rem 0;
+        }
+
+        .confidence-bars {
+            margin: 1rem 0;
         }
 
         .loading {
@@ -274,17 +284,193 @@
             border-radius: 6px;
             margin: 1rem 0;
         }
+
+        .ai-features {
+            margin-top: 1rem;
+        }
+
+        .ai-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 0.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .ai-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .ai-stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+        }
+
+        .ai-stat-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-stat-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ner-entity-display {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .entity-tag {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin: 0.1rem;
+            font-weight: bold;
+        }
+
+        .entity-person { background: #e3f2fd; color: #1976d2; }
+        .entity-org { background: #f3e5f5; color: #7b1fa2; }
+        .entity-gpe { background: #e8f5e8; color: #388e3c; }
+        .entity-law { background: #fff3e0; color: #f57c00; }
+        .entity-date { background: #fce4ec; color: #c2185b; }
+        .entity-document { background: #e0f2f1; color: #00796b; }
+        .entity-phone { background: #f1f8e9; color: #689f38; }
+        .entity-vehicle { background: #ede7f6; color: #512da8; }
+
+        .confidence-bar {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0.2rem 0;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff5252, #ff9800, #4caf50);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .relationship-display {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .validation-results {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .ai-insights {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .performance-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .metric-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <div class="container">
-            <h1>FIR Document Annotation Interface</h1>
-            <p>Review and correct extraction results for machine learning training</p>
+            <h1>🤖 AI-Powered FIR Document Processing & Annotation Interface</h1>
+            <p>Advanced Machine Learning & Named Entity Recognition (NER) System for Legal Document Analysis</p>
+            <div class="ai-features">
+                <span class="ai-badge">Enhanced NER</span>
+                <span class="ai-badge">ML Pattern Learning</span>
+                <span class="ai-badge">Confidence Scoring</span>
+                <span class="ai-badge">Entity Relationships</span>
+                <span class="ai-badge">Context Analysis</span>
+            </div>
         </div>
     </div>
 
     <div class="container">
+        <!-- AI/ML Performance Dashboard -->
+        <div class="ai-stats-grid">
+            <div class="ai-stat-card">
+                <h3 id="ner-entities">0</h3>
+                <p>Entities Extracted</p>
+            </div>
+            <div class="ai-stat-card">
+                <h3 id="avg-confidence">0.0%</h3>
+                <p>Avg Confidence</p>
+            </div>
+            <div class="ai-stat-card">
+                <h3 id="ai-accuracy">0.0%</h3>
+                <p>AI Accuracy</p>
+            </div>
+            <div class="ai-stat-card">
+                <h3 id="processing-speed">0.0s</h3>
+                <p>Avg Processing Time</p>
+            </div>
+        </div>
+
+        <!-- Traditional Stats -->
         <div class="stats-grid">
             <div class="stat-card">
                 <h3 id="total-tasks">0</h3>
@@ -304,6 +490,29 @@
             </div>
         </div>
 
+        <!-- AI Insights Section -->
+        <div class="ai-insights" id="ai-insights-section" style="display: none;">
+            <h3>🧠 AI/ML Processing Insights</h3>
+            <div class="performance-metrics">
+                <div class="metric-item">
+                    <span class="metric-value" id="ner-success-rate">0.0%</span>
+                    <span class="metric-label">NER Success Rate</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-value" id="entity-relationships">0</span>
+                    <span class="metric-label">Entity Relationships</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-value" id="context-score">0.0</span>
+                    <span class="metric-label">Context Score</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-value" id="fallback-usage">0.0%</span>
+                    <span class="metric-label">Fallback Usage</span>
+                </div>
+            </div>
+        </div>
+
         <div class="task-section">
             <h2>Annotation Tasks</h2>
             <div id="task-list" class="task-list">
@@ -314,8 +523,16 @@
         <div class="task-section" id="annotation-section" style="display: none;">
             <h2>Annotation Task: <span id="current-task-id"></span></h2>
 
+            <!-- AI/ML Analysis Results -->
+            <div id="ai-analysis-results" class="ai-insights">
+                <h3>🔍 AI/ML Analysis Results</h3>
+                <div id="ner-entities-display"></div>
+                <div id="entity-relationships-display"></div>
+                <div id="validation-results-display"></div>
+            </div>
+
             <div id="example-data" class="example-data">
-                <h3>Extraction Results</h3>
+                <h3>📋 Structured Extraction Results</h3>
                 <div id="example-content"></div>
             </div>
 
@@ -337,7 +554,30 @@
     </div>
 
     <div class="footer">
-        <p>FIR Document Training Data Collection System v1.0</p>
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h3>🚀 AI/ML Capabilities Showcase</h3>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px; color: white;">
+                        <strong>Enhanced NER</strong> - 13 Entity Types
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px; color: white;">
+                        <strong>ML Pattern Learning</strong> - Adaptive Extraction
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px; color: white;">
+                        <strong>Confidence Scoring</strong> - AI Accuracy Metrics
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px; color: white;">
+                        <strong>Entity Relationships</strong> - Context Understanding
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px; color: white;">
+                        <strong>Multi-Strategy Fallback</strong> - Robust Processing
+                    </div>
+                </div>
+            </div>
+            <p><strong>FIR Document AI/ML Processing & Training Data Collection System v2.0</strong></p>
+            <p>Powered by Advanced Named Entity Recognition, Machine Learning Pattern Recognition, and Intelligent Document Analysis</p>
+        </div>
     </div>
 
     <script>
@@ -434,10 +674,100 @@
             document.getElementById('annotation-section').style.display = 'block';
             document.getElementById('current-task-id').textContent = currentTask.id.substring(0, 8) + '...';
 
-            // Display example data
+            // Display AI/ML Analysis Results
+            displayAIMLAnalysis(example);
+
+            // Display traditional extraction results
+            displayExtractionResults(example);
+
+            // Update AI insights
+            updateAIInsights(example);
+
+            // Scroll to annotation section
+            document.getElementById('annotation-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function displayAIMLAnalysis(example) {
+            const nerDisplay = document.getElementById('ner-entities-display');
+            const relationshipsDisplay = document.getElementById('entity-relationships-display');
+            const validationDisplay = document.getElementById('validation-results-display');
+
+            // Display NER Entities
+            if (example.ner_entities && example.ner_entities.length > 0) {
+                const entitiesHtml = `
+                    <h4>🎯 Named Entities Detected (${example.ner_entities.length})</h4>
+                    <div class="ner-entities-container">
+                        ${example.ner_entities.map(entity => `
+                            <span class="entity-tag entity-${entity.label.toLowerCase()}">
+                                ${entity.text} <span style="opacity: 0.7;">(${entity.label})</span>
+                            </span>
+                        `).join('')}
+                    </div>
+                    <div class="confidence-bars">
+                        ${example.ner_entities.map(entity => `
+                            <div style="margin: 0.2rem 0;">
+                                <strong>${entity.text}:</strong>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" style="width: ${entity.confidence * 100}%"></div>
+                                </div>
+                                <small>${(entity.confidence * 100).toFixed(1)}% confidence</small>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                nerDisplay.innerHTML = entitiesHtml;
+            } else {
+                nerDisplay.innerHTML = '<p>No entities detected or NER data not available.</p>';
+            }
+
+            // Display Entity Relationships
+            if (example.entity_relationships && example.entity_relationships.length > 0) {
+                const relationshipsHtml = `
+                    <h4>🔗 Entity Relationships</h4>
+                    ${example.entity_relationships.map(rel => `
+                        <div class="relationship-display">
+                            <strong>${rel.entity1}</strong> (${rel.entity1_type}) ↔
+                            <strong>${rel.entity2}</strong> (${rel.entity2_type})
+                            <br><small>Relationship: ${rel.relationship_type} (${(rel.confidence * 100).toFixed(1)}% confidence)</small>
+                        </div>
+                    `).join('')}
+                `;
+                relationshipsDisplay.innerHTML = relationshipsHtml;
+            } else {
+                relationshipsDisplay.innerHTML = '<p>No entity relationships detected.</p>';
+            }
+
+            // Display Validation Results
+            if (example.validation_results) {
+                const validationHtml = `
+                    <h4>✅ Validation Results</h4>
+                    <div class="validation-results">
+                        <p><strong>Validation Score:</strong> ${(example.validation_results.validation_score * 100).toFixed(1)}%</p>
+                        <p><strong>Valid Entities:</strong> ${example.validation_results.valid_entities}/${example.validation_results.total_entities}</p>
+                        ${example.validation_results.warnings.length > 0 ? `
+                            <div style="margin-top: 0.5rem;">
+                                <strong>Warnings:</strong>
+                                <ul>${example.validation_results.warnings.map(w => `<li>${w}</li>`).join('')}</ul>
+                            </div>
+                        ` : ''}
+                        ${example.validation_results.issues.length > 0 ? `
+                            <div style="margin-top: 0.5rem;">
+                                <strong>Issues:</strong>
+                                <ul>${example.validation_results.issues.map(i => `<li>${i}</li>`).join('')}</ul>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+                validationDisplay.innerHTML = validationHtml;
+            } else {
+                validationDisplay.innerHTML = '<p>No validation data available.</p>';
+            }
+        }
+
+        function displayExtractionResults(example) {
             const exampleContent = document.getElementById('example-content');
             const fields = ['police_station', 'cr_no', 'section_of_law', 'date_of_occurrence',
-                           'complainant', 'victims', 'accused', 'gist'];
+                            'complainant', 'victims', 'accused', 'gist'];
 
             const fieldsHtml = fields.map(field => {
                 const value = example.actual_output[field];
@@ -447,19 +777,38 @@
                     <div class="field-item">
                         <div class="field-label">${field.replace(/_/g, ' ').toUpperCase()}</div>
                         <div class="field-original">Extracted: ${value || 'Not found'}</div>
-                        <div class="field-original">Confidence: ${(confidence * 100).toFixed(1)}%</div>
+                        <div class="field-original">
+                            Confidence: ${(confidence * 100).toFixed(1)}%
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: ${confidence * 100}%"></div>
+                            </div>
+                        </div>
                         <div class="field-corrected">
                             <input type="text" class="form-control" value="${value || ''}"
-                                   placeholder="Corrected value (leave empty if correct)">
+                                    placeholder="Corrected value (leave empty if correct)">
                         </div>
                     </div>
                 `;
             }).join('');
 
             exampleContent.innerHTML = `<div class="field-grid">${fieldsHtml}</div>`;
+        }
 
-            // Scroll to annotation section
-            document.getElementById('annotation-section').scrollIntoView({ behavior: 'smooth' });
+        function updateAIInsights(example) {
+            // Show AI insights section
+            document.getElementById('ai-insights-section').style.display = 'block';
+
+            // Update metrics if available
+            if (example.processing_metadata) {
+                document.getElementById('ner-success-rate').textContent =
+                    `${((example.processing_metadata.ner_success_rate || 0) * 100).toFixed(1)}%`;
+                document.getElementById('entity-relationships').textContent =
+                    example.entity_relationships ? example.entity_relationships.length : 0;
+                document.getElementById('context-score').textContent =
+                    (example.context_analysis ? example.context_analysis.context_score || 0 : 0).toFixed(2);
+                document.getElementById('fallback-usage').textContent =
+                    `${((example.processing_metadata.fallback_used ? 1 : 0) * 100).toFixed(1)}%`;
+            }
         }
 
         async function submitAnnotation() {
